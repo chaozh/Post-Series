@@ -115,4 +115,130 @@ function series_sc($atts) {
 } 
 add_shortcode('series','series_sc');
 
+class Post_Series_Widget extends WP_Widget {
+    /** constructor */
+    function __construct() {
+    	$widget_ops = array(
+            'classname' => 'widget_' . SERIES,
+            'description' => __( "A simple widget to display post series.", SERIES_BASE) 
+        );
+        $this->WP_Widget( 'widget_' . SERIES, $name = __('Post Series', SERIES_BASE), $widget_ops);	
+        
+        add_action( 'save_post', array(&$this, 'flush_widget_cache') );
+		add_action( 'deleted_post', array(&$this, 'flush_widget_cache') );
+		add_action( 'switch_theme', array(&$this, 'flush_widget_cache') );
+    }
+
+    /** @use WP_Widget::widget */
+    function widget($args, $instance) {
+        $cache = wp_cache_get('widget_'.SERIES, 'widget');
+        
+        if ( !is_array($cache) )
+			$cache = array();
+
+		if ( ! isset( $args['widget_id'] ) )
+			$args['widget_id'] = null;
+
+		if ( isset($cache[$args['widget_id']]) ) {
+			echo $cache[$args['widget_id']];
+			return;
+		}
+        
+        $options = get_option( SERIES.'_options' );
+        $series_arg = array(
+        
+            "id" => $instance["id"],
+            "limit" => $instance["limit"],
+            "show_future" => $instance["show_future"],
+            "class_prefix" => $instance["class_prefix"], 
+            "title_format" => ''
+            
+        );
+        $series_arg = $series_arg + $options;
+        
+		$widget_title = apply_filters( 'widget_title', $instance['widget_title'] );
+        
+        ob_start();	
+        extract( $args, EXTR_SKIP );
+        	
+		echo $before_widget;
+		echo $before_title . $widget_title . $after_title;
+    	echo series_display($series_arg);
+        echo $after_widget;
+        
+        $cache[$args['widget_id']] = ob_get_flush();
+		wp_cache_set('widget_'.SERIES, $cache, 'widget');
+    }
+    
+    function flush_widget_cache() {
+		wp_cache_delete( 'widget_'.SERIES, 'widget' );
+	}
+
+    /** @use WP_Widget::update */
+    function update($new_instance, $old_instance) {				
+        $instance = $old_instance;
+        $instance['widget_title'] = strip_tags($new_instance['widget_title']);
+        $instance['id'] = absint($new_instance['id']);
+        if($new_instance['limit'] == '')
+            $instance['limit'] = -1;
+		
+        $instance['class_prefix'] = strip_tags($new_instance['class_prefix']);
+        $instance['show_future'] = strip_tags($new_instance['show_future']);
+        
+        $this->flush_widget_cache();
+        
+        $alloptions = wp_cache_get( 'alloptions', 'options' );
+		if ( isset($alloptions['widget_'.SERIES]) )
+			delete_option('widget_'.SERIES);
+        
+    	return $instance;
+    }
+
+    /** @use WP_Widget::form */
+    function form($instance) {
+        $options = get_option( SERIES.'_options' );
+        if(isset($instance['limit']) || $instance['limit'] == -1)
+            $limit = '';
+        else
+            $limit = $instance['limit'];
+        
+        $class_prefix = isset($instance['class_prefix']) ? esc_attr($instance['class_prefix']) : $options['class_prefix'];
+        $show_future = isset($instance['show_future']) ? esc_attr($instance['show_future']) : $options['show_future'];
+        ?>
+            <p>
+            	<label for="<?php echo $this->get_field_id('widget_title'); ?>"><?php _e('Title:'); ?> </label>
+                <input id="<?php echo $this->get_field_id('widget_title'); ?>" name="<?php echo $this->get_field_name('widget_title'); ?>" class="widefat" type="text" value="<?php echo esc_attr($instance['widget_title']); ?>" />
+			</p>
+            <?php 
+            $series = get_terms( SERIES );
+            
+            if( count($series) > 0 ): ?>
+			<p>
+            	<label for="<?php echo $this->get_field_id('id'); ?>"><?php _e('Choose post series to display:', SERIES_BASE); ?> </label>
+            	<select id="<?php echo $this->get_field_id('id'); ?>" name="<?php echo $this->get_field_name('id'); ?>" class="widefat">
+            		<?php foreach( $series as $term ): ?>
+            		<option value="<?php echo $term->term_id; ?>" <?php echo ($instance['id'] == $term->term_id) ? 'selected="selected"':""; ?>><?php echo $term->name . "(" . $term->count . ")"; ?></option>
+            		<?php endforeach; ?>
+            	</select>
+			</p>
+			<?php endif; ?>
+            <p>
+            	<label for="<?php echo $this->get_field_id('limit'); ?>"><?php _e('Number of posts to show:', SERIES_BASE); ?> </label>
+                <input id="<?php echo $this->get_field_id('limit'); ?>" name="<?php echo $this->get_field_name('limit'); ?>" class="widefat" type="text" value="<?php echo $limit; ?>" size="3" />
+			</p>
+            <p>
+            	<label for="<?php echo $this->get_field_id('class_prefix'); ?>"><?php _e('Special class prefix:', SERIES_BASE); ?> </label>
+                <input id="<?php echo $this->get_field_id('class_prefix'); ?>" name="<?php echo $this->get_field_name('class_prefix'); ?>" class="widefat" type="text" value="<?php echo $class_prefix; ?>" />
+			</p>
+            <p>
+                <input id="future_on" type="radio" name="<?php echo $this->get_field_name('show_future'); ?>" value="on" <?php checked( $show_future, 'on' ); ?> />
+                <label for="future_on" class="future-on-label"><?php _e('Show future',SERIES_BASE);?></label>
+                <input id="future_off" type="radio" name="<?php echo $this->get_field_name('show_future'); ?>" value="off" <?php checked( $show_future, 'off' ); ?> />
+                <label for="future_off" class="future-off-label"><?php _e('Dont show',SERIES_BASE);?></label>
+			</p>
+        <?php 
+    }
+
+}
+add_action( 'widgets_init', create_function( '', 'register_widget( "Post_Series_Widget" );' ) );
 ?>
