@@ -1,0 +1,519 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: chaozh\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-10-31 22:23+0800\n"
+"PO-Revision-Date: 2012-10-31 22:24+0800\n"
+"Last-Translator: zc <chao@whu.edu.cn>\n"
+"Language-Team: chaozh <chao@whu.edu.cn>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: __;_e;_x:1,2c\n"
+"X-Poedit-Basepath: D:\\AppServ\\www\\wordpress\\wp-content\\plugins\\post-series\\\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+"X-Poedit-Language: Chinese\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: series-admin.php:71
+msgid "Insert Series"
+msgstr "插入专题"
+
+#: series-admin.php:99
+#: series-admin.php:181
+msgid "Post Series Settings"
+msgstr "Post Series插件设置"
+
+#: series-admin.php:99
+msgid "Post Series"
+msgstr "Post Series专题"
+
+#: series-admin.php:114
+msgid "Configure Post Series"
+msgstr "设置专题选项"
+
+#: series-admin.php:116
+msgid "Title Format"
+msgstr "标题格式"
+
+#: series-admin.php:117
+msgid "CSS Class Prefix"
+msgstr "CSS类前缀"
+
+#: series-admin.php:118
+msgid "Series Wrap Element"
+msgstr "专题容器元素"
+
+#: series-admin.php:119
+msgid "Title Wrap Element"
+msgstr "标题容器元素"
+
+#: series-admin.php:120
+msgid "Show Unpublished"
+msgstr "展示未发表文章"
+
+#: series-admin.php:190
+msgid "Save Changes"
+msgstr "保存更改"
+
+#: series-admin.php:195
+msgid "Add Series to your Post or Page"
+msgstr "为你的文章或页面添加专题显示"
+
+#: series-admin.php:196
+#, php-format
+msgid "Use %1$s to add it to your Post or Page content, or use the Post Series Widget."
+msgstr "使用%1$s添加内容到你的文章或页面，或使用小工具"
+
+#: series-admin.php:204
+msgid "Set up your series using the options below."
+msgstr "在下面设置专题选项"
+
+#: series-admin.php:209
+msgid "title format"
+msgstr "title format"
+
+#: series-admin.php:216
+msgid "class prefix"
+msgstr "class prefix"
+
+#: series-admin.php:223
+msgid "series wrap"
+msgstr "series wrap"
+
+#: series-admin.php:230
+msgid "title wrap"
+msgstr "title wrap"
+
+#: series-admin.php:241
+msgid "on"
+msgstr "显示"
+
+#: series-admin.php:243
+msgid "off"
+msgstr "不显示"
+
+#: series-display.php:68
+msgid "Future post"
+msgstr "计划"
+
+#: series.php:24
+msgctxt "taxonomy general name"
+msgid "Series"
+msgstr "专题"
+
+#: series.php:25
+msgctxt "taxonomy singular name"
+msgid "Series"
+msgstr "专题"
+
+#: series.php:26
+msgid "All Series"
+msgstr "所有专题"
+
+#: series.php:27
+msgid "Edit Series"
+msgstr "编辑专题"
+
+#: series.php:28
+msgid "Update Series"
+msgstr "更新专题"
+
+#: series.php:29
+msgid "Add New Series"
+msgstr "添加新的专题"
+
+#: series.php:30
+msgid "New Series Name"
+msgstr "新专题名称"
+
+#: series.php:31
+msgid "Series"
+msgstr "专题"
+
+#: series.php:87
+msgid "This entry is part %current of %count in the series: %link"
+msgstr "本文是全系列中第%current / %count篇：%link"
+
+#: inc/tinymce-plugin-dialog.php:15
+msgid "Choose a Series from the list below to embed in your post:"
+msgstr "从下面列表中选择专题插入文中"
+
+#: inc/tinymce-plugin-dialog.php:20
+msgid "Name:"
+msgstr "名称"
+
+#: inc/tinymce-plugin-dialog.php:21
+msgid "Count:"
+msgstr "文章数目"
+
+#: inc/tinymce-plugin-dialog.php:42
+msgid "Title:"
+msgstr "标题："
+
+#: inc/tinymce-plugin-dialog.php:49
+msgid "Limit show:"
+msgstr "展示文章数目："
+
+#: inc/tinymce-plugin-dialog.php:56
+msgid "Future show:"
+msgstr "展示未发布文章："
+
+#: inc/tinymce-plugin-dialog.php:68
+msgid "Insert"
+msgstr "插入"
+
+#: inc/tinymce-plugin-dialog.php:71
+msgid "Cancel"
+msgstr "取消"
+
+#~ msgid "List Wrap Element"
+#~ msgstr "列表容器元素"
+
+#~ msgid "list wrap"
+#~ msgstr "list wrap"
+
+#~ msgid "Series:"
+#~ msgstr "专题"
+
+#~ msgid "future"
+#~ msgstr "显示"
+
+#~ msgid "Daily Archives: %s"
+#~ msgstr "按日期归类：%s"
+
+#~ msgid "Monthly Archives: %s"
+#~ msgstr "按月份归类：%s"
+
+#~ msgid "Yearly Archives: %s"
+#~ msgstr "按年份归类：%s"
+
+#~ msgid "Blog Archives"
+#~ msgstr "博客分类："
+
+#~ msgid "Nothing Found"
+#~ msgstr "没有内容"
+
+#~ msgid ""
+#~ "Apologies, but no results were found for the requested archive. Perhaps "
+#~ "searching will help find a related post."
+#~ msgstr "哎呀，没找到该分类，请搜索相关主题"
+
+#~ msgid "Category Archives: %s"
+#~ msgstr "标签分类：%s"
+
+#~ msgid "Post navigation"
+#~ msgstr "文章分页"
+
+#~ msgid "<span class=\"meta-nav\">&larr;</span> %title"
+#~ msgstr "<span class=\"meta-nav\">上篇文章</span> %title"
+
+#~ msgid "%title <span class=\"meta-nav\">&rarr;</span>"
+#~ msgstr "%title <span class=\"meta-nav\">&rarr;下篇文章</span>"
+
+#~ msgid "<span class=\"meta-nav\">&larr;</span> Older posts"
+#~ msgstr "<span class=\"meta-nav\">&larr;</span> 前文"
+
+#~ msgid "Newer posts <span class=\"meta-nav\">&rarr;</span>"
+#~ msgstr "最新 <span class=\"meta-nav\">&rarr;</span>"
+
+#~ msgid "Page %s"
+#~ msgstr "页面 %s"
+
+#~ msgid "Image navigation"
+#~ msgstr "导航"
+
+#~ msgid "Edit"
+#~ msgstr "编辑"
+
+#~ msgid "Pages:"
+#~ msgstr "页面："
+
+#~ msgid "Tag Archives: %s"
+#~ msgstr "标签分类：%s"
+
+#~ msgid ""
+#~ "It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps "
+#~ "searching, or one of the links below, can help."
+#~ msgstr "似乎没找到你想找的内容，请搜索相关主题或留言寻求帮助"
+
+#~ msgid "Blog Archives: %s"
+#~ msgstr "博客归类：%s"
+
+#~ msgid "Design Features: %s"
+#~ msgstr "设计特色：%s"
+
+#~ msgid "Project Duty: %s"
+#~ msgstr "项目职责：%s"
+
+#~ msgid "Continue reading &raquo;"
+#~ msgstr "阅读全文&raquo;"
+
+#~ msgid ""
+#~ "This post is password protected. Enter the password to view any comments."
+#~ msgstr "此文章受密码保护，请输入密码来阅读评论"
+
+#~ msgid "Welcome %1$s, you've logged in. %2$s"
+#~ msgstr "欢迎 %1$s，你已经登录！%2$s"
+
+#~ msgid "Log out of this account"
+#~ msgstr "退出此账号"
+
+#~ msgid "Log out"
+#~ msgstr "退出"
+
+#~ msgid "Submit Comment"
+#~ msgstr "提交看法"
+
+#~ msgid "(required)"
+#~ msgstr "(必须)"
+
+#~ msgid "Write your comment here..."
+#~ msgstr "在此填写你的看法..."
+
+#~ msgid "email address(%1$s,no publishing)"
+#~ msgstr "Email地址（%1$s,不会公开）"
+
+#~ msgid "Leave something"
+#~ msgstr "抢沙发"
+
+#~ msgid "One thought"
+#~ msgstr "一个想法"
+
+#~ msgid " thoughts"
+#~ msgstr "个想法"
+
+#~ msgid "No comment yet, you can leave something here."
+#~ msgstr "还没有评论，你可以来抢沙发"
+
+#~ msgid "Comments are closed."
+#~ msgstr "评论关闭咯"
+
+#~ msgid "Designed and developed by ChaoRan. Using Google Analystics."
+#~ msgstr "由超然台上仙设计开发。使用 Google Analystics 数据统计。"
+
+#~ msgid "http://wordpress.org/"
+#~ msgstr "http://wordpress.org/"
+
+#~ msgid "Proudly powered by %s"
+#~ msgstr "Proudly powered by %s"
+
+#~ msgid "Primary Menu"
+#~ msgstr "主菜单"
+
+#~ msgid "tag"
+#~ msgstr "标签"
+
+#~ msgid "Design Feature"
+#~ msgstr "设计特色"
+
+#~ msgid "Project Duty"
+#~ msgstr "项目职责"
+
+#~ msgid "Category"
+#~ msgstr "分类"
+
+#~ msgid "Main Sidebar Widgets"
+#~ msgstr "主页博客边栏"
+
+#~ msgid "The sidebar for the Main Template."
+#~ msgstr "主页模板边栏设置"
+
+#~ msgid "The sidebar for the single post."
+#~ msgstr "博客单页边栏设置"
+
+#~ msgid "Designs"
+#~ msgstr "设计"
+
+#~ msgid "Design"
+#~ msgstr "新设计信息"
+
+#~ msgid "Add Design"
+#~ msgstr "添加设计"
+
+#~ msgid "New Designs"
+#~ msgstr "新设计"
+
+#~ msgid "View Design"
+#~ msgstr "浏览设计"
+
+#~ msgid "Search Designs"
+#~ msgstr "搜索设计"
+
+#~ msgid "No Designs found"
+#~ msgstr "没有设计"
+
+#~ msgid "No Designs found in Trash"
+#~ msgstr "回收站中没有设计"
+
+#~ msgid "Design Tags"
+#~ msgstr "设计特色标签"
+
+#~ msgid "Projects"
+#~ msgstr "项目"
+
+#~ msgid "Project"
+#~ msgstr "新项目信息"
+
+#~ msgid "All Projects"
+#~ msgstr "所有项目"
+
+#~ msgid "Add Project"
+#~ msgstr "添加项目"
+
+#~ msgid "Add New Project"
+#~ msgstr "添加新项目"
+
+#~ msgid "Edit Project"
+#~ msgstr "编辑项目信息"
+
+#~ msgid "View Project"
+#~ msgstr "浏览项目"
+
+#~ msgid "Search Project"
+#~ msgstr "搜索项目"
+
+#~ msgid "No Project found"
+#~ msgstr "没有项目"
+
+#~ msgid "No Project found in Trash"
+#~ msgstr "回收站中没有项目"
+
+#~ msgid "Project Categories"
+#~ msgstr "项目分类"
+
+#~ msgid "Pingback:"
+#~ msgstr "Pingback:"
+
+#~ msgid "visiting %1$s' site"
+#~ msgstr "浏览%1$s的站点"
+
+#~ msgid "%1$s said:%2$s"
+#~ msgstr "%1$s说:%2$s"
+
+#~ msgid "%1$s ago"
+#~ msgstr "%1$s前"
+
+#~ msgid "Your comment is awaiting moderation."
+#~ msgstr "你的评论正等待审核"
+
+#~ msgid "Reply<span>&darr;</span>"
+#~ msgstr "回复<span>&darr;</span>"
+
+#~ msgid "Project URL"
+#~ msgstr "项目体验地址"
+
+#~ msgid "Project Image Url"
+#~ msgstr "项目介绍图片"
+
+#~ msgid ""
+#~ "Sorry, but nothing matched your search criteria. Please try again with "
+#~ "some different keywords."
+#~ msgstr "哎呀，似乎没搜索到你想找的内容，请尝试其它关键字来搜索"
+
+#~ msgid "Search"
+#~ msgstr "搜索"
+
+#~ msgid "Subscribe Rss"
+#~ msgstr "订阅博客更新"
+
+#~ msgid "Subscribe Weibo"
+#~ msgstr "微博订阅博客"
+
+#~ msgid "Archives"
+#~ msgstr "归档"
+
+#~ msgid "Tags"
+#~ msgstr "标签"
+
+#~ msgid "Creative Thought"
+#~ msgstr "设计思路"
+
+#~ msgid "Design Features"
+#~ msgstr "设计特色"
+
+#~ msgid "Demo"
+#~ msgstr "体验地址"
+#~ msgctxt "single"
+
+#~ msgid "<span class=\"meta-nav\">&larr;</span> Previous"
+#~ msgstr "<span class=\"meta-nav\">&larr;</span>上一篇"
+#~ msgctxt "single"
+
+#~ msgid "Next <span class=\"meta-nav\">&rarr;</span>"
+#~ msgstr "下一篇<span class=\"meta-nav\">&rarr;</span>"
+
+#~ msgid "Blog Promotion Options"
+#~ msgstr "博客推广设置"
+
+#~ msgid "Display Custom Sharing Widget?"
+#~ msgstr "显示推广标签"
+
+#~ msgid "Check here to <b>display</b>."
+#~ msgstr "勾选<b>显示</b>."
+
+#~ msgid "Your Twitter Address"
+#~ msgstr "你的微博地址"
+
+#~ msgid "RSS Replacement URL"
+#~ msgstr "RSS替换URL"
+
+#~ msgid "Email Subscribe URL"
+#~ msgstr "Email订阅地址"
+
+#~ msgid "SEO Options"
+#~ msgstr "SEO设置"
+
+#~ msgid "HEADER Code"
+#~ msgstr "HEADER 插入代码"
+
+#~ msgid "FOOTER Code"
+#~ msgstr "FOOTER 插入代码"
+
+#~ msgid "Google Analytics Code"
+#~ msgstr "Google Analytics代码"
+
+#~ msgid "Paste your Google Analytics Code (or others) here."
+#~ msgstr "粘贴你的Google Analytics代码（或其它统计代码）到此"
+
+#~ msgid "ADS Options"
+#~ msgstr "广告设置"
+
+#~ msgid "Display Custom Ads On Sidebar"
+#~ msgstr "边栏显示自定义广告"
+
+#~ msgid "Customize Ads will show on blog page by sidebar."
+#~ msgstr "自定义广告将显示在博客页边栏"
+
+#~ msgid "Ads area 1 (200x100)"
+#~ msgstr "广告 1 (200x100)"
+
+#~ msgid "Ads area 2 (200x100)"
+#~ msgstr "广告 2 (200x100)"
+
+#~ msgid "Ads area 3 (200x100)"
+#~ msgstr "广告 3 (200x100)"
+
+#~ msgid "Ads area 4 (200x100)"
+#~ msgstr "广告 4 (200x100)"
+
+#~ msgid " Theme Options"
+#~ msgstr " 主题设置"
+
+#~ msgid "Theme Options"
+#~ msgstr "主题设置"
+
+#~ msgid "Save Options"
+#~ msgstr "保存设置"
+
+#~ msgid "Restore default"
+#~ msgstr "恢复默认设置"
+
+#~ msgid "Reset Default"
+#~ msgstr "恢复默认设置"
+
+#~ msgid "Add New"
+#~ msgstr "添加设计"
+
+#~ msgid "给点建议"
+#~ msgstr "给点建议"

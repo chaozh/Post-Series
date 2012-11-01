@@ -1,0 +1,86 @@
+.ui-series.ui-dialog {
+    position: relative;
+    padding: .2em;
+    width: 300px;
+}
+
+.ui-series.ui-dialog .ui-dialog-titlebar {
+    padding: .5em .3em .3em 1em;
+    position: relative;
+    font-size: 11px;
+}
+
+.ui-series.ui-dialog .ui-dialog-content {
+    border: 0;
+    padding: .5em 1em;
+    background: none;
+    overflow: auto;
+    zoom: 1;
+}
+
+.ui-series.ui-dialog .ui-dialog-title {
+    float: left;
+    margin: .1em 0 .2em;
+    padding-left: 0;
+    text-shadow: 0 1px 0 white;
+    font-size: 12px;
+}
+
+.ui-series.ui-dialog .ui-dialog-titlebar-close {
+    position: absolute;
+    right: .3em;
+    top: 50%;
+    width: 19px;
+    margin: -10px 0 0 0;
+    padding: 1px;
+    height: 18px;
+    background: none;
+}
+
+.ui-series.ui-dialog .ui-dialog-titlebar-close:hover, 
+.ui-series.ui-dialog .ui-dialog-titlebar-close:focus {
+    padding: 0;
+}
+
+.ui-series.ui-dialog .fixed {margin-bottom: 10px;}
+.ui-series.ui-dialog .fixed .column-count { width: 90px; }
+.ui-series.ui-dialog .fixed tbody tr td { cursor: pointer; }
+.ui-series.ui-dialog .fixed tbody tr:hover td { background: #ffc; }
+.ui-series.ui-dialog .fixed tbody tr.selected td { background: #ffa; }
+
+.ui-series.ui-dialog input[type="text"] {
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	-o-border-radius: 4px;
+    border-radius: 4px;
+	border: 1px solid #dfdfdf;
+	background: #ffffff;
+	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	margin: 1px;
+	padding: 3px;
+}
+
+.ui-series.ui-dialog .ui-dialog-buttonset {
+	width: auto;
+    padding: 5px 0;
+    border-top: 1px solid #dfdfdf;
+	overflow: hidden;
+}
+
+.ui-series.ui-dialog .ui-dialog-buttonset button {
+    float: left;
+    margin: .5em .4em .5em 0;
+    cursor: pointer;
+    padding: .2em .6em .3em .6em;
+    line-height: 1.4em;
+    width: auto;
+    overflow: visible;
+}
+
+.ui-dialog-buttonset .ui-widget:hover,
+.ui-dialog-buttonset .ui-widget:focus {
+    border: 1px solid #999;
+    color: #212121;
+    background: #DADADA;
+}
