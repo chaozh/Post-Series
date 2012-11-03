@@ -43,6 +43,14 @@ function series_register_taxonomy() {
    );
 
 	register_taxonomy( SERIES, array('post','page'), $series_tax_args );
+    
+    $options = get_option( SERIES.'_options' );
+    if($options['auto_display'] == 'on'){
+        add_filter('the_content', 'series_auto_content_display',0);
+    }
+    if( $options['custom_archives'] == 'off' ){
+        add_filter('template_include', 'series_set_template');
+    }
 } 
 add_action('init', 'series_register_taxonomy', 0);
 
@@ -59,6 +67,28 @@ function series_css() {
 	}
 }
 add_action( 'wp_enqueue_scripts', 'series_css' );
+
+function series_is_template( $template_path ){
+
+    //Get template name
+    $template = basename($template_path);
+
+    //Check if template is taxonomy-series.php
+    //Check if template is taxonomy-series-{term-slug}.php
+    if( 1 == preg_match('/^taxonomy-series((-(\S*))?).php/',$template) )
+         return true;
+
+    return false;
+}
+
+function series_set_template( $template )
+{
+	if( is_tax(SERIES) && !series_is_template($template) ){
+        $template = SERIES_ROOT."/template/taxonomy-".SERIES.".php";
+	}
+
+    return $template;
+}
 
 // Load admin functions if in the backend
 if ( is_admin() ){
@@ -89,7 +119,8 @@ function series_get_default_options() {
         'series_wrap'    => 'section',
 		'title_wrap'     => 'h3',
 		'show_future'    => 'on',
-        'auto_display'   => 'off'
+        'auto_display'   => 'off',
+        'custom_archives' => 'off'
             
 	);
 	return apply_filters( SERIES . '_default_options', $series_defaults_args );
@@ -120,18 +151,15 @@ function series_auto_content_display($content) {
     
     if(is_single() || is_page() || is_feed()){
         $options = get_option( SERIES.'_options' );
-        if($options['auto_display'] == 'on'){
-            $series_arg = array(
-                "limit" => -1
-            );
-            $series_arg = $options + $series_arg;
-            $series_display = series_display($series_arg);
-            $content =  $content."\n".$series_display."\n"; 
-        }
+        $series_arg = array(
+            "limit" => -1
+        );
+        $series_arg = $options + $series_arg;
+        $series_display = series_display($series_arg);
+        $content =  $content."\n".$series_display."\n"; 
     }
     return $content;
 }
-add_filter('the_content', 'series_auto_content_display',0);
 
 class Post_Series_Widget extends WP_Widget {
     /** constructor */
