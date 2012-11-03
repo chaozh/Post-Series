@@ -88,7 +88,8 @@ function series_get_default_options() {
         'class_prefix'   => 'post-series',
         'series_wrap'    => 'section',
 		'title_wrap'     => 'h3',
-		'show_future'    => 'on'
+		'show_future'    => 'on',
+        'auto_display'   => 'off'
             
 	);
 	return apply_filters( SERIES . '_default_options', $series_defaults_args );
@@ -114,6 +115,23 @@ function series_sc($atts) {
     return series_display($series_arg);
 } 
 add_shortcode('series','series_sc');
+
+function series_auto_content_display($content) {
+    
+    if(is_single() || is_page() || is_feed()){
+        $options = get_option( SERIES.'_options' );
+        if($options['auto_display'] == 'on'){
+            $series_arg = array(
+                "limit" => -1
+            );
+            $series_arg = $options + $series_arg;
+            $series_display = series_display($series_arg);
+            $content =  $content."\n".$series_display."\n"; 
+        }
+    }
+    return $content;
+}
+add_filter('the_content', 'series_auto_content_display',0);
 
 class Post_Series_Widget extends WP_Widget {
     /** constructor */

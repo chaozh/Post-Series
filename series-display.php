@@ -5,13 +5,13 @@ function series_display($series_arg){
     extract($series_arg);
     
     $current_post_id = $post->ID;
-	if($id) {
+	if(isset($id) && $id) {
 		// Use the "id" attribute if it exists
 		$tax_query = array(array('taxonomy' => SERIES, 'field' => 'id', 'terms' => $id));
         $tax_link = get_term_link((int)$id, SERIES);
         $term = &get_term((int)$id, $taxonomy);
         
-	} else if ($slug) {
+	} else if (isset($slug) && $slug) {
 		// Use the "slug" attribute if "id" does not exist
 		$tax_query = array(array('taxonomy' => SERIES, 'field' => 'slug', 'terms' => $slug));
         $tax_link = get_term_link($slug, SERIES);
@@ -21,7 +21,7 @@ function series_display($series_arg){
 		// Use post's own Series tax if neither "id" nor "slug" exist
 		$terms = get_the_terms($current_post_id,SERIES);
 		if ($terms && !is_wp_error($terms)) {
-            $term = $terms[0];
+            $term = array_shift($terms);
             $tax_query = array(array('taxonomy' => SERIES, 'field' => 'slug', 'terms' => $term->slug));
             $tax_link = get_term_link($term->slug, SERIES);
 		} else {

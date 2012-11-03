@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: chaozh\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-10-31 22:23+0800\n"
-"PO-Revision-Date: 2012-10-31 22:24+0800\n"
+"POT-Creation-Date: 2012-11-03 10:02+0800\n"
+"PO-Revision-Date: 2012-11-03 10:04+0800\n"
 "Last-Translator: zc <chao@whu.edu.cn>\n"
 "Language-Team: chaozh <chao@whu.edu.cn>\n"
 "MIME-Version: 1.0\n"
@@ -20,11 +20,12 @@ msgid "Insert Series"
 msgstr "插入专题"
 
 #: series-admin.php:99
-#: series-admin.php:181
+#: series-admin.php:190
 msgid "Post Series Settings"
 msgstr "Post Series插件设置"
 
 #: series-admin.php:99
+#: series.php:139
 msgid "Post Series"
 msgstr "Post Series专题"
 
@@ -52,44 +53,50 @@ msgstr "标题容器元素"
 msgid "Show Unpublished"
 msgstr "展示未发表文章"
 
-#: series-admin.php:190
+#: series-admin.php:121
+msgid "Auto Show Series On Post"
+msgstr "自动在文章页显示系列"
+
+#: series-admin.php:199
 msgid "Save Changes"
 msgstr "保存更改"
 
-#: series-admin.php:195
+#: series-admin.php:204
 msgid "Add Series to your Post or Page"
 msgstr "为你的文章或页面添加专题显示"
 
-#: series-admin.php:196
+#: series-admin.php:205
 #, php-format
 msgid "Use %1$s to add it to your Post or Page content, or use the Post Series Widget."
 msgstr "使用%1$s添加内容到你的文章或页面，或使用小工具"
 
-#: series-admin.php:204
+#: series-admin.php:213
 msgid "Set up your series using the options below."
 msgstr "在下面设置专题选项"
 
-#: series-admin.php:209
+#: series-admin.php:218
 msgid "title format"
 msgstr "title format"
 
-#: series-admin.php:216
+#: series-admin.php:225
 msgid "class prefix"
 msgstr "class prefix"
 
-#: series-admin.php:223
+#: series-admin.php:232
 msgid "series wrap"
 msgstr "series wrap"
 
-#: series-admin.php:230
+#: series-admin.php:239
 msgid "title wrap"
 msgstr "title wrap"
 
-#: series-admin.php:241
+#: series-admin.php:250
+#: series-admin.php:262
 msgid "on"
 msgstr "显示"
 
-#: series-admin.php:243
+#: series-admin.php:252
+#: series-admin.php:264
 msgid "off"
 msgstr "不显示"
 
@@ -135,21 +142,46 @@ msgstr "专题"
 msgid "This entry is part %current of %count in the series: %link"
 msgstr "本文是全系列中第%current / %count篇：%link"
 
+#: series.php:137
+msgid "A simple widget to display post series."
+msgstr "展示的系列文章小工具"
+
+#: series.php:223
+#: inc/tinymce-plugin-dialog.php:42
+msgid "Title:"
+msgstr "标题："
+
+#: series.php:231
+msgid "Choose post series to display:"
+msgstr "选择显示的系列："
+
+#: series.php:240
+msgid "Number of posts to show:"
+msgstr "展示文章数目："
+
+#: series.php:244
+msgid "Special class prefix:"
+msgstr "特殊Class前缀："
+
+#: series.php:249
+msgid "Show future"
+msgstr "展示未发布"
+
+#: series.php:251
+msgid "Dont show"
+msgstr "不展示"
+
 #: inc/tinymce-plugin-dialog.php:15
 msgid "Choose a Series from the list below to embed in your post:"
 msgstr "从下面列表中选择专题插入文中"
 
 #: inc/tinymce-plugin-dialog.php:20
 msgid "Name:"
-msgstr "名称"
+msgstr "名称："
 
 #: inc/tinymce-plugin-dialog.php:21
 msgid "Count:"
-msgstr "文章数目"
-
-#: inc/tinymce-plugin-dialog.php:42
-msgid "Title:"
-msgstr "标题："
+msgstr "文章数目："
 
 #: inc/tinymce-plugin-dialog.php:49
 msgid "Limit show:"
@@ -175,9 +207,6 @@ msgstr "取消"
 
 #~ msgid "Series:"
 #~ msgstr "专题"
-
-#~ msgid "future"
-#~ msgstr "显示"
 
 #~ msgid "Daily Archives: %s"
 #~ msgstr "按日期归类：%s"
@@ -448,9 +477,6 @@ msgstr "取消"
 
 #~ msgid "Display Custom Sharing Widget?"
 #~ msgstr "显示推广标签"
-
-#~ msgid "Check here to <b>display</b>."
-#~ msgstr "勾选<b>显示</b>."
 
 #~ msgid "Your Twitter Address"
 #~ msgstr "你的微博地址"

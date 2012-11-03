@@ -118,6 +118,7 @@ function series_register_settings() {
     add_settings_field('series_wrap',  __( 'Series Wrap Element', SERIES_BASE), 'series_series_wrap', SERIES.'_settings', SERIES);
     add_settings_field('title_wrap',  __( 'Title Wrap Element', SERIES_BASE), 'series_title_wrap', SERIES.'_settings', SERIES);
     add_settings_field('show_future',  __( 'Show Unpublished', SERIES_BASE), 'series_show_future', SERIES.'_settings', SERIES);
+    add_settings_field('auto_display', __('Auto Show Series On Post', SERIES_BASE), 'series_auto_display', SERIES.'_settings', SERIES);
 }
 add_action('admin_init', 'series_register_settings');
 
@@ -160,6 +161,14 @@ function series_settings_validate($series_input) {
 	if ( !preg_match( '/^on|off$/i', $series_options['show_future'] ) ) {
 
 		$series_options['show_future'] = 'on';
+
+	}
+    
+    $series_options['auto_display'] = trim( $series_input['auto_display'] );
+
+	if ( !preg_match( '/^on|off$/i', $series_options['auto_display'] ) ) {
+
+		$series_options['auto_display'] = 'off';
 
 	}
 
@@ -237,10 +246,22 @@ function series_show_future() {
 	$series_options = get_option( SERIES . '_options' );
 ?>
     
-    <input id="future_on" type="radio" name="<?php echo SERIES. 'show_future'; ?>" value="on" <?php checked( $series_options['show_future'], 'on' ); ?> />
+    <input id="future_on" type="radio" name="<?php echo SERIES. '_options[show_future]'; ?>" value="on" <?php checked( $series_options['show_future'], 'on' ); ?> />
     <label for="future_on" class="future-on-label"><?php _e('on',SERIES_BASE);?></label>
-    <input id="future_off" type="radio" name="<?php echo SERIES. 'show_future'; ?>" value="off" <?php checked( $series_options['show_future'], 'off' ); ?> />
+    <input id="future_off" type="radio" name="<?php echo SERIES. '_options[show_future]'; ?>" value="off" <?php checked( $series_options['show_future'], 'off' ); ?> />
     <label for="future_off" class="future-off-label"><?php _e('off',SERIES_BASE);?></label>
+<?php
+    
+}
+
+function series_auto_display() {
+  $series_options = get_option( SERIES . '_options' );
+?>
+    
+    <input id="auto_on" type="radio" name="<?php echo SERIES. '_options[auto_display]'; ?>" value="on" <?php checked( $series_options['auto_display'], 'on' ); ?> />
+    <label for="auto_on" class="auto-on-label"><?php _e('on',SERIES_BASE);?></label>
+    <input id="auto_off" type="radio" name="<?php echo SERIES. '_options[auto_display]'; ?>" value="off" <?php checked( $series_options['auto_display'], 'off' ); ?> />
+    <label for="auto_off" class="auto-off-label"><?php _e('off',SERIES_BASE);?></label>
 <?php
     
 }
