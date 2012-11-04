@@ -225,7 +225,7 @@ class Post_Series_Widget extends WP_Widget {
         $instance = $old_instance;
         $instance['widget_title'] = strip_tags($new_instance['widget_title']);
         $instance['id'] = absint($new_instance['id']);
-        if($new_instance['limit'] == '')
+        if( empty($new_instance['limit']) )
             $instance['limit'] = -1;
 		
         $instance['class_prefix'] = strip_tags($new_instance['class_prefix']);

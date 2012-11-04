@@ -48,7 +48,7 @@ add_action( 'admin_footer', 'series_tinymce_plugin_dialog' );
  */
 function series_addbuttons() {
     // Setup the stylesheet to use for the modal window interaction
-    wp_register_style( 'series-dialog-styles', SERIES_URL. '/inc/series-dialog.css' );
+    wp_register_style( 'series-dialog-styles', SERIES_URL. '/inc/series-dialog.css');
 
     // Return false if the user does not have WYSIWYG editing privileges
     if ( !current_user_can( 'edit_posts' ) && !current_user_can( 'edit_pages' ) ) {
@@ -63,9 +63,10 @@ function series_addbuttons() {
 
     // Only load the necessary scripts if the user is on the post/page editing admin pages
     if ( in_array( basename( $_SERVER['PHP_SELF'] ), array( 'post-new.php', 'page-new.php', 'post.php', 'page.php' ) ) ) {
+        wp_enqueue_style('jquery-ui-dialog', 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/themes/smoothness/jquery-ui.css');
         wp_enqueue_script( 'jquery-ui-dialog' );
-        wp_enqueue_style( 'series-dialog-styles' );
         
+        wp_enqueue_style( 'series-dialog-styles' );
         wp_enqueue_script( 'series-dialog', SERIES_URL . '/inc/series-dialog.js' , array('jquery-ui-dialog'), '0.2', true );
         $translation_array = array( 
             'title' => __( 'Insert Series' , SERIES_BASE) 
