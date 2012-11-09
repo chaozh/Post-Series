@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Post Series
-Plugin URI: http://chaozh.com/
+Plugin URI: http://www.chaozh.com/wordpress-plugin-post-series-publish/
 Version: 1.0
 Author: chaozh
 Author URI: http://chaozh.com/
