@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: chaozh\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-11-03 11:05+0800\n"
-"PO-Revision-Date: 2012-11-03 11:06+0800\n"
+"POT-Creation-Date: 2012-11-10 21:26+0800\n"
+"PO-Revision-Date: 2012-11-10 21:27+0800\n"
 "Last-Translator: zc <chao@whu.edu.cn>\n"
 "Language-Team: chaozh <chao@whu.edu.cn>\n"
 "MIME-Version: 1.0\n"
@@ -15,100 +15,104 @@ msgstr ""
 "X-Poedit-Language: Chinese\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: series-admin.php:71
+#: series-admin.php:72
 msgid "Insert Series"
 msgstr "插入专题"
 
-#: series-admin.php:99
-#: series-admin.php:199
+#: series-admin.php:84
+msgid "View all series"
+msgstr "查看所有专题目录"
+
+#: series-admin.php:252
+#: series-admin.php:352
 msgid "Post Series Settings"
 msgstr "Post Series插件设置"
 
-#: series-admin.php:99
-#: series.php:168
+#: series-admin.php:252
+#: series.php:171
 msgid "Post Series"
 msgstr "Post Series专题"
 
-#: series-admin.php:114
+#: series-admin.php:267
 msgid "Configure Post Series"
 msgstr "设置专题选项"
 
-#: series-admin.php:116
+#: series-admin.php:269
 msgid "Title Format"
 msgstr "标题格式"
 
-#: series-admin.php:117
+#: series-admin.php:270
 msgid "CSS Class Prefix"
 msgstr "CSS类前缀"
 
-#: series-admin.php:118
+#: series-admin.php:271
 msgid "Series Wrap Element"
 msgstr "专题容器元素"
 
-#: series-admin.php:119
+#: series-admin.php:272
 msgid "Title Wrap Element"
 msgstr "标题容器元素"
 
-#: series-admin.php:120
+#: series-admin.php:273
 msgid "Show Unpublished"
 msgstr "展示未发表文章"
 
-#: series-admin.php:121
+#: series-admin.php:274
 msgid "Auto Show Series On Post"
 msgstr "自动在文章页显示系列"
 
-#: series-admin.php:122
+#: series-admin.php:275
 msgid "Use Custom Template for Series Archives"
 msgstr "为系列归档页面使用自定义的模板"
 
-#: series-admin.php:208
+#: series-admin.php:361
 msgid "Save Changes"
 msgstr "保存更改"
 
-#: series-admin.php:213
+#: series-admin.php:366
 msgid "Add Series to your Post or Page"
 msgstr "为你的文章或页面添加专题显示"
 
-#: series-admin.php:214
+#: series-admin.php:367
 #, php-format
 msgid "Use %1$s to add it to your Post or Page content, or use the Post Series Widget."
 msgstr "使用%1$s添加内容到你的文章或页面，或使用小工具"
 
-#: series-admin.php:222
+#: series-admin.php:375
 msgid "Set up your series using the options below."
 msgstr "在下面设置专题选项"
 
-#: series-admin.php:227
+#: series-admin.php:380
 msgid "title format"
 msgstr "title format"
 
-#: series-admin.php:234
+#: series-admin.php:387
 msgid "class prefix"
 msgstr "class prefix"
 
-#: series-admin.php:241
+#: series-admin.php:394
 msgid "series wrap"
 msgstr "series wrap"
 
-#: series-admin.php:248
+#: series-admin.php:401
 msgid "title wrap"
 msgstr "title wrap"
 
-#: series-admin.php:259
-#: series-admin.php:271
+#: series-admin.php:412
+#: series-admin.php:424
 msgid "on"
 msgstr "显示"
 
-#: series-admin.php:261
-#: series-admin.php:273
+#: series-admin.php:414
+#: series-admin.php:426
 msgid "off"
 msgstr "不显示"
 
-#: series-admin.php:283
+#: series-admin.php:436
 msgid "use custom"
 msgstr "使用自定义"
 
-#: series-admin.php:285
+#: series-admin.php:438
 msgid "use plugin default"
 msgstr "使用插件默认"
 
@@ -150,36 +154,36 @@ msgstr "新专题名称"
 msgid "Series"
 msgstr "专题"
 
-#: series.php:111
+#: series.php:117
 msgid "This entry is part %current of %count in the series: %link"
 msgstr "本文是全系列中第%current / %count篇：%link"
 
-#: series.php:166
+#: series.php:169
 msgid "A simple widget to display post series."
 msgstr "展示的系列文章小工具"
 
-#: series.php:252
+#: series.php:255
 #: inc/tinymce-plugin-dialog.php:42
 msgid "Title:"
 msgstr "标题："
 
-#: series.php:260
+#: series.php:263
 msgid "Choose post series to display:"
 msgstr "选择显示的系列："
 
-#: series.php:269
+#: series.php:272
 msgid "Number of posts to show:"
 msgstr "展示文章数目："
 
-#: series.php:273
+#: series.php:276
 msgid "Special class prefix:"
 msgstr "特殊Class前缀："
 
-#: series.php:278
+#: series.php:281
 msgid "Show future"
 msgstr "展示未发布"
 
-#: series.php:280
+#: series.php:283
 msgid "Dont show"
 msgstr "不展示"
 
@@ -211,6 +215,91 @@ msgstr "插入"
 msgid "Cancel"
 msgstr "取消"
 
+#: template/taxonomy-series.php:19
+#, fuzzy, php-format
+msgid "Post Series Archives: %s"
+msgstr "标签分类：%s"
+
+#: template/taxonomy-series.php:45
+#, php-format
+msgid "<span class=\"sep\">Posted on </span><a href=\"%1$s\" title=\"%2$s\" rel=\"bookmark\"><time class=\"entry-date\" datetime=\"%3$s\" pubdate>%4$s</time></a><span class=\"by-author\"> <span class=\"sep\"> by </span> <span class=\"author vcard\"><a class=\"url fn n\" href=\"%5$s\" title=\"%6$s\" rel=\"author\">%7$s</a></span></span>"
+msgstr ""
+
+#: template/taxonomy-series.php:51
+#, php-format
+msgid "View all posts by %s"
+msgstr ""
+
+#: template/taxonomy-series.php:60
+msgid "Reply"
+msgstr ""
+
+#: template/taxonomy-series.php:60
+msgctxt "comments number"
+msgid "1"
+msgstr ""
+
+#: template/taxonomy-series.php:60
+msgctxt "comments number"
+msgid "%"
+msgstr ""
+
+#: template/taxonomy-series.php:66
+#, fuzzy
+msgid "Continue reading <span class=\"meta-nav\">&rarr;</span>"
+msgstr "%title <span class=\"meta-nav\">&rarr;下篇文章</span>"
+
+#: template/taxonomy-series.php:67
+msgid "Pages:"
+msgstr "页面："
+
+#: template/taxonomy-series.php:75
+#: template/taxonomy-series.php:85
+msgid ", "
+msgstr ""
+
+#: template/taxonomy-series.php:79
+#, php-format
+msgid "<span class=\"%1$s\">Posted in</span> %2$s"
+msgstr ""
+
+#: template/taxonomy-series.php:91
+#, fuzzy, php-format
+msgid "<span class=\"%1$s\">Tagged</span> %2$s"
+msgstr "<span class=\"meta-nav\">上篇文章</span> %title"
+
+#: template/taxonomy-series.php:101
+msgid "Leave a reply"
+msgstr ""
+
+#: template/taxonomy-series.php:101
+msgid "<b>1</b> Reply"
+msgstr ""
+
+#: template/taxonomy-series.php:101
+msgid "<b>%</b> Replies"
+msgstr ""
+
+#: template/taxonomy-series.php:104
+msgid "Edit"
+msgstr "编辑"
+
+#: template/taxonomy-series.php:112
+msgid "<span class=\"meta-nav\">&larr;</span> Older posts"
+msgstr "<span class=\"meta-nav\">&larr;</span> 前文"
+
+#: template/taxonomy-series.php:113
+msgid "Newer posts <span class=\"meta-nav\">&rarr;</span>"
+msgstr "最新 <span class=\"meta-nav\">&rarr;</span>"
+
+#: template/taxonomy-series.php:121
+msgid "Nothing Found"
+msgstr "没有内容"
+
+#: template/taxonomy-series.php:125
+msgid "Apologies, but no results were found for the requested archive. Perhaps searching will help find a related post."
+msgstr "哎呀，没找到该分类，请搜索相关主题"
+
 #~ msgid "List Wrap Element"
 #~ msgstr "列表容器元素"
 
@@ -232,43 +321,14 @@ msgstr "取消"
 #~ msgid "Blog Archives"
 #~ msgstr "博客分类："
 
-#~ msgid "Nothing Found"
-#~ msgstr "没有内容"
-
-#~ msgid ""
-#~ "Apologies, but no results were found for the requested archive. Perhaps "
-#~ "searching will help find a related post."
-#~ msgstr "哎呀，没找到该分类，请搜索相关主题"
-
-#~ msgid "Category Archives: %s"
-#~ msgstr "标签分类：%s"
-
 #~ msgid "Post navigation"
 #~ msgstr "文章分页"
-
-#~ msgid "<span class=\"meta-nav\">&larr;</span> %title"
-#~ msgstr "<span class=\"meta-nav\">上篇文章</span> %title"
-
-#~ msgid "%title <span class=\"meta-nav\">&rarr;</span>"
-#~ msgstr "%title <span class=\"meta-nav\">&rarr;下篇文章</span>"
-
-#~ msgid "<span class=\"meta-nav\">&larr;</span> Older posts"
-#~ msgstr "<span class=\"meta-nav\">&larr;</span> 前文"
-
-#~ msgid "Newer posts <span class=\"meta-nav\">&rarr;</span>"
-#~ msgstr "最新 <span class=\"meta-nav\">&rarr;</span>"
 
 #~ msgid "Page %s"
 #~ msgstr "页面 %s"
 
 #~ msgid "Image navigation"
 #~ msgstr "导航"
-
-#~ msgid "Edit"
-#~ msgstr "编辑"
-
-#~ msgid "Pages:"
-#~ msgstr "页面："
 
 #~ msgid "Tag Archives: %s"
 #~ msgstr "标签分类：%s"

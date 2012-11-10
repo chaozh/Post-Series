@@ -17,7 +17,13 @@ function series_localization() {
 }
 add_action( 'plugins_loaded', 'series_localization' );
 
+function series_posttype_support(){
+    return apply_filters('series_posttype_support', array('post','page') );
+}
+
 function series_register_taxonomy() {
+    
+    $posttypes = series_posttype_support();
     
 	$labels = array(
     
@@ -42,7 +48,7 @@ function series_register_taxonomy() {
         
    );
 
-	register_taxonomy( SERIES, array('post','page'), $series_tax_args );
+	register_taxonomy( SERIES, $posttypes, $series_tax_args );
     
     $options = get_option( SERIES.'_options' );
     if($options['auto_display'] == 'on'){

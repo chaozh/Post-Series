@@ -77,6 +77,97 @@ function series_addbuttons() {
 }
 add_action( 'admin_init', 'series_addbuttons' );
 
+/**
+* Display or retrieve the HTML dropdown list of series.
+*
+* This is directly taken from wp_dropdown_categories in WordPress.
+* I am unable to just create a wrapper because wp_dropdown_categories, although custom taxonomy aware,
+* it will only use the term_id as the VALUE for each option (as of WP3.0) 
+* and they query_var WordPress expects for non-heirarchal taxonomies is the slug not the term_id.
+* Hence the requirement to make sure the values are the slug for the series.
+*
+* All arguments descriptions can be obtained from wp_dropdown_categories
+*
+*/
+function series_custom_manage_posts_filter() {
+    global $typenow;
+    $post_types = series_posttype_support();
+	if ( in_array($typenow, $post_types) ) {
+        $series_name = '';
+    	if (isset($_GET[SERIES])) $series_name = $_GET[SERIES];
+    	
+        wp_dropdown_categories(array(
+            'show_option_all' => __('View all series', SERIES_BASE),
+            'taxonomy' => SERIES,
+            'name' => SERIES,
+            'orderby' => 'term_order',
+            'selected' => $series_name,
+            'hierarchical' => true,
+            'show_count' => false,
+            'hide_empty' => true
+        ));
+     }
+}
+add_action('restrict_manage_posts', 'series_custom_manage_posts_filter');
+
+function series_custom_convert_restrict($query) {
+    global $pagenow;
+    if ($pagenow=='edit.php') {
+        $var = &$query->query_vars[SERIES];
+        if ( isset($var) ) {
+            $term = get_term_by('id',$var,SERIES);
+            $var = $term->slug;
+        }
+    }
+    return $query;
+}
+add_filter('parse_query','series_custom_convert_restrict');
+
+add_action('admin_init', 'series_load_custom_column_actions', 10);
+add_action('admin_init', 'series_load_custom_column_filters', 10);
+
+function series_load_custom_column_actions() {
+	//support for custom post types
+	$posttypes = series_posttype_support();
+	foreach ( $posttypes as $posttype ) {
+		$action_ref = ( $posttype == 'post' ) ? 'manage_posts_custom_column' : 'manage_' . $posttype . 'posts_custom_column';
+		$action_ref = ( $posttype == 'page' ) ? 'manage_pages_custom_column' : $action_ref;
+		add_action($action_ref,'series_custom_column_action', 12, 2);	
+	}
+}
+
+function series_custom_column_action( $column_name,$post_id ) {
+    if ($column_name == SERIES) {
+        $series = get_the_terms($post_id, SERIES);
+        if (is_array($series)) {
+            foreach($series as $key => $series_term) {
+                $edit_link = get_term_link($series_term, SERIES);
+                $series[$key] = '<a href="'.$edit_link.'">' . $series_term->name . '('. $series_term->count .')'.'</a>';
+            }
+            //echo implode("<br/>",$businesses);
+            echo join(__( ', ' ), $series);
+        }
+    }
+}
+
+
+function series_load_custom_column_filters() {
+	//support for custom post types
+	$posttypes = series_posttype_support();
+	foreach ( $posttypes as $posttype ) {
+		$filter_ref = "manage_{$posttype}s_columns";
+		add_filter($filter_ref, 'series_custom_column_filter');
+	}
+}
+
+function series_custom_column_filter($defaults) {
+	$post_types = series_posttype_support();
+	if ( isset($_REQUEST['post_type']) && !in_array($_REQUEST['post_type'], $post_types) )
+		return $defaults; //get out we only want this showing up on post post types for now.*/
+	$defaults[SERIES] = __('Series', SERIES_BASE);
+	return $defaults;
+}
+
 
 //admin settings
 	
