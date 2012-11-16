@@ -211,6 +211,7 @@ function series_register_settings() {
     add_settings_field('title_wrap',  __( 'Title Wrap Element', SERIES_BASE), 'series_title_wrap', SERIES.'_settings', SERIES);
     add_settings_field('show_future',  __( 'Show Unpublished', SERIES_BASE), 'series_show_future', SERIES.'_settings', SERIES);
     add_settings_field('auto_display', __('Auto Show Series On Post', SERIES_BASE), 'series_auto_display', SERIES.'_settings', SERIES);
+    add_settings_field('custom_styles', __('Use Custom CSS Style Sheet', SERIES_BASE), 'series_custom_styles', SERIES.'_settings', SERIES);
     add_settings_field('custom_archives', __('Use Custom Template for Series Archives', SERIES_BASE), 'series_custom_archives', SERIES.'_settings', SERIES);
 }
 add_action('admin_init', 'series_register_settings');
@@ -249,29 +250,13 @@ function series_settings_validate($series_input) {
 
 	}
     
-    $series_options['show_future'] = trim( $series_input['show_future'] );
-
-	if ( !preg_match( '/^on|off$/i', $series_options['show_future'] ) ) {
-
-		$series_options['show_future'] = 'on';
-
-	}
+    $series_options['show_future'] = $series_input['show_future'] == "on" ? true: false;
+	
+	$series_options['auto_display'] = $series_input['auto_display'] == "on" ? true: false;
     
-    $series_options['auto_display'] = trim( $series_input['auto_display'] );
-
-	if ( !preg_match( '/^on|off$/i', $series_options['auto_display'] ) ) {
-
-		$series_options['auto_display'] = 'off';
-
-	}
+    $series_options['custom_styles'] = $series_input['custom_styles'] == "on" ? true: false;
     
-    $series_options['custom_archives'] = trim( $series_input['custom_archives'] );
-
-	if ( !preg_match( '/^on|off$/i', $series_options['custom_archives'] ) ) {
-
-		$series_options['custom_archives'] = 'off';
-
-	}
+    $series_options['custom_archives'] = $series_input['custom_archives'] == "on" ? true: false;
 
 	return $series_options;
 }
@@ -347,10 +332,8 @@ function series_show_future() {
 	$series_options = get_option( SERIES . '_options' );
 ?>
     
-    <input id="future_on" type="radio" name="<?php echo SERIES. '_options[show_future]'; ?>" value="on" <?php checked( $series_options['show_future'], 'on' ); ?> />
-    <label for="future_on" class="future-on-label"><?php _e('on',SERIES_BASE);?></label>
-    <input id="future_off" type="radio" name="<?php echo SERIES. '_options[show_future]'; ?>" value="off" <?php checked( $series_options['show_future'], 'off' ); ?> />
-    <label for="future_off" class="future-off-label"><?php _e('off',SERIES_BASE);?></label>
+    <input id="show_future" type="checkbox" name="<?php echo SERIES. '_options[show_future]'; ?>" value="on" <?php checked( $series_options['show_future'] ); ?> />
+    <label for="show_future" class="future-on-label"><?php _e('on',SERIES_BASE);?></label>
 <?php
     
 }
@@ -359,10 +342,18 @@ function series_auto_display() {
   $series_options = get_option( SERIES . '_options' );
 ?>
     
-    <input id="auto_on" type="radio" name="<?php echo SERIES. '_options[auto_display]'; ?>" value="on" <?php checked( $series_options['auto_display'], 'on' ); ?> />
-    <label for="auto_on" class="auto-on-label"><?php _e('on',SERIES_BASE);?></label>
-    <input id="auto_off" type="radio" name="<?php echo SERIES. '_options[auto_display]'; ?>" value="off" <?php checked( $series_options['auto_display'], 'off' ); ?> />
-    <label for="auto_off" class="auto-off-label"><?php _e('off',SERIES_BASE);?></label>
+    <input id="auto_display" type="checkbox" name="<?php echo SERIES. '_options[auto_display]'; ?>" value="on" <?php checked( $series_options['auto_display'] ); ?> />
+    <label for="auto_display" class="auto-on-label"><?php _e('on',SERIES_BASE);?></label>
+<?php
+    
+}
+
+function series_custom_styles() {
+  $series_options = get_option( SERIES . '_options' );
+?>
+    
+    <input id="custom_styles" type="checkbox" name="<?php echo SERIES. '_options[custom_styles]'; ?>" value="on" <?php checked( $series_options['custom_styles'] ); ?> />
+    <label for="custom_styles" class="custom-styles-label"><?php _e('use custom',SERIES_BASE);?></label>
 <?php
     
 }
@@ -371,10 +362,8 @@ function series_custom_archives() {
   $series_options = get_option( SERIES . '_options' );
 ?>
     
-    <input id="custom_on" type="radio" name="<?php echo SERIES. '_options[custom_archives]'; ?>" value="on" <?php checked( $series_options['custom_archives'], 'on' ); ?> />
-    <label for="custom_on" class="custom-on-label"><?php _e('use custom',SERIES_BASE);?></label>
-    <input id="custom_off" type="radio" name="<?php echo SERIES. '_options[custom_archives]'; ?>" value="off" <?php checked( $series_options['custom_archives'], 'off' ); ?> />
-    <label for="custom_off" class="custom-off-label"><?php _e('use plugin default',SERIES_BASE);?></label>
+    <input id="custom_archives" type="checkbox" name="<?php echo SERIES. '_options[custom_archives]'; ?>" value="on" <?php checked( $series_options['custom_archives'] ); ?> />
+    <label for="custom_archives" class="custom-on-label"><?php _e('use custom',SERIES_BASE);?></label>
 <?php
     
 }

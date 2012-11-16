@@ -28,7 +28,7 @@ function series_display($series_arg){
 		  return;
         }
 	}
-	if($future == 'on') {
+	if($show_future) {
 		// Include the future posts if the "future" attribute is set to "on"
 		$post_status = array('publish','future');
 	} else {
