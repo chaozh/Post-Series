@@ -51,13 +51,17 @@ function series_register_taxonomy() {
 	register_taxonomy( SERIES, $posttypes, $series_tax_args );
     
     $options = get_option( SERIES.'_options' );
-    if($options['auto_display'] == 'on'){
+    if( $options['auto_display'] ){
         add_filter('the_content', 'series_auto_content_display',0);
+    }
+
+    if( !$options['custom_styles'] ){
+        add_action( 'wp_enqueue_scripts', 'series_css' );
     }
     /*
      * we will not include sereis archives template by default 
      * and this setting section is removed from plugin settings
-    if( $options['custom_archives'] == 'off' ){
+    if( $options['custom_archives'] ){
         add_filter('template_include', 'series_set_template');
     }
     */
@@ -76,7 +80,6 @@ function series_css() {
 		wp_enqueue_style( SERIES, SERIES_URL . '/series.css', array(), '1.0' );
 	}
 }
-add_action( 'wp_enqueue_scripts', 'series_css' );
 
 function series_is_template( $template_path ){
 
@@ -128,9 +131,10 @@ function series_get_default_options() {
         'class_prefix'   => 'post-series',
         'series_wrap'    => 'section',
 		'title_wrap'     => 'h3',
-		'show_future'    => 'on',
-        'auto_display'   => 'off'
-        //'custom_archives' => 'off'
+		'show_future'    => true,
+        'auto_display'   => false,
+        'custom_styles'  => false
+        //'custom_archives' => false
             
 	);
 	return apply_filters( SERIES . '_default_options', $series_defaults_args );
@@ -147,12 +151,17 @@ function series_sc($atts) {
             "id" => '',
             "title" => '', 
             "limit" => -1, 
-            "future" => 'on',
-            "class_prefix" => '',
-            "title_format" => ''
+            "show_future" => true,
+            "class_prefix" => $options["class_prefix"]
             			
     ), $atts );
-    $series_arg = $options + $series_arg;
+    
+    if( isset($atts['show_future']) && $atts['show_future'] == 'off'){
+        $series_arg['show_future'] = false;
+    }else{
+        $series_arg['show_future'] = true;
+    }    
+    $series_arg = $series_arg + $options;
     return series_display($series_arg);
 } 
 add_shortcode('series','series_sc');
@@ -239,7 +248,7 @@ class Post_Series_Widget extends WP_Widget {
             $instance['limit'] = -1;
 		
         $instance['class_prefix'] = strip_tags($new_instance['class_prefix']);
-        $instance['show_future'] = strip_tags($new_instance['show_future']);
+        $instance['show_future'] = $new_instance['show_future'] == "on" ? true : false;
         
         $this->flush_widget_cache();
         
@@ -259,7 +268,7 @@ class Post_Series_Widget extends WP_Widget {
             $limit = $instance['limit'];
         
         $class_prefix = isset($instance['class_prefix']) ? esc_attr($instance['class_prefix']) : $options['class_prefix'];
-        $show_future = isset($instance['show_future']) ? esc_attr($instance['show_future']) : $options['show_future'];
+        $show_future = isset($instance['show_future']) ? $instance['show_future'] : $options['show_future'];
         ?>
             <p>
             	<label for="<?php echo $this->get_field_id('widget_title'); ?>"><?php _e('Title:'); ?> </label>
@@ -287,10 +296,8 @@ class Post_Series_Widget extends WP_Widget {
                 <input id="<?php echo $this->get_field_id('class_prefix'); ?>" name="<?php echo $this->get_field_name('class_prefix'); ?>" class="widefat" type="text" value="<?php echo $class_prefix; ?>" />
 			</p>
             <p>
-                <input id="future_on" type="radio" name="<?php echo $this->get_field_name('show_future'); ?>" value="on" <?php checked( $show_future, 'on' ); ?> />
-                <label for="future_on" class="future-on-label"><?php _e('Show future',SERIES_BASE);?></label>
-                <input id="future_off" type="radio" name="<?php echo $this->get_field_name('show_future'); ?>" value="off" <?php checked( $show_future, 'off' ); ?> />
-                <label for="future_off" class="future-off-label"><?php _e('Dont show',SERIES_BASE);?></label>
+                <input id="show_future" type="checkbox" name="<?php echo $this->get_field_name('show_future'); ?>" value="on" <?php checked( $show_future ); ?> />
+                <label for="show_future" class="future-on-label"><?php _e('Show future',SERIES_BASE);?></label>
 			</p>
         <?php 
     }

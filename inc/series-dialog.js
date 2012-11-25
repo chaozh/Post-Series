@@ -34,9 +34,11 @@ jQuery(document).ready(function(){
     });
     
     function insertSelectedSeries(){
-        var seriesID = jQuery('#series_table tbody tr.selected')[0].id.split("_")[2];
-        var title = jQuery('#series_title').val();
-        var limit = jQuery('#series_limit').val();
+        var seriesID = jQuery('#series_table tbody tr.selected')[0].id.split("_")[2],
+            title = jQuery('#series_title').val(),
+            limit = jQuery('#series_limit').val(),
+            future = jQuery('#show_future').attr("checked");
+        
     
         var shortCodeString = " [series id='" + seriesID + "'";
         if(title.replace(/^\s+|\s+$/g,"") != ""){
@@ -44,6 +46,9 @@ jQuery(document).ready(function(){
         }
         if(limit.replace(/^\s+|\s+$/g,"") != ""){
             shortCodeString += " limit='" + limit + "'";
+        }
+        if(!future) {
+            shortCodeString += " show_future='off'";
         }
         shortCodeString += "] ";
         
