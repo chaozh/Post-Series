@@ -54,9 +54,13 @@ function series_register_taxonomy() {
     if($options['auto_display'] == 'on'){
         add_filter('the_content', 'series_auto_content_display',0);
     }
+    /*
+     * we will not include sereis archives template by default 
+     * and this setting section is removed from plugin settings
     if( $options['custom_archives'] == 'off' ){
         add_filter('template_include', 'series_set_template');
     }
+    */
 } 
 add_action('init', 'series_register_taxonomy', 0);
 
@@ -125,8 +129,8 @@ function series_get_default_options() {
         'series_wrap'    => 'section',
 		'title_wrap'     => 'h3',
 		'show_future'    => 'on',
-        'auto_display'   => 'off',
-        'custom_archives' => 'off'
+        'auto_display'   => 'off'
+        //'custom_archives' => 'off'
             
 	);
 	return apply_filters( SERIES . '_default_options', $series_defaults_args );
