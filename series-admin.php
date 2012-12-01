@@ -232,17 +232,58 @@ add_action( 'admin_menu', 'series_menu' );
  * @use add_settings_field
  */
 function series_register_settings() {
+    $series_settings_fileds = array(
+        array(
+            'name' => 'title_format',
+            'title'=> __( 'Title Format', SERIES_BASE),
+            'desc' => __( 'title format', SERIES_BASE ),
+            'type' => 'text',
+            'size' => 40
+        ),
+        array(
+            'name' => 'class_prefix',
+            'title'=> __( 'CSS Class Prefix', SERIES_BASE),
+            'desc' => __( 'class prefix', SERIES_BASE ),
+            'type' => 'text',
+            'size' => 20
+        ),
+        array(
+            'name' => 'series_wrap',
+            'title'=>  __( 'Series Wrap Element', SERIES_BASE),
+            'desc' => __( 'series wrap', SERIES_BASE ),
+            'type' => 'text',
+            'size' => 20
+        ),
+        array(
+            'name' => 'title_wrap',
+            'title'=> __( 'Title Wrap Element', SERIES_BASE),
+            'desc' => __( 'title wrap', SERIES_BASE ),
+            'type' => 'text',
+            'size' => 20
+        ),
+        array(
+            'name' => 'show_future',
+            'title'=> __( 'Show Unpublished', SERIES_BASE),
+            'type' => 'checkbox'
+        ),
+        array(
+            'name' => 'auto_display',
+            'title'=> __('Auto Show Series On Post', SERIES_BASE),
+            'type' => 'checkbox'
+        ),
+        array(
+            'name' => 'custom_styles',
+            'title'=> __('Use Custom CSS Style Sheet', SERIES_BASE),
+            'type' => 'checkbox'
+        )
+    );
+    
     register_setting( SERIES.'_options', SERIES.'_options', 'series_settings_validate' );
     add_settings_section(SERIES,  __( 'Configure Post Series', SERIES_BASE ), 'series_section_text', SERIES.'_settings');
     
-    add_settings_field('title_format',  __( 'Title Format', SERIES_BASE), 'series_title_format', SERIES.'_settings', SERIES);
-    add_settings_field('class_prefix',  __( 'CSS Class Prefix', SERIES_BASE), 'series_class_prefix', SERIES.'_settings', SERIES);
-    add_settings_field('series_wrap',  __( 'Series Wrap Element', SERIES_BASE), 'series_series_wrap', SERIES.'_settings', SERIES);
-    add_settings_field('title_wrap',  __( 'Title Wrap Element', SERIES_BASE), 'series_title_wrap', SERIES.'_settings', SERIES);
-    add_settings_field('show_future',  __( 'Show Unpublished', SERIES_BASE), 'series_show_future', SERIES.'_settings', SERIES);
-    add_settings_field('auto_display', __('Auto Show Series On Post', SERIES_BASE), 'series_auto_display', SERIES.'_settings', SERIES);
-    add_settings_field('custom_styles', __('Use Custom CSS Style Sheet', SERIES_BASE), 'series_custom_styles', SERIES.'_settings', SERIES);
-    //add_settings_field('custom_archives', __('Use Custom Template for Series Archives', SERIES_BASE), 'series_custom_archives', SERIES.'_settings', SERIES);
+    foreach($series_settings_fileds as $filed ){
+        add_settings_field($filed['name'], $filed['title'], 'series_display_field', SERIES.'_settings', SERIES, $filed);
+    }
 }
 add_action('admin_init', 'series_register_settings');
 
@@ -332,74 +373,20 @@ function series_section_text() {
 
 }
 //render field
-function series_title_format() {		
-	$series_title_format = __( 'title format', SERIES_BASE );
-	$series_options = get_option( SERIES . '_options' );
-
-	echo "<input id='title_format' name='".SERIES."_options[title_format]' size='40' type='text' value='{$series_options['title_format']}' /> $series_title_format";
-}
-
-function series_class_prefix() {		
-	$series_class_prefix = __( 'class prefix', SERIES_BASE );
-	$series_options = get_option( SERIES . '_options' );
-
-	echo "<input id='class_prefix' name='".SERIES."_options[class_prefix]' size='20' type='text' value='{$series_options['class_prefix']}' /> $series_class_prefix";
-}
-
-function series_series_wrap() {		
-	$series_series_wrap = __( 'series wrap', SERIES_BASE );
-	$series_options = get_option( SERIES . '_options' );
-
-	echo "<input id='series_wrap' name='".SERIES."_options[series_wrap]' size='20' type='text' value='{$series_options['series_wrap']}' /> $series_series_wrap";
-}
-
-function series_title_wrap() {		
-	$series_title_wrap = __( 'title wrap', SERIES_BASE );
-	$series_options = get_option( SERIES . '_options' );
-
-	echo "<input id='title_wrap' name='".SERIES."_options[title_wrap]' size='20' type='text' value='{$series_options['title_wrap']}' /> $series_title_wrap";
-}
-
-function series_show_future() {		
-	$series_options = get_option( SERIES . '_options' );
-?>
-    
-    <input id="show_future" type="checkbox" name="<?php echo SERIES. '_options[show_future]'; ?>" value="on" <?php checked( $series_options['show_future'] ); ?> />
-    <label for="show_future" class="future-on-label"><?php _e('on',SERIES_BASE);?></label>
+function series_display_field($args){
+    $series_options = get_option( SERIES . '_options' );
+    $prefix = $args['name'];
+    switch($args['type']){
+        case 'checkbox':
+?>  
+            <input id="<?php echo $prefix;?>" type="checkbox" name="<?php echo SERIES. "_options[{$prefix}]"; ?>" value="on" <?php checked( $series_options[$prefix] ); ?> />
+            <label for="<?php echo $prefix;?>" class="<?php echo $prefix;?>-label"><?php _e('on',SERIES_BASE);?></label>
 <?php
-    
+        break;
+        case 'text':
+            echo "<input id='{$prefix}' name='".SERIES."_options[{$prefix}]' size='{$args['size']}' type='text' value='{$series_options[$prefix]}' /> {$args['desc']}";
+        break;
+    }
 }
-
-function series_auto_display() {
-  $series_options = get_option( SERIES . '_options' );
-?>
-    
-    <input id="auto_display" type="checkbox" name="<?php echo SERIES. '_options[auto_display]'; ?>" value="on" <?php checked( $series_options['auto_display'] ); ?> />
-    <label for="auto_display" class="auto-on-label"><?php _e('on',SERIES_BASE);?></label>
-<?php
-    
-}
-
-function series_custom_styles() {
-  $series_options = get_option( SERIES . '_options' );
-?>
-    
-    <input id="custom_styles" type="checkbox" name="<?php echo SERIES. '_options[custom_styles]'; ?>" value="on" <?php checked( $series_options['custom_styles'] ); ?> />
-    <label for="custom_styles" class="custom-styles-label"><?php _e('use custom',SERIES_BASE);?></label>
-<?php
-    
-}
-
-/*
-function series_custom_archives() {
-  $series_options = get_option( SERIES . '_options' );
-?>
-    
-    <input id="custom_archives" type="checkbox" name="<?php echo SERIES. '_options[custom_archives]'; ?>" value="on" <?php checked( $series_options['custom_archives'] ); ?> />
-    <label for="custom_archives" class="custom-on-label"><?php _e('use custom',SERIES_BASE);?></label>
-<?php
-    
-}
-*/
 
 ?>

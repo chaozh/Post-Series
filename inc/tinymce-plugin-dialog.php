@@ -56,7 +56,8 @@
                 <span class="alignleft"><label for="series_future"><?php _e('Future show:',SERIES_BASE);?></label></span>
             </th>
 			<td class="field">
-                <?php series_show_future(); ?>
+                <input id="show_future" type="checkbox" name="series-future" value="on" checked="checked" />
+                <label for="show_future"><?php _e('on',SERIES_BASE);?></label>
 			</td>
 		</tr>
         

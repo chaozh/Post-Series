@@ -57,16 +57,19 @@ function series_display($series_arg){
 			setup_postdata($the_post);
 			if($the_post->post_status == 'publish') {
 			    if($the_post->ID == $current_post_id){
-			        $output .= '<li class="'.$class_prefix.'-item-current">'.get_the_title($the_post->ID).'</li>';
+			        $output .= '<li class="'.$class_prefix.'-item-current">'.get_the_title($the_post->ID);
                     $current = $iterator;
 			    } else{
-                    $output .= '<li class="'.$class_prefix.'-item"><a href="'.get_permalink($the_post->ID).'">'.get_the_title($the_post->ID).'</a></li>';
+                    $output .= '<li class="'.$class_prefix.'-item"><a href="'.get_permalink($the_post->ID).'">'.get_the_title($the_post->ID).'</a>';
                     $iterator++;
                 }
 			} else {
 				/* we can't link the post if the post is not published yet! */
-				$output .= '<li class="'.$class_prefix.'-item-future">'.__('Future post',SERIES_BASE).': '.get_the_title($the_post->ID).'</li>';
+				$output .= '<li class="'.$class_prefix.'-item-future">'.__('Future post',SERIES_BASE).': '.get_the_title($the_post->ID);
 			}
+            
+            
+            $output .= '</li>';
 		}
 		wp_reset_query();
 		// close the list tag...
