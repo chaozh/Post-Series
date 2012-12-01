@@ -123,41 +123,40 @@ function series_custom_convert_restrict($query) {
 }
 add_filter('parse_query','series_custom_convert_restrict');
 
-add_action('admin_init', 'series_load_custom_column_actions', 10);
-add_action('admin_init', 'series_load_custom_column_filters', 10);
+function series_load_custom_columns(){
+    global $post;
+    $post_types = series_posttype_support();
+    $post_type = isset($_REQUEST['post_type']) ? $_REQUEST['post_type'] : 'post';
+	switch($post_type){
+		case 'post':
+		case 'page':
+			add_filter('manage_posts_columns', 'series_custom_column_filter' );
+			add_action('manage_posts_custom_column', 'series_custom_column_action', 12, 2 );
+		break;
 
-function series_load_custom_column_actions() {
-	//support for custom post types
-	$posttypes = series_posttype_support();
-	foreach ( $posttypes as $posttype ) {
-		$action_ref = ( $posttype == 'post' ) ? 'manage_posts_custom_column' : 'manage_' . $posttype . 'posts_custom_column';
-		$action_ref = ( $posttype == 'page' ) ? 'manage_pages_custom_column' : $action_ref;
-		add_action($action_ref,'series_custom_column_action', 12, 2);	
-	}
+		default:
+			if (in_array($post_type, $post_types)) {
+				add_filter("manage_{$post_type}_posts_columns", 'series_custom_column_filter' );
+				add_action("manage_{$post->post_type}_posts_custom_column", 'series_custom_column_action', 12, 2 );
+			}
+		break;
+	} // End of switch $post_type
 }
+add_action('admin_init', 'series_load_custom_columns', 10);
 
 function series_custom_column_action( $column_name,$post_id ) {
+    global $post;
     if ($column_name == SERIES) {
         $series = get_the_terms($post_id, SERIES);
         if (is_array($series)) {
             foreach($series as $key => $series_term) {
-                $edit_link = get_term_link($series_term, SERIES);
+                $edit_link = esc_url( add_query_arg( array( 'post_type' => $post->post_type, SERIES => $series_term->term_id ), 'edit.php' ) );
                 $series[$key] = '<a href="'.$edit_link.'">' . $series_term->name . '('. $series_term->count .')'.'</a>';
             }
             //echo implode("<br/>",$businesses);
             echo join(__( ', ' ), $series);
         }
     }
-}
-
-
-function series_load_custom_column_filters() {
-	//support for custom post types
-	$posttypes = series_posttype_support();
-	foreach ( $posttypes as $posttype ) {
-		$filter_ref = "manage_{$posttype}s_columns";
-		add_filter($filter_ref, 'series_custom_column_filter');
-	}
 }
 
 function series_custom_column_filter($defaults) {
@@ -168,6 +167,37 @@ function series_custom_column_filter($defaults) {
 	return $defaults;
 }
 
+// Adds default values for options on settings page
+register_activation_hook( __FILE__, 'series_default_options' );
+	
+function series_default_options() {
+
+	$series_temp = get_option( SERIES.'_options' );
+	
+	if ( ( $series_temp['series_wrap'] == '' )||( !is_array( $series_temp ) ) ) {
+
+		$series_defaults_args = series_get_default_options();
+		update_option( SERIES.'_options', $series_defaults_args );
+        
+	}
+}
+
+function series_get_default_options() {
+    
+	$series_defaults_args = array(
+    
+		'title_format'   => __('This entry is part %current of %count in the series: %link', SERIES_BASE),
+        'class_prefix'   => 'post-series',
+        'series_wrap'    => 'section',
+		'title_wrap'     => 'h3',
+		'show_future'    => true,
+        'auto_display'   => false,
+        'custom_styles'  => false
+        //'custom_archives' => false
+            
+	);
+	return apply_filters( SERIES . '_default_options', $series_defaults_args );
+}
 
 //admin settings
 	
@@ -276,8 +306,10 @@ function series_settings_page(){
 	<h2><?php _e( 'Post Series Settings', SERIES_BASE ); ?></h2>
 
 	<form action="options.php" method="post">
-		<?php // Adds options to settings page				
-		settings_fields( SERIES. '_options' );				
+		<?php 
+        //adds options to settings page				
+		settings_fields( SERIES. '_options' );
+        //display settings sections				
 		do_settings_sections(  SERIES.'_settings' );
 		?>
 		

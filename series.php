@@ -18,7 +18,7 @@ function series_localization() {
 add_action( 'plugins_loaded', 'series_localization' );
 
 function series_posttype_support(){
-    return apply_filters('series_posttype_support', array('post','page') );
+    return apply_filters('series_posttype_support', array('post', 'page') );
 }
 
 function series_register_taxonomy() {
@@ -106,38 +106,6 @@ function series_set_template( $template )
 // Load admin functions if in the backend
 if ( is_admin() ){
     require_once(SERIES_ROOT. '/series-admin.php');
-}
-
-// Adds default values for options on settings page
-register_activation_hook( __FILE__, 'series_default_options' );
-	
-function series_default_options() {
-
-	$series_temp = get_option( SERIES.'_options' );
-	
-	if ( ( $series_temp['series_wrap'] == '' )||( !is_array( $series_temp ) ) ) {
-
-		$series_defaults_args = series_get_default_options();
-		update_option( SERIES.'_options', $series_defaults_args );
-        
-	}
-}
-
-function series_get_default_options() {
-    
-	$series_defaults_args = array(
-    
-		'title_format'   => __('This entry is part %current of %count in the series: %link', SERIES_BASE),
-        'class_prefix'   => 'post-series',
-        'series_wrap'    => 'section',
-		'title_wrap'     => 'h3',
-		'show_future'    => true,
-        'auto_display'   => false,
-        'custom_styles'  => false
-        //'custom_archives' => false
-            
-	);
-	return apply_filters( SERIES . '_default_options', $series_defaults_args );
 }
 
 require_once(SERIES_ROOT. '/series-display.php');
