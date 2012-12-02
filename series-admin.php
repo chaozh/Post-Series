@@ -191,9 +191,12 @@ function series_get_default_options() {
         'series_wrap'    => 'section',
 		'title_wrap'     => 'h3',
 		'show_future'    => true,
-        'auto_display'   => false,
-        'custom_styles'  => false
-        //'custom_archives' => false
+        'auto_display'   => 0,
+        'custom_styles'  => false,
+        'show_thumbnail' => false,
+        'show_excerpt'   => false,
+        'show_nav'       => false,
+        'loop_display'   => false
             
 	);
 	return apply_filters( SERIES . '_default_options', $series_defaults_args );
@@ -269,11 +272,36 @@ function series_register_settings() {
         array(
             'name' => 'auto_display',
             'title'=> __('Auto Show Series On Post', SERIES_BASE),
-            'type' => 'checkbox'
+            'desc' => __('The option "Between excerpt and content" doesn\'t work if you use automatic excerpts. It works on with manual excerpt or with &lt!--more--&gt; tag. See the <a href="http://codex.wordpress.org/Excerpt" title="Excerpt in WordPress Codex">WordPress documentation</a> to get more details on excerpt.', SERIES_BASE),
+            'type' => 'radio',
+            'options' => array(
+                0 => __('Not activated', SERIES_BASE), 2 => __('At the end', SERIES_BASE), 
+                3 => __('At the begining', SERIES_BASE), 4 => __('Between excerpt and content', SERIES_BASE)
+            )
         ),
         array(
             'name' => 'custom_styles',
             'title'=> __('Use Custom CSS Style Sheet', SERIES_BASE),
+            'type' => 'checkbox'
+        ),
+        array(
+            'name' => 'show_thumbnail',
+            'title'=> __('Show Thumbnail', SERIES_BASE),
+            'type' => 'checkbox'
+        ),
+        array(
+            'name' => 'show_excerpt',
+            'title'=> __('Show Excerpt', SERIES_BASE),
+            'type' => 'checkbox'
+        ),
+        array(
+            'name' => 'show_nav',
+            'title'=> __('Show Navigation', SERIES_BASE),
+            'type' => 'checkbox'
+        ),
+        array(
+            'name' => 'loop_display',
+            'title'=> __('Auto Show Series In Loop', SERIES_BASE),
             'type' => 'checkbox'
         )
     );
@@ -321,11 +349,19 @@ function series_settings_validate($series_input) {
 
 	}
     
-    $series_options['show_future'] = $series_input['show_future'] == "on" ? true: false;
-	
-	$series_options['auto_display'] = $series_input['auto_display'] == "on" ? true: false;
+    $series_options['show_future'] = $series_input['show_future'] ? true: false;
 
-    $series_options['custom_styles'] = $series_input['custom_styles'] == "on" ? true: false;
+    $series_options['auto_display'] = $series_input['auto_display'];
+
+    $series_options['custom_styles'] = $series_input['custom_styles'] ? true: false;
+    
+    $series_options['show_thumbnail'] = $series_input['show_thumbnail'] ? true: false;
+    
+    $series_options['show_excerpt'] = $series_input['show_excerpt'] ? true: false;
+    
+    $series_options['show_nav'] = $series_input['show_nav'] ? true: false;
+    
+    $series_options['loop_display'] = $series_input['loop_display'] ? true: false;
     
     //$series_options['custom_archives'] = $series_input['custom_archives'] == "on" ? true: false;
 
@@ -377,14 +413,21 @@ function series_display_field($args){
     $series_options = get_option( SERIES . '_options' );
     $prefix = $args['name'];
     switch($args['type']){
-        case 'checkbox':
-?>  
-            <input id="<?php echo $prefix;?>" type="checkbox" name="<?php echo SERIES. "_options[{$prefix}]"; ?>" value="on" <?php checked( $series_options[$prefix] ); ?> />
-            <label for="<?php echo $prefix;?>" class="<?php echo $prefix;?>-label"><?php _e('on',SERIES_BASE);?></label>
-<?php
+        case 'checkbox':  
+            echo "<input id='{$prefix}' type='checkbox' name='" .SERIES. "_options[{$prefix}]' value='1'". checked( $series_options[$prefix], true, false). "/>";
+            echo "<label for='{$prefix}' class='{$prefix}-label'>".__('on',SERIES_BASE)."</label>";
         break;
         case 'text':
             echo "<input id='{$prefix}' name='".SERIES."_options[{$prefix}]' size='{$args['size']}' type='text' value='{$series_options[$prefix]}' /> {$args['desc']}";
+        break;
+        case 'radio':
+            echo "<fieldset id='{$prefix}'>";
+            foreach($args['options'] as $value => $option){
+                echo "<input type='radio' name='" .SERIES. "_options[{$prefix}]' value='{$value}'". checked( $series_options[$prefix], $value, false ). "/>";
+                echo "<label for='{$value}' class='{$prefix}-label'>{$option}</label><br/>";
+            }
+            echo "</fieldset>";
+            echo "<span class='description'>{$args['desc']}</span>";
         break;
     }
 }

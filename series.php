@@ -54,6 +54,10 @@ function series_register_taxonomy() {
     if( $options['auto_display'] ){
         add_filter('the_content', 'series_auto_content_display',0);
     }
+    
+    if( $options['loop_display'] ){
+        add_filter('the_content', 'series_auto_loop_display',0);
+    }
 
     if( !$options['custom_styles'] ){
         add_action( 'wp_enqueue_scripts', 'series_css' );
@@ -135,6 +139,7 @@ function series_sc($atts) {
 add_shortcode('series','series_sc');
 
 function series_auto_content_display($content) {
+    global $post;
     
     if(is_single() || is_page() || is_feed()){
         $options = get_option( SERIES.'_options' );
@@ -143,7 +148,43 @@ function series_auto_content_display($content) {
         );
         $series_arg = $options + $series_arg;
         $series_display = series_display($series_arg);
-        $content =  $content."\n".$series_display."\n"; 
+        switch($options['auto_display']){
+            case 2:// At the end of post
+                $content =  $content."\n".$series_display."\n";
+            break;
+            
+            case 3:// At the begining of post
+                $content = $series_display."\n".$content."\n";
+            break;
+            
+            case 4:
+				// Case of teaser
+				if(strpos($content, 'span id="more-')) {
+					$parts = preg_split('/(<span id="more-[0-9]*"><\/span>)/', $content, -1,  PREG_SPLIT_DELIM_CAPTURE);
+					$content = $parts[0].$parts[1].$series_display.$parts[2];
+				} // End of detect tag "more"
+            break;
+        }    
+    }
+    
+    return $content;
+}
+
+function series_auto_loop_display($content){
+    if( is_home() || is_front_page() || is_archive() ){
+        $options = get_option( SERIES.'_options' );
+        $series_arg = array(
+            "limit" => -1,
+            'show_all'=>true
+        );
+        $series_arg = $options + $series_arg;
+        $series_display = series_display($series_arg);
+        $content .= $series_display;
+        $pos1 = strpos($content, '<span id=”more-');
+        $pos2 = strpos($content, '</span>', $pos1);
+        $text1 = substr($content, 0, $pos2);
+        $text2 = substr($content, $pos2);
+        $text = $text1 . $series_display . $text2;
     }
     return $content;
 }

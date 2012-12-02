@@ -1,4 +1,36 @@
 <?php 
+function series_get_thumbnail_img(){
+    global $post;
+    if (has_post_thumbnail($post->ID)) {
+		$attr = array(
+			'alt' => esc_attr(wptexturize($post->post_title)),
+			'title' => false
+		);
+		$img = get_the_post_thumbnail($post->ID, 'thumbnail', $attr);
+		return $img;
+	}
+    //$img = '<img src="'. esc_attr(series_get_default_thumbnail_url($the_post->ID)) . '" alt="' . esc_attr(wptexturize($the_post->post_title)) . '" />';
+	//return $img;
+}
+
+function series_get_adjacent_post_nav($format, $link, $post, $previous = true){
+    if ( !$post )
+		return;
+
+	$title = get_the_title( $post->ID );
+	$text = $previous ? __('Previous Post') : __('Next Post');
+    
+    $rel = $previous ? 'prev' : 'next';
+   	$string = '<a href="'.get_permalink( $post->ID, true ).'" rel="'.$rel.'" title="'.$title.'">';
+	$link = str_replace('%title', $title, $link);
+    $link = str_replace('%rel', $text, $link);
+    
+	$link = $string . $link . '</a>';
+    $format = str_replace('%link', $link, $format);
+    
+    return $format;
+}
+
 function series_display($series_arg){
     global $post;
     
@@ -48,32 +80,53 @@ function series_display($series_arg){
 	if(($count = count($the_posts)) > 1) {
 	    //display section
         $section_output = '<'.$series_wrap.' class="'.$class_prefix.'">';
-
 		// create the list tag - notice the "post-series-list" class
 		$output = '<ul class="'.$class_prefix.'-list">';
 		// the loop to list the posts
         $iterator=1;
+        $prev_post = $next_post = null;
 		foreach($the_posts as $the_post) {
 			setup_postdata($the_post);
 			if($the_post->post_status == 'publish') {
 			    if($the_post->ID == $current_post_id){
-			        $output .= '<li class="'.$class_prefix.'-item-current">'.get_the_title($the_post->ID);
+			        $output .= '<li class="'.$class_prefix.'-item-current">'
+                    .'<span class="'.$class_prefix.'-item-title">'.get_the_title($the_post->ID).'</span>';
                     $current = $iterator;
+                    $prev_post = (isset($tmp_post)?$tmp_post:null);
 			    } else{
-                    $output .= '<li class="'.$class_prefix.'-item"><a href="'.get_permalink($the_post->ID).'">'.get_the_title($the_post->ID).'</a>';
-                    $iterator++;
+                    $output .= '<li class="'.$class_prefix.'-item"><span class="'.$class_prefix.'-item-title">'
+                    .'<a href="'. get_permalink($the_post->ID) .'">'.get_the_title($the_post->ID).'</a></span>';
+                    $tmp_post = $the_post;//for prev post
+                    if(isset($current)&&($iterator - $current == 1)){
+                        $next_post = $tmp_post;
+                    }
                 }
 			} else {
 				/* we can't link the post if the post is not published yet! */
-				$output .= '<li class="'.$class_prefix.'-item-future">'.__('Future post',SERIES_BASE).': '.get_the_title($the_post->ID);
+				$output .= '<li class="'.$class_prefix.'-item-future"><span class="'.$class_prefix.'-item-title">'
+                .__('Future post',SERIES_BASE).': '.get_the_title($the_post->ID).'</span>';
 			}
+            $iterator++;
             
+            $output .= ($show_thumbnail?'<span class="'.$class_prefix.'-item-thumbnail">'.series_get_thumbnail_img().'</span>':'');
+            $output .= ($show_excerpt?'<span class="'.$class_prefix.'-item-excerpt">'.get_the_excerpt().'</span>':'');
             
             $output .= '</li>';
 		}
 		wp_reset_query();
 		// close the list tag...
 		$output .= '</ul>';
+        if($show_nav){
+            $output .= '<nav class="'.$class_prefix.'-nav">';
+            if($prev_post){
+                $output .= '<span class="'.$class_prefix.'-nav-prev">'. series_get_adjacent_post_nav('&laquo; %link', '%rel', $prev_post). '</span>';
+            }
+            
+            if($next_post){
+                $output .= '<span class="'.$class_prefix.'-nav-next">'. series_get_adjacent_post_nav('%link &raquo;', '%rel', $prev_post, false). '</span>';
+            }
+            $output .= '</nav>';
+        }
         //close section tag...
         $output .= '</'.$series_wrap.'>';
         // Create the title if the "title" attribute exists
@@ -84,6 +137,9 @@ function series_display($series_arg){
             $title_format = str_replace( '%count', $count, $title_format );
             $link = sprintf('<a href="%1$s">%2$s</a>', $tax_link, $title);
             $title_format = str_replace( '%link', $link, $title_format );
+            if( $show_all ){
+                $title_format .= '<a href="JavaScript:void(0);" class="show-all">Show All</a>';
+            }
             $title_output = '<'.$title_wrap.' class="'.$class_prefix.'-title">'.$title_format.'</'.$title_wrap.'>';
         }
 		// display the title first
