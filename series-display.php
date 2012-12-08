@@ -138,7 +138,7 @@ function series_display($series_arg){
             $link = sprintf('<a href="%1$s">%2$s</a>', $tax_link, $title);
             $title_format = str_replace( '%link', $link, $title_format );
             if( $show_all ){
-                $title_format .= '<a href="JavaScript:void(0);" class="show-all">Show All</a>';
+                $title_format .= '<a href="JavaScript:void(0);" class="show-all">'.__('Show All', SERIES_BASE).'</a>';
             }
             $title_output = '<'.$title_wrap.' class="'.$class_prefix.'-title">'.$title_format.'</'.$title_wrap.'>';
         }
