@@ -2,12 +2,35 @@
 /*
 Plugin Name: Post Series
 Plugin URI: http://www.chaozh.com/wordpress-plugin-post-series-publish/
-Version: 1.0
+Description: Better organize your posts by grouping them into series and display them within the series dynamically in your blog.  This version of Post Series Plugin requires at least WordPress 3.1 and PHP 5.0+ to work.
+Version: 1.3
 Author: chaozh
 Author URI: http://chaozh.com/
-origin: http://wp.tutsplus.com/tutorials/plugins/adding-post-series-functionality-to-wordpress-with-taxonomies/
+Origin: http://wp.tutsplus.com/tutorials/plugins/adding-post-series-functionality-to-wordpress-with-taxonomies/
 */
+
+### INSTALLATION/USAGE INSTRUCTIONS ###
+//	Installation and/or usage instructions for the Post Series Plugin
+//	can be found at http://www.chaozh.com/wordpress-plugin-post-series-publish/
+
 define('SERIES','series');
+define('VERSION', 1.3);
+/*  Copyright 2009-2012 CHAO ZHENG  (email: chao@whu.edu.cn)
+
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+*/
 define('SERIES_URL', plugins_url( '', __FILE__ )); 
 define('SERIES_ROOT', dirname(__FILE__) );
 define('SERIES_BASE', dirname( plugin_basename( __FILE__ ) )); 
@@ -60,7 +83,7 @@ function series_register_taxonomy() {
     }
 
     if( !$options['custom_styles'] ){
-        add_action( 'wp_enqueue_scripts', 'series_css' );
+        add_action( 'wp_print_styles', 'series_css' );
     }
     /*
      * we will not include sereis archives template by default 
@@ -72,16 +95,16 @@ function series_register_taxonomy() {
 } 
 add_action('init', 'series_register_taxonomy', 0);
 
-// Adds CSS for the slideshow
+// Adds CSS for the series
 function series_css() {
 	if ( file_exists( get_stylesheet_directory()."/series.css" ) ) {				
-		wp_enqueue_style( SERIES, get_stylesheet_directory_uri() . '/series.css', array(), '1.0' );			
+		wp_enqueue_style( SERIES, get_stylesheet_directory_uri() . '/series.css', array(), VERSION );			
 	}
 	elseif ( file_exists( get_template_directory()."/series.css" ) ) {							
-		wp_enqueue_style( SERIES, get_template_directory_uri() . '/series.css', array(), '1.0' );
+		wp_enqueue_style( SERIES, get_template_directory_uri() . '/series.css', array(), VERSION );
 	}
 	else {
-		wp_enqueue_style( SERIES, SERIES_URL . '/series.css', array(), '1.0' );
+		wp_enqueue_style( SERIES, SERIES_URL . '/series.css', array(), VERSION );
 	}
 }
 
@@ -172,6 +195,10 @@ function series_auto_content_display($content) {
 
 function series_auto_loop_display($content){
     if( is_home() || is_front_page() || is_archive() ){
+        
+        wp_enqueue_script( SERIES, SERIES_URL . '/series.js', array('jquery'), VERSION );
+        //add_action( 'wp_enqueue_scripts', 'series_script' );
+        
         $options = get_option( SERIES.'_options' );
         $series_arg = array(
             "limit" => -1,
@@ -225,6 +252,7 @@ class Post_Series_Widget extends WP_Widget {
             "limit" => $instance["limit"],
             "show_future" => $instance["show_future"],
             "class_prefix" => $instance["class_prefix"], 
+            "show_nav" => false,
             "title_format" => ''
             
         );
