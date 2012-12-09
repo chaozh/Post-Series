@@ -1,4 +1,4 @@
-=== Plugin Name ===
+﻿=== Plugin Name ===
 Contributors: chaozh
 Donate link: http://www.chaozh.com/wordpress-plugin-post-series-publish/
 Tags: post, category, series, taxonomy
@@ -8,12 +8,12 @@ Requires at least: 3.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Simple Post Series allows you to organize your post in a series way and insert short code for displaying a bunch of posts within a serie.
+Simple Post Series allows you to organize your posts and insert short code for displaying a bunch of posts within a serie.
 为Wordpress增加按照专题管理文章并展示的功能，集所有类似插件功能之所长，设置选项完善。
 
 == Description ==
 
-*simple-post-series* allows you to insert series short code for displaying a bunch of posts in the same serie.
+**simple-post-series** allows you to insert series short code for displaying a bunch of posts in the same serie.
 This plugin allows to include posts into series, to create, delete or rename series. It also includes *widgets* and *shortcodes* to display list of series, or the list of posts belonging to the series of the current post.
 
 With this plugin, you can:
@@ -31,6 +31,7 @@ You can find latest source code in [github project](https://github.com/chaozh/Po
 This plugin is enlighted by Tuts+ and their Sessions. You can find a very helpful [cource in NetTuts+](http://wp.tutsplus.com/tutorials/plugins/adding-post-series-functionality-to-wordpress-with-taxonomies/) to figure out how this plugin works in Wordpress.
 
 融合所有类似插件的相关功能：
+
 * 可以在文章编辑页面通过按钮与面板添加shortcode以展示某个专题下的文章列表，支持文章与页面，
 * 可以设置自动在文章页或主页上显示某个专题下的文章列表，可以设置展示摘要或缩略图，
 * 可以在管理员文章管理页面上对某个专题进行筛选，文章管理更加方便。
@@ -64,8 +65,8 @@ A sample archive page template is located in '[simple-post-series]/template/taxo
 = Shortcodes = 
 
 * To display the list of series: [series *options*], with the following options:
-    * **id** of the series. Default '',
-    * **slug** of the series. Default '',
+	* **id** of the series. Default '',
+	* **slug** of the series. Default '',
 	* **title** of the list. Default '',
 	* **limit**: number of series to display in the list. Default: -1 to display all series,
 	* **show_future**: displays unpublish posts in the series. Default: on,

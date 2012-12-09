@@ -73,7 +73,8 @@ function series_display($series_arg){
 		'posts_per_page' => $limit,
 		'orderby' => 'date',
 		'order' => 'ASC',
-		'post_status' => $post_status
+        'post_type'=> series_posttype_support(),
+ 		'post_status' => $post_status
 	);
 	$the_posts = get_posts($args);
 	/* if there's more than one post with the specified "series" taxonomy, display the list. if there's just one post with the specified taxonomy, there's no need to list the only post! */
