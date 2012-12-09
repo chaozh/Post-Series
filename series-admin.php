@@ -1,4 +1,6 @@
 <?php 
+// TODO: plugin settings link
+require_once(SERIES_ROOT. '/series-edition.php');
 
 /**
  * Add the PostSeries TinyMCE plugin to the TinyMCE plugins list
