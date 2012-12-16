@@ -1,0 +1,34 @@
+div#ajaxquery {
+	height:           2em;
+}
+
+div#ajax-wait,
+div#ajax-response {
+	display: none;	
+}
+
+div#mass_edit_filter {
+	width:            98%;
+	padding:          5px;
+	margin:           0 auto 2em auto;
+	background-color: white; /* #F9F9F9;*/
+	border:           1px solid  #CCC; 
+}
+
+ul.series-sortable {
+	min-height: 1.5em;
+}
+
+ul.series-sortable li {
+    cursor:           move;
+	border:           1px solid #CCC;
+	background-color: white; /* #F9F9F9;*/
+	padding:          5px;
+	margin-bottom:    5px;
+}
+
+.series-placeholder {
+	border:           1px dashed black !important;
+    background-color: #F9F9F9 !important;
+    height:           1.2em;
+}
