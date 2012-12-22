@@ -115,6 +115,7 @@ function series_edition_load_scripts(){
 		'ajax_url'		 => admin_url('admin-ajax.php'),
 		'UpdateSeries' 	 => 'series_update',
         'AddSerie'       => 'series_add',
+        'DeleteSerie'    => 'series_delete',
 		'nonce' 		 => wp_create_nonce( 'series-ajax' )
 		)
 	);
@@ -250,6 +251,7 @@ function series_edition_add_serie(){
     //deal with wp-admin/includes/ajax-actions.php
     //deal with wp-admin/edit-tags.php
 ?>    
+<div class="form-wrap">
     <div class="form-field form-required">
     	<label for="tag-name"><?php _ex('Name', 'Taxonomy Name'); ?></label>
     	<input name="tag-name" id="tag-name" type="text" value="" size="40" aria-required="true" />
@@ -261,6 +263,10 @@ function series_edition_add_serie(){
     	<p><?php _e('The &#8220;slug&#8221; is the URL-friendly version of the name. It is usually all lowercase and contains only letters, numbers, and hyphens.'); ?></p>
     </div>
     <div class="form-field">
+    	<label for="parent"><?php _ex('Parent', 'Taxonomy Parent'); ?></label>
+    	<?php wp_dropdown_categories(array('hide_empty' => 0, 'hide_if_empty' => false, 'taxonomy' => SERIES, 'name' => 'parent', 'orderby' => 'name', 'hierarchical' => true, 'show_option_none' => __('None'))); ?>
+    </div>
+    <div class="form-field">
     	<label for="tag-description"><?php _ex('Description', 'Taxonomy Description'); ?></label>
     	<textarea name="description" id="tag-description" rows="5" cols="40"></textarea>
     	<p><?php _e('The description is not prominent by default; however, some themes may show it.'); ?></p>
@@ -268,6 +274,7 @@ function series_edition_add_serie(){
 	<p id="<?php echo SERIES; ?>-add" class="category-add">
 		<input type="button" id="<?php echo SERIES; ?>-add-submit" class="button category-add-submit" value="<?php echo esc_attr( $tax->labels->add_new_item ); ?>" tabindex="3" />
 	</p>
+</div>
 <?php
       
 }
@@ -297,6 +304,7 @@ function series_edition_display_series($serie_id, $box){
 		}
 	}
 	$output .= '</ul>';
+    $output .= '<span id="'.SERIES.'-delete-'.$serie_id.'" class="delete">'.__( 'Delete' ).'</span>';
 	echo $output;
 }
 
@@ -379,7 +387,7 @@ function series_bulk_edition_update(){
 			// Re-order the list
 			if (sizeof($new_posts)>0) {
 				foreach ($new_posts as $post_id => $order) {
-					series_update_post_order($post_id, $order+1);
+					series_edition_update_post_order($post_id, $order+1);
 				} // End of re-order loop
 			} // End of is_array($post_order)
 		} // End of no error
@@ -413,4 +421,29 @@ function series_edition_add(){
      die ($error_code.'|'.$msg);
 }
 add_action('wp_ajax_series_add', 'series_edition_add' );
+
+function series_edition_delete(){
+    // Check nonce
+	$error_code = 0;
+    
+    if (! check_ajax_referer('series-ajax', 'series_nonce', FALSE)) {
+		$error_code = 3;
+		$msg = __('Error, security check failed');
+		// $this->display_debug_info('check_ajax_referer FAILED');
+	}else if ( ! current_user_can(series_set_options_cap()) ) {
+		$error_code = 4;
+		$msg = __('Error, access denied');
+	}else{
+	   $tag_ID = (int) (int)substr($_POST['tag_ID'], strlen(SERIES.'-delete-'));
+       $ret = wp_delete_term( $tag_ID, SERIES );
+       if ( $ret && !is_wp_error( $ret ) ){
+            $msg = __('Serie successfully deleted', SERIES_BASE);
+       }else{
+            $error_code = 4;
+	        $msg = __('Error, delete serie fail', SERIES_BASE);
+       }
+	}
+     die ($error_code.'|'.$msg);
+}
+add_action('wp_ajax_series_delete', 'series_edition_delete' );
 ?>

@@ -50,6 +50,7 @@ jQuery(document).ready( function() {
 				action: seriesEdition.AddSerie,
                 name: jQuery("#tag-name").val(),
 				slug: jQuery("#tag-slug").val(),
+                parent : jQuery("#parent").val(),
 				description: jQuery("#tag-description").val(),
 				series_nonce: seriesEdition.nonce
 			},
@@ -60,9 +61,41 @@ jQuery(document).ready( function() {
 				if (code_msg[0] > 0) {
 					jQuery('#posts-list').sortable('cancel');
 					jQuery(this).sortable('cancel');
+				}else{ //add serie success
+                    window.location.reload();//refresh page
 				}
 			} // End of success
 		}); // End of jQuery Index
+    });
+    
+    jQuery(".delete").click(function(){
+        var r = true;
+        if ( 'undefined' != showNotice )
+             r = showNotice.warn();
+        if ( r ){
+            var tagID = jQuery(this).attr("id");
+            jQuery.ajax({
+    			type: "POST",
+    			url: seriesEdition.ajax_url,
+    			cache: false,
+    			data: {
+    				action: seriesEdition.DeleteSerie,
+                    tag_ID: tagID,
+    				series_nonce: seriesEdition.nonce
+    			},
+    			success: function(msg) {
+    				jQuery("div#ajax-wait").hide(0);
+    				code_msg = msg.split('|');
+    				jQuery("div#ajax-response").removeClass().addClass((code_msg[0]>0) ? 'error' : 'updated').show(0).html('<p>' + code_msg[1] + '</p>');
+    				if (code_msg[0] > 0) {
+    					jQuery('#posts-list').sortable('cancel');
+    					jQuery(this).sortable('cancel');
+    				}else{ //add serie success
+                        window.location.reload();//refresh page
+    				}
+    			} // End of success
+    		}); // End of jQuery Index
+        }
     });
     
 });

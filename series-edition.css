@@ -32,3 +32,17 @@ ul.series-sortable li {
     background-color: #F9F9F9 !important;
     height:           1.2em;
 }
+
+.form-wrap .form-field {
+    margin: 0 0 10px;
+    padding: 0;
+}
+
+span.delete {
+    color: #BC0B0B;
+}
+
+span.delete:hover {
+    cursor: pointer;
+    color: red;
+}
