@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: chaozh\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-12-08 22:05+0800\n"
-"PO-Revision-Date: 2012-12-08 22:05+0800\n"
+"POT-Creation-Date: 2012-12-22 12:55+0800\n"
+"PO-Revision-Date: 2012-12-22 12:57+0800\n"
 "Last-Translator: zc <chao@whu.edu.cn>\n"
 "Language-Team: chaozh <chao@whu.edu.cn>\n"
 "MIME-Version: 1.0\n"
@@ -15,393 +15,532 @@ msgstr ""
 "X-Poedit-Language: Chinese\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: series-admin.php:72
-#: simple-post-series/trunk/series-admin.php:72
+#: series-admin.php:74
+#: simple-post-series/tags/1.2/series-admin.php:72
+#: simple-post-series/tags/1.3/series-admin.php:72
 msgid "Insert Series"
 msgstr "插入专题"
 
-#: series-admin.php:100
-#: simple-post-series/trunk/series-admin.php:100
+#: series-admin.php:102
+#: simple-post-series/tags/1.2/series-admin.php:100
+#: simple-post-series/tags/1.3/series-admin.php:100
 msgid "View all series"
 msgstr "查看所有专题目录"
 
-#: series-admin.php:157
-#: simple-post-series/trunk/series-admin.php:157
-#: simple-post-series/trunk/template/taxonomy-series.php:75
-#: simple-post-series/trunk/template/taxonomy-series.php:85
-#: template/taxonomy-series.php:75
-#: template/taxonomy-series.php:85
+#: series-admin.php:159
+#: simple-post-series/tags/1.2/series-admin.php:157
+#: simple-post-series/tags/1.2/template/taxonomy-series.php:75
+#: simple-post-series/tags/1.2/template/taxonomy-series.php:85
+#: simple-post-series/tags/1.3/series-admin.php:157
 msgid ", "
 msgstr ", "
 
-#: series-admin.php:166
+#: series-admin.php:168
 #: series.php:60
-#: simple-post-series/trunk/series-admin.php:166
-#: simple-post-series/trunk/series.php:37
+#: simple-post-series/tags/1.2/series-admin.php:166
+#: simple-post-series/tags/1.2/series.php:37
+#: simple-post-series/tags/1.3/series-admin.php:166
+#: simple-post-series/tags/1.3/series.php:60
 msgid "Series"
 msgstr "专题"
 
-#: series-admin.php:189
-#: simple-post-series/trunk/series-admin.php:189
+#: series-admin.php:191
+#: simple-post-series/tags/1.2/series-admin.php:189
+#: simple-post-series/tags/1.3/series-admin.php:189
 msgid "This entry is part %current of %count in the series: %link"
 msgstr "本文是全系列中第%current / %count篇：%link"
 
-#: series-admin.php:224
-#: series-admin.php:383
-#: simple-post-series/trunk/series-admin.php:221
-#: simple-post-series/trunk/series-admin.php:347
+#: series-admin.php:226
+#: series-admin.php:385
+#: simple-post-series/tags/1.2/series-admin.php:221
+#: simple-post-series/tags/1.2/series-admin.php:347
+#: simple-post-series/tags/1.3/series-admin.php:224
+#: simple-post-series/tags/1.3/series-admin.php:383
 msgid "Post Series Settings"
 msgstr "Post Series插件设置"
 
-#: series-admin.php:224
+#: series-admin.php:226
 #: series.php:226
-#: simple-post-series/trunk/series-admin.php:221
-#: simple-post-series/trunk/series.php:158
+#: simple-post-series/tags/1.2/series-admin.php:221
+#: simple-post-series/tags/1.2/series.php:158
+#: simple-post-series/tags/1.3/series-admin.php:224
+#: simple-post-series/tags/1.3/series.php:226
 msgid "Post Series"
 msgstr "Post Series专题"
 
-#: series-admin.php:241
-#: simple-post-series/trunk/series-admin.php:238
+#: series-admin.php:243
+#: simple-post-series/tags/1.2/series-admin.php:238
+#: simple-post-series/tags/1.3/series-admin.php:241
 msgid "Title Format"
 msgstr "标题格式"
 
-#: series-admin.php:242
-#: simple-post-series/trunk/series-admin.php:239
+#: series-admin.php:244
+#: simple-post-series/tags/1.2/series-admin.php:239
+#: simple-post-series/tags/1.3/series-admin.php:242
 msgid "title format"
 msgstr "title format"
 
-#: series-admin.php:248
-#: simple-post-series/trunk/series-admin.php:245
+#: series-admin.php:250
+#: simple-post-series/tags/1.2/series-admin.php:245
+#: simple-post-series/tags/1.3/series-admin.php:248
 msgid "CSS Class Prefix"
 msgstr "CSS类前缀"
 
-#: series-admin.php:249
-#: simple-post-series/trunk/series-admin.php:246
+#: series-admin.php:251
+#: simple-post-series/tags/1.2/series-admin.php:246
+#: simple-post-series/tags/1.3/series-admin.php:249
 msgid "class prefix"
 msgstr "class prefix"
 
-#: series-admin.php:255
-#: simple-post-series/trunk/series-admin.php:252
+#: series-admin.php:257
+#: simple-post-series/tags/1.2/series-admin.php:252
+#: simple-post-series/tags/1.3/series-admin.php:255
 msgid "Series Wrap Element"
 msgstr "专题容器元素"
 
-#: series-admin.php:256
-#: simple-post-series/trunk/series-admin.php:253
+#: series-admin.php:258
+#: simple-post-series/tags/1.2/series-admin.php:253
+#: simple-post-series/tags/1.3/series-admin.php:256
 msgid "series wrap"
 msgstr "series wrap"
 
-#: series-admin.php:262
-#: simple-post-series/trunk/series-admin.php:259
+#: series-admin.php:264
+#: simple-post-series/tags/1.2/series-admin.php:259
+#: simple-post-series/tags/1.3/series-admin.php:262
 msgid "Title Wrap Element"
 msgstr "标题容器元素"
 
-#: series-admin.php:263
-#: simple-post-series/trunk/series-admin.php:260
+#: series-admin.php:265
+#: simple-post-series/tags/1.2/series-admin.php:260
+#: simple-post-series/tags/1.3/series-admin.php:263
 msgid "title wrap"
 msgstr "title wrap"
 
-#: series-admin.php:269
-#: simple-post-series/trunk/series-admin.php:266
+#: series-admin.php:271
+#: simple-post-series/tags/1.2/series-admin.php:266
+#: simple-post-series/tags/1.3/series-admin.php:269
 msgid "Show Unpublished"
 msgstr "展示未发表文章"
 
-#: series-admin.php:274
-#: simple-post-series/trunk/series-admin.php:271
+#: series-admin.php:276
+#: simple-post-series/tags/1.2/series-admin.php:271
+#: simple-post-series/tags/1.3/series-admin.php:274
 msgid "Auto Show Series On Post"
 msgstr "自动在文章页显示系列"
 
-#: series-admin.php:275
+#: series-admin.php:277
+#: simple-post-series/tags/1.3/series-admin.php:275
 msgid "The option \"Between excerpt and content\" doesn't work if you use automatic excerpts. It works on with manual excerpt or with &lt!--more--&gt; tag. See the <a href=\"http://codex.wordpress.org/Excerpt\" title=\"Excerpt in WordPress Codex\">WordPress documentation</a> to get more details on excerpt."
 msgstr "如果您使用自动摘要那么选项“摘要与正文之间”可能失效。该选项是配合&lt!--more--&gt; 摘要设置标签的功能。可以查看 <a href=\"http://codex.wordpress.org/Excerpt\" title=\"Excerpt in WordPress Codex\">在Wordpress中使用摘要</a>以获得关于摘要的更多详细信息。"
 
-#: series-admin.php:278
+#: series-admin.php:280
+#: simple-post-series/tags/1.3/series-admin.php:278
 msgid "Not activated"
 msgstr "不启用"
 
-#: series-admin.php:278
+#: series-admin.php:280
+#: simple-post-series/tags/1.3/series-admin.php:278
 msgid "At the end"
 msgstr "文章结尾"
 
-#: series-admin.php:279
+#: series-admin.php:281
+#: simple-post-series/tags/1.3/series-admin.php:279
 msgid "At the begining"
 msgstr "文章开头"
 
-#: series-admin.php:279
+#: series-admin.php:281
+#: simple-post-series/tags/1.3/series-admin.php:279
 msgid "Between excerpt and content"
 msgstr "摘要与正文之间"
 
-#: series-admin.php:284
-#: simple-post-series/trunk/series-admin.php:276
+#: series-admin.php:286
+#: simple-post-series/tags/1.2/series-admin.php:276
+#: simple-post-series/tags/1.3/series-admin.php:284
 msgid "Use Custom CSS Style Sheet"
 msgstr "使用自定义样式"
 
-#: series-admin.php:289
+#: series-admin.php:291
+#: simple-post-series/tags/1.3/series-admin.php:289
 msgid "Show Thumbnail"
 msgstr "展示缩略图"
 
-#: series-admin.php:294
+#: series-admin.php:296
+#: simple-post-series/tags/1.3/series-admin.php:294
 msgid "Show Excerpt"
 msgstr "展示摘要"
 
-#: series-admin.php:299
+#: series-admin.php:301
+#: simple-post-series/tags/1.3/series-admin.php:299
 msgid "Show Navigation"
 msgstr "展示导航"
 
-#: series-admin.php:304
+#: series-admin.php:306
+#: simple-post-series/tags/1.3/series-admin.php:304
 msgid "Auto Show Series In Loop"
 msgstr "自动在主页循环中显示系列"
 
-#: series-admin.php:310
-#: simple-post-series/trunk/series-admin.php:282
+#: series-admin.php:312
+#: simple-post-series/tags/1.2/series-admin.php:282
+#: simple-post-series/tags/1.3/series-admin.php:310
 msgid "Configure Post Series"
 msgstr "设置专题选项"
 
-#: series-admin.php:394
-#: simple-post-series/trunk/series-admin.php:358
+#: series-admin.php:396
+#: simple-post-series/tags/1.2/series-admin.php:358
+#: simple-post-series/tags/1.3/series-admin.php:394
 msgid "Save Changes"
 msgstr "保存更改"
 
-#: series-admin.php:399
-#: simple-post-series/trunk/series-admin.php:363
+#: series-admin.php:401
+#: simple-post-series/tags/1.2/series-admin.php:363
+#: simple-post-series/tags/1.3/series-admin.php:399
 msgid "Add Series to your Post or Page"
 msgstr "为你的文章或页面添加专题显示"
 
-#: series-admin.php:400
-#: simple-post-series/trunk/series-admin.php:364
+#: series-admin.php:402
+#: simple-post-series/tags/1.2/series-admin.php:364
+#: simple-post-series/tags/1.3/series-admin.php:400
 #, php-format
 msgid "Use %1$s to add it to your Post or Page content, or use the Post Series Widget."
 msgstr "使用%1$s添加内容到你的文章或页面，或使用小工具"
 
-#: series-admin.php:408
-#: simple-post-series/trunk/series-admin.php:372
+#: series-admin.php:410
+#: simple-post-series/tags/1.2/series-admin.php:372
+#: simple-post-series/tags/1.3/series-admin.php:408
 msgid "Set up your series using the options below."
 msgstr "在下面设置专题选项"
 
-#: series-admin.php:418
+#: series-admin.php:420
 #: inc/tinymce-plugin-dialog.php:60
-#: simple-post-series/trunk/series-admin.php:383
-#: simple-post-series/trunk/inc/tinymce-plugin-dialog.php:60
+#: simple-post-series/tags/1.2/series-admin.php:383
+#: simple-post-series/tags/1.2/inc/tinymce-plugin-dialog.php:60
+#: simple-post-series/tags/1.3/series-admin.php:418
 msgid "on"
 msgstr "显示"
 
 #: series-display.php:21
+#: simple-post-series/tags/1.3/series-display.php:21
 msgid "Previous Post"
 msgstr ""
 
 #: series-display.php:21
+#: simple-post-series/tags/1.3/series-display.php:21
 msgid "Next Post"
 msgstr ""
 
-#: series-display.php:107
-#: simple-post-series/trunk/series-display.php:68
+#: series-display.php:108
+#: simple-post-series/tags/1.2/series-display.php:68
+#: simple-post-series/tags/1.3/series-display.php:108
 msgid "Future post"
 msgstr "计划"
 
-#: series-display.php:141
+#: series-display.php:142
+#: simple-post-series/tags/1.3/series-display.php:142
 msgid "Show All"
 msgstr "显示全部"
 
+#: series-edition.php:25
+msgid "Show all dates"
+msgstr ""
+
+#: series-edition.php:43
+#: series-edition.php:76
+msgid "Series Bulk Edit"
+msgstr "专题文章编辑"
+
+#: series-edition.php:63
+msgid "Available posts"
+msgstr "可用文章"
+
+#: series-edition.php:72
+#: series.php:58
+#: simple-post-series/tags/1.2/series.php:35
+#: simple-post-series/tags/1.3/series.php:58
+msgid "Add New Series"
+msgstr "添加新的专题"
+
+#: series-edition.php:79
+msgid "Processing, please wait ..."
+msgstr "处理中，请等待"
+
+#: series-edition.php:128
+msgid "All Posts"
+msgstr ""
+
+#: series-edition.php:129
+msgid "Scheduled"
+msgstr ""
+
+#: series-edition.php:130
+msgid "Published"
+msgstr ""
+
+#: series-edition.php:131
+msgid "Draft"
+msgstr ""
+
+#: series-edition.php:132
+msgid "Pending"
+msgstr ""
+
+#: series-edition.php:193
+msgid "View all categories"
+msgstr ""
+
+#: series-edition.php:214
+msgid "Drag posts from here to a serie on the right to include them in a serie. Drag posts back here remove them from series."
+msgstr "从下面拖拽文章到右方专题以添加到专题。拖拽文章回来以从专题中删除。"
+
+#: series-edition.php:258
+msgid "The name is how it appears on your site."
+msgstr ""
+
+#: series-edition.php:263
+msgid "The &#8220;slug&#8221; is the URL-friendly version of the name. It is usually all lowercase and contains only letters, numbers, and hyphens."
+msgstr ""
+
+#: series-edition.php:267
+msgid "None"
+msgstr ""
+
+#: series-edition.php:272
+msgid "The description is not prominent by default; however, some themes may show it."
+msgstr ""
+
+#: series-edition.php:307
+msgid "Delete"
+msgstr ""
+
+#: series-edition.php:339
+msgid "Serie successfully updated"
+msgstr "专题更新成功"
+
+#: series-edition.php:342
+#: series-edition.php:407
+#: series-edition.php:431
+msgid "Error, security check failed"
+msgstr "错误，非法操作"
+
+#: series-edition.php:347
+#: series-edition.php:411
+#: series-edition.php:435
+msgid "Error, access denied"
+msgstr "错误，拒绝访问"
+
+#: series-edition.php:359
+msgid "Error, Serie not identified"
+msgstr "错误，专题未创建"
+
+#: series-edition.php:415
+msgid "New serie successfully added"
+msgstr "新专题添加成功"
+
+#: series-edition.php:418
+msgid "Error, add serie fail"
+msgstr "错误，添加专题失败"
+
+#: series-edition.php:440
+msgid "Serie successfully deleted"
+msgstr "专题删除成功"
+
+#: series-edition.php:443
+msgid "Error, delete serie fail"
+msgstr "错误，专题删除失败"
+
 #: series.php:53
-#: simple-post-series/trunk/series.php:30
+#: simple-post-series/tags/1.2/series.php:30
+#: simple-post-series/tags/1.3/series.php:53
 msgctxt "taxonomy general name"
 msgid "Series"
 msgstr "专题"
 
 #: series.php:54
-#: simple-post-series/trunk/series.php:31
+#: simple-post-series/tags/1.2/series.php:31
+#: simple-post-series/tags/1.3/series.php:54
 msgctxt "taxonomy singular name"
 msgid "Series"
 msgstr "专题"
 
 #: series.php:55
-#: simple-post-series/trunk/series.php:32
+#: simple-post-series/tags/1.2/series.php:32
+#: simple-post-series/tags/1.3/series.php:55
 msgid "All Series"
 msgstr "所有专题"
 
 #: series.php:56
-#: simple-post-series/trunk/series.php:33
+#: simple-post-series/tags/1.2/series.php:33
+#: simple-post-series/tags/1.3/series.php:56
 msgid "Edit Series"
 msgstr "编辑专题"
 
 #: series.php:57
-#: simple-post-series/trunk/series.php:34
+#: simple-post-series/tags/1.2/series.php:34
+#: simple-post-series/tags/1.3/series.php:57
 msgid "Update Series"
 msgstr "更新专题"
 
-#: series.php:58
-#: simple-post-series/trunk/series.php:35
-msgid "Add New Series"
-msgstr "添加新的专题"
-
 #: series.php:59
-#: simple-post-series/trunk/series.php:36
+#: simple-post-series/tags/1.2/series.php:36
+#: simple-post-series/tags/1.3/series.php:59
 msgid "New Series Name"
 msgstr "新专题名称"
 
 #: series.php:224
-#: simple-post-series/trunk/series.php:156
+#: simple-post-series/tags/1.2/series.php:156
+#: simple-post-series/tags/1.3/series.php:224
 msgid "A simple widget to display post series."
 msgstr "展示的系列文章小工具"
 
 #: series.php:311
 #: inc/tinymce-plugin-dialog.php:42
-#: simple-post-series/trunk/series.php:242
-#: simple-post-series/trunk/inc/tinymce-plugin-dialog.php:42
+#: simple-post-series/tags/1.2/series.php:242
+#: simple-post-series/tags/1.2/inc/tinymce-plugin-dialog.php:42
+#: simple-post-series/tags/1.3/series.php:311
 msgid "Title:"
 msgstr "标题："
 
 #: series.php:319
-#: simple-post-series/trunk/series.php:250
+#: simple-post-series/tags/1.2/series.php:250
+#: simple-post-series/tags/1.3/series.php:319
 msgid "Choose post series to display:"
 msgstr "选择显示的系列："
 
 #: series.php:328
-#: simple-post-series/trunk/series.php:259
+#: simple-post-series/tags/1.2/series.php:259
+#: simple-post-series/tags/1.3/series.php:328
 msgid "Number of posts to show:"
 msgstr "展示文章数目："
 
 #: series.php:332
-#: simple-post-series/trunk/series.php:263
+#: simple-post-series/tags/1.2/series.php:263
+#: simple-post-series/tags/1.3/series.php:332
 msgid "Special class prefix:"
 msgstr "特殊Class前缀："
 
 #: series.php:337
-#: simple-post-series/trunk/series.php:268
+#: simple-post-series/tags/1.2/series.php:268
+#: simple-post-series/tags/1.3/series.php:337
 msgid "Show future"
 msgstr "展示未发布"
 
 #: inc/tinymce-plugin-dialog.php:15
-#: simple-post-series/trunk/inc/tinymce-plugin-dialog.php:15
+#: simple-post-series/tags/1.2/inc/tinymce-plugin-dialog.php:15
 msgid "Choose a Series from the list below to embed in your post:"
 msgstr "从下面列表中选择专题插入文中"
 
 #: inc/tinymce-plugin-dialog.php:20
-#: simple-post-series/trunk/inc/tinymce-plugin-dialog.php:20
+#: simple-post-series/tags/1.2/inc/tinymce-plugin-dialog.php:20
 msgid "Name:"
 msgstr "名称："
 
 #: inc/tinymce-plugin-dialog.php:21
-#: simple-post-series/trunk/inc/tinymce-plugin-dialog.php:21
+#: simple-post-series/tags/1.2/inc/tinymce-plugin-dialog.php:21
 msgid "Count:"
 msgstr "文章数目："
 
 #: inc/tinymce-plugin-dialog.php:49
-#: simple-post-series/trunk/inc/tinymce-plugin-dialog.php:49
+#: simple-post-series/tags/1.2/inc/tinymce-plugin-dialog.php:49
 msgid "Limit show:"
 msgstr "展示文章数目："
 
 #: inc/tinymce-plugin-dialog.php:56
-#: simple-post-series/trunk/inc/tinymce-plugin-dialog.php:56
+#: simple-post-series/tags/1.2/inc/tinymce-plugin-dialog.php:56
 msgid "Future show:"
 msgstr "展示未发布文章："
 
 #: inc/tinymce-plugin-dialog.php:69
-#: simple-post-series/trunk/inc/tinymce-plugin-dialog.php:69
+#: simple-post-series/tags/1.2/inc/tinymce-plugin-dialog.php:69
 msgid "Insert"
 msgstr "插入"
 
 #: inc/tinymce-plugin-dialog.php:72
-#: simple-post-series/trunk/inc/tinymce-plugin-dialog.php:72
+#: simple-post-series/tags/1.2/inc/tinymce-plugin-dialog.php:72
 msgid "Cancel"
 msgstr "取消"
 
-#: simple-post-series/trunk/template/taxonomy-series.php:19
-#: template/taxonomy-series.php:19
+#: simple-post-series/tags/1.2/template/taxonomy-series.php:19
 #, php-format
 msgid "Post Series Archives: %s"
 msgstr "专题分类：%s"
 
-#: simple-post-series/trunk/template/taxonomy-series.php:45
-#: template/taxonomy-series.php:45
+#: simple-post-series/tags/1.2/template/taxonomy-series.php:45
 #, php-format
 msgid "<span class=\"sep\">Posted on </span><a href=\"%1$s\" title=\"%2$s\" rel=\"bookmark\"><time class=\"entry-date\" datetime=\"%3$s\" pubdate>%4$s</time></a><span class=\"by-author\"> <span class=\"sep\"> by </span> <span class=\"author vcard\"><a class=\"url fn n\" href=\"%5$s\" title=\"%6$s\" rel=\"author\">%7$s</a></span></span>"
 msgstr ""
 
-#: simple-post-series/trunk/template/taxonomy-series.php:51
-#: template/taxonomy-series.php:51
+#: simple-post-series/tags/1.2/template/taxonomy-series.php:51
 #, php-format
 msgid "View all posts by %s"
 msgstr "查看%s专题下所有文章"
 
-#: simple-post-series/trunk/template/taxonomy-series.php:60
-#: template/taxonomy-series.php:60
+#: simple-post-series/tags/1.2/template/taxonomy-series.php:60
 msgid "Reply"
 msgstr ""
 
-#: simple-post-series/trunk/template/taxonomy-series.php:60
-#: template/taxonomy-series.php:60
+#: simple-post-series/tags/1.2/template/taxonomy-series.php:60
 msgctxt "comments number"
 msgid "1"
 msgstr ""
 
-#: simple-post-series/trunk/template/taxonomy-series.php:60
-#: template/taxonomy-series.php:60
+#: simple-post-series/tags/1.2/template/taxonomy-series.php:60
 msgctxt "comments number"
 msgid "%"
 msgstr ""
 
-#: simple-post-series/trunk/template/taxonomy-series.php:66
-#: template/taxonomy-series.php:66
+#: simple-post-series/tags/1.2/template/taxonomy-series.php:66
 #, fuzzy
 msgid "Continue reading <span class=\"meta-nav\">&rarr;</span>"
 msgstr "%title <span class=\"meta-nav\">&rarr;下篇文章</span>"
 
-#: simple-post-series/trunk/template/taxonomy-series.php:67
-#: template/taxonomy-series.php:67
+#: simple-post-series/tags/1.2/template/taxonomy-series.php:67
 msgid "Pages:"
 msgstr "页面："
 
-#: simple-post-series/trunk/template/taxonomy-series.php:79
-#: template/taxonomy-series.php:79
+#: simple-post-series/tags/1.2/template/taxonomy-series.php:79
 #, fuzzy, php-format
 msgid "<span class=\"%1$s\">Posted in</span> %2$s"
 msgstr "<span class=\"meta-nav\">上篇文章</span> %title"
 
-#: simple-post-series/trunk/template/taxonomy-series.php:91
-#: template/taxonomy-series.php:91
+#: simple-post-series/tags/1.2/template/taxonomy-series.php:91
 #, fuzzy, php-format
 msgid "<span class=\"%1$s\">Tagged</span> %2$s"
 msgstr "<span class=\"meta-nav\">上篇文章</span> %title"
 
-#: simple-post-series/trunk/template/taxonomy-series.php:101
-#: template/taxonomy-series.php:101
+#: simple-post-series/tags/1.2/template/taxonomy-series.php:101
 msgid "Leave a reply"
 msgstr ""
 
-#: simple-post-series/trunk/template/taxonomy-series.php:101
-#: template/taxonomy-series.php:101
+#: simple-post-series/tags/1.2/template/taxonomy-series.php:101
 msgid "<b>1</b> Reply"
 msgstr ""
 
-#: simple-post-series/trunk/template/taxonomy-series.php:101
-#: template/taxonomy-series.php:101
+#: simple-post-series/tags/1.2/template/taxonomy-series.php:101
 msgid "<b>%</b> Replies"
 msgstr ""
 
-#: simple-post-series/trunk/template/taxonomy-series.php:104
-#: template/taxonomy-series.php:104
+#: simple-post-series/tags/1.2/template/taxonomy-series.php:104
 msgid "Edit"
 msgstr "编辑"
 
-#: simple-post-series/trunk/template/taxonomy-series.php:112
-#: template/taxonomy-series.php:112
+#: simple-post-series/tags/1.2/template/taxonomy-series.php:112
 msgid "<span class=\"meta-nav\">&larr;</span> Older posts"
 msgstr "<span class=\"meta-nav\">&larr;</span> 前文"
 
-#: simple-post-series/trunk/template/taxonomy-series.php:113
-#: template/taxonomy-series.php:113
+#: simple-post-series/tags/1.2/template/taxonomy-series.php:113
 msgid "Newer posts <span class=\"meta-nav\">&rarr;</span>"
 msgstr "最新 <span class=\"meta-nav\">&rarr;</span>"
 
-#: simple-post-series/trunk/template/taxonomy-series.php:121
-#: template/taxonomy-series.php:121
+#: simple-post-series/tags/1.2/template/taxonomy-series.php:121
 msgid "Nothing Found"
 msgstr "没有内容"
 
-#: simple-post-series/trunk/template/taxonomy-series.php:125
-#: template/taxonomy-series.php:125
+#: simple-post-series/tags/1.2/template/taxonomy-series.php:125
 msgid "Apologies, but no results were found for the requested archive. Perhaps searching will help find a related post."
 msgstr "哎呀，没找到该分类，请搜索相关主题"
+
+#, fuzzy
+#~ msgid "Future"
+#~ msgstr "计划"
 
 #~ msgid "use custom"
 #~ msgstr "使用自定义"
@@ -570,9 +709,6 @@ msgstr "哎呀，没找到该分类，请搜索相关主题"
 
 #~ msgid "Project"
 #~ msgstr "新项目信息"
-
-#~ msgid "All Projects"
-#~ msgstr "所有项目"
 
 #~ msgid "Add Project"
 #~ msgstr "添加项目"

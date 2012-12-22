@@ -126,7 +126,7 @@ function series_edition_display_posts($args, $box){
     // Get date parameter
     $status_title = array(
 		'any'     => __('All Posts'),
-		'future'  => __('Future'),
+		'future'  => __('Scheduled'),
 		'publish' => __('Published'),
 		'draft'   => __('Draft'),
 		'pending' => __('Pending')
