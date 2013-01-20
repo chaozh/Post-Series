@@ -3,13 +3,12 @@ Contributors: chaozh
 Donate link: http://www.chaozh.com/wordpress-plugin-post-series-publish/
 Tags: post, category, series, taxonomy
 Tested up to: 3.5
-Stable tag: 1.3
+Stable tag: 2.0
 Requires at least: 3.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Simple Post Series allows you to organize your posts and insert short code for displaying a bunch of posts within a serie.
-为Wordpress增加按照专题管理文章并展示的功能，集所有类似插件功能之所长，设置选项完善。
+Simple Post Series为Wordpress增加按照专题管理文章并展示的功能，集所有类似插件功能之所长，设置选项完善。
 
 == Description ==
 
@@ -34,7 +33,8 @@ This plugin is enlighted by Tuts+ and their Sessions. You can find a very helpfu
 
 * 可以在文章编辑页面通过按钮与面板添加shortcode以展示某个专题下的文章列表，支持文章与页面，
 * 可以设置自动在文章页或主页上显示某个专题下的文章列表，可以设置展示摘要或缩略图，
-* 可以在管理员文章管理页面上对某个专题进行筛选，文章管理更加方便。
+* 可以在管理员文章管理页面上对某个专题进行筛选，文章管理更加方便，
+* 2.0最新版支持文章拖拽添加到专题的功能，页面特别参考eg-series插件。
 
 == Installation ==
 
@@ -74,13 +74,17 @@ A sample archive page template is located in '[simple-post-series]/template/taxo
 
 == Screenshots ==
 
-1. Post Editing page: TinyMCE integration and additional metabox to quickly choose or add a serie,
-2. TinyMCE window to choose shortcodes options, and insert shortcodes,
-3. Manage easily series,
-4. Options page,
-5. List of posts in a serie.
+1. Post Editing page: TinyMCE integration and additional metabox to quickly choose or add a serie 加入专题设置模块,
+2. List of posts in a serie 在文章页面展示专题列表,
+3. Easily manage series 拖拽管理专题下所属文章,
+4. TinyMCE window to choose shortcodes options, and insert shortcodes 文章编辑方便插入short code,
+5. Insert short code in edit post 插入short code的结果,
+6. Options page 插件设置页面,
 
 == Changelog ==
+
+= 2.0 =
+* New: Add admin series bulk edition page for drag and drop posts to serie
 
 = 1.3 =
 

@@ -386,9 +386,9 @@ function series_settings_page(){
 
 	<form action="options.php" method="post">
 		<?php 
-        //adds options to settings page				
+        //adds options_group on settings page				
 		settings_fields( SERIES. '_options' );
-        //display settings sections				
+        //display all settings sections	in a page			
 		do_settings_sections(  SERIES.'_settings' );
 		?>
 		
