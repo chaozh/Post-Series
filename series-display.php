@@ -20,7 +20,7 @@ function series_get_adjacent_post_nav($format, $link, $post, $previous = true){
 	$text = $previous ? __('Previous Post') : __('Next Post');
     
     $rel = $previous ? 'prev' : 'next';
-   	$string = '<a href="'.get_permalink( $post->ID, true ).'" rel="'.$rel.'" title="'.$title.'">';
+   	$string = '<a href="'.get_permalink( $post->ID, false ).'" rel="'.$rel.'" title="'.$title.'">';
 	$link = str_replace('%title', $title, $link);
     $link = str_replace('%rel', $text, $link);
     
@@ -28,6 +28,11 @@ function series_get_adjacent_post_nav($format, $link, $post, $previous = true){
     $format = str_replace('%link', $link, $format);
     
     return $format;
+}
+
+function series_get_the_excerpt( $the_post ) {
+
+	return $the_post->post_excerpt;
 }
 
 function series_display($series_arg){
@@ -109,7 +114,7 @@ function series_display($series_arg){
             $iterator++;
             
             $output .= ($show_thumbnail?'<span class="'.$class_prefix.'-item-thumbnail">'.series_get_thumbnail_img($the_post).'</span>':'');
-            $output .= ($show_excerpt?'<span class="'.$class_prefix.'-item-excerpt">'.get_the_excerpt().'</span>':'');
+            $output .= ($show_excerpt?'<span class="'.$class_prefix.'-item-excerpt">'.series_get_the_excerpt($the_post).'</span>':'');
             
             $output .= '</li>';
 		}
@@ -123,7 +128,7 @@ function series_display($series_arg){
             }
             
             if($next_post){
-                $output .= '<span class="'.$class_prefix.'-nav-next">'. series_get_adjacent_post_nav('%link &raquo;', '%rel', $prev_post, false). '</span>';
+                $output .= '<span class="'.$class_prefix.'-nav-next">'. series_get_adjacent_post_nav('%link &raquo;', '%rel', $next_post, false). '</span>';
             }
             $output .= '</nav>';
         }

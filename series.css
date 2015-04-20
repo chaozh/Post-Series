@@ -6,3 +6,7 @@
 	margin: 0 0 1.625em;
 	padding: 1.625em;
 }
+
+.post-series-item-excerpt{
+    font-size:60%;
+}
