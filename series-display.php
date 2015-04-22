@@ -34,7 +34,33 @@ function series_get_the_excerpt( $the_post ) {
 
 	return $the_post->post_excerpt;
 }
-
+/**
+ * $series_arg = array(
+         //come from settings option
+		'title_format'   => __('This entry is part %current of %count in the series: %link', SERIES_BASE),
+        'class_prefix'   => 'post-series',
+        'series_wrap'    => 'section',
+		'title_wrap'     => 'h3',
+		'show_future'    => true,
+        'auto_display'   => 0,
+        'custom_styles'  => false,
+        'show_thumbnail' => false,
+        'show_excerpt'   => false,
+        'show_nav'       => false,
+        'loop_display'   => false,
+        
+        //come from widget or shortcode
+        "slug" => '',
+        "id" => '',
+        "title" => '', //should have!
+        "limit" => -1,
+        'show_all'=> true,//only used by loop display
+        "show_future" => true,
+        "class_prefix" => $class_prefix, //must have!
+        "show_nav" => false,
+        "title_format" => ''
+        );
+*/
 function series_display($series_arg){
     global $post;
     
@@ -45,13 +71,13 @@ function series_display($series_arg){
 		// Use the "id" attribute if it exists
 		$tax_query = array(array('taxonomy' => SERIES, 'field' => 'id', 'terms' => $id));
         $tax_link = get_term_link((int)$id, SERIES);
-        $term = &get_term((int)$id, $taxonomy);
+        $term = get_term((int)$id, SERIES);
         
 	} else if (isset($slug) && $slug) {
 		// Use the "slug" attribute if "id" does not exist
 		$tax_query = array(array('taxonomy' => SERIES, 'field' => 'slug', 'terms' => $slug));
         $tax_link = get_term_link($slug, SERIES);
-        $term = &get_term_by('slug', $slug, SERIES);
+        $term = get_term_by('slug', $slug, SERIES);
         
 	} else {
 		// Use post's own Series tax if neither "id" nor "slug" exist
@@ -135,12 +161,12 @@ function series_display($series_arg){
         //close section tag...
         $output .= '</'.$series_wrap.'>';
         // Create the title if the "title" attribute exists
-        $link = sprintf('<a href="%1$s">%2$s</a>', $tax_link, $title?$title:$term->name);
+        $link = sprintf('<a href="%1$s">%2$s</a>', $tax_link, isset($title)?$title:$term->name);
         if($current){	  
             $title_format = str_replace( '%current', $current, $title_format );
             $title_format = str_replace( '%count', $count, $title_format );
             $title_format = str_replace( '%link', $link, $title_format );
-            if( $show_all ){
+            if( isset($show_all) && $show_all ){
                 $title_format .= '<a href="JavaScript:void(0);" class="show-all">'.__('Show All', SERIES_BASE).'</a>';
             }
             $title_output = '<'.$title_wrap.' class="'.$class_prefix.'-title">'.$title_format.'</'.$title_wrap.'>';

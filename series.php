@@ -1,9 +1,9 @@
 <?php
 /*
-Plugin Name: Post Series
+Plugin Name: Simple Post Series
 Plugin URI: http://www.chaozh.com/wordpress-plugin-post-series-publish/
 Description: Better organize your posts by grouping them into series and display them within the series dynamically in your blog.  This version of Post Series Plugin requires at least WordPress 3.1 and PHP 5.0+ to work.
-Version: 2.0
+Version: 2.1
 Author: chaozh
 Author URI: http://chaozh.com/
 Origin: http://wp.tutsplus.com/tutorials/plugins/adding-post-series-functionality-to-wordpress-with-taxonomies/
@@ -14,6 +14,7 @@ Origin: http://wp.tutsplus.com/tutorials/plugins/adding-post-series-functionalit
 //	can be found at http://www.chaozh.com/wordpress-plugin-post-series-publish/
 
 define('SERIES','series');
+define('SERIES_BASE', 'simple-post-series');
 define('VERSION', 2.0);
 /*  Copyright 2009-2012 CHAO ZHENG  (email: chao@whu.edu.cn)
 
@@ -33,15 +34,52 @@ define('VERSION', 2.0);
 */
 define('SERIES_URL', plugins_url( '', __FILE__ )); 
 define('SERIES_ROOT', dirname(__FILE__) );
-define('SERIES_BASE', dirname( plugin_basename( __FILE__ ) )); 
+define('SERIES_REL', dirname( plugin_basename( __FILE__ ) ));
+define('SERIES_FILE', plugin_basename( __FILE__ ));
+
 // Adds translation support for language files
 function series_localization() {
-	load_plugin_textdomain( SERIES_BASE, false, SERIES_BASE. '/languages' );
+	load_plugin_textdomain( SERIES_BASE, false, SERIES_REL. '/languages' );
 }
 add_action( 'plugins_loaded', 'series_localization' );
 
+// aboud debug
+define('SERIES_DEBUG',true);
+if ( ! function_exists('series_log')) {
+function series_log ( $log )  {
+    if(WP_DEBUG === true && SERIES_DEBUG == true){
+        if ( is_array( $log ) || is_object( $log ) ) {
+            error_log( print_r( $log, true ) );
+        } else {
+            error_log( $log );
+        }
+    }
+}
+}
+
+
 function series_posttype_support(){
     return apply_filters('series_posttype_support', array('post', 'page') );
+}
+
+function series_get_default_options() {  
+	$series_defaults_args = array(
+    
+		'title_format'   => __('This entry is part %current of %count in the series: %link', SERIES_BASE),
+        'class_prefix'   => 'post-series',
+        'series_wrap'    => 'section',
+		'title_wrap'     => 'h3',
+		'show_future'    => true,
+        'auto_display'   => 0,
+        'custom_styles'  => false,
+        'show_thumbnail' => false,
+        'show_excerpt'   => false,
+        'show_nav'       => false,
+        'loop_display'   => false
+            
+    );
+    
+	return apply_filters( SERIES . '_default_options', $series_defaults_args );
 }
 
 function series_register_taxonomy() {
@@ -73,7 +111,7 @@ function series_register_taxonomy() {
 
 	register_taxonomy( SERIES, $posttypes, $series_tax_args );
     
-    $options = get_option( SERIES.'_options' );
+    $options = get_option( SERIES.'_options', series_get_default_options());
     if( $options['auto_display'] ){
         add_filter('the_content', 'series_auto_content_display',0);
     }
@@ -121,6 +159,17 @@ function series_is_template( $template_path ){
     return false;
 }
 
+function series_attrs($attrs, $options){
+    //TODO: try wp_parse_args instead
+    if( isset($options) && is_array($options)){
+        $attrs = $attrs + $options;
+    } else{
+        series_log("FAIL in ".__FUNCTION__.'for $options'.($options));
+    }
+    
+    return $attrs;
+}
+
 function series_set_template( $template )
 {
 	if( is_tax(SERIES) && !series_is_template($template) ){
@@ -138,7 +187,12 @@ if ( is_admin() ){
 require_once(SERIES_ROOT. '/series-display.php');
 // The shortcode function of Post Series
 function series_sc($atts) {
-    $options = get_option( SERIES.'_options' );
+    $options = get_option( SERIES.'_options', series_get_default_options());
+    //fetch class_prefix options first
+    //this option is the only option that **must** sync with settings option
+    $class_prefix = 'post-series';
+    if( isset($options) && is_array($options))
+        $class_prefix = $options["class_prefix"];
     //merge options
 	$series_arg = shortcode_atts( array (
     
@@ -147,7 +201,7 @@ function series_sc($atts) {
             "title" => '', 
             "limit" => -1, 
             "show_future" => true,
-            "class_prefix" => $options["class_prefix"]
+            "class_prefix" => $class_prefix
             			
     ), $atts );
     
@@ -155,8 +209,11 @@ function series_sc($atts) {
         $series_arg['show_future'] = false;
     }else{
         $series_arg['show_future'] = true;
-    }    
-    $series_arg = $series_arg + $options;
+    } 
+    
+    //new sc args overrides the option settings   
+    $series_arg = series_attrs($series_arg, $options);
+        
     return series_display($series_arg);
 } 
 add_shortcode('series','series_sc');
@@ -165,11 +222,12 @@ function series_auto_content_display($content) {
     global $post;
     
     if(is_single() || is_page() || is_feed()){
-        $options = get_option( SERIES.'_options' );
+        $options = get_option( SERIES.'_options', series_get_default_options());
         $series_arg = array(
             "limit" => -1
         );
-        $series_arg = $options + $series_arg;
+        $series_arg =series_attrs($series_arg, $options);
+        
         $series_display = series_display($series_arg);
         switch($options['auto_display']){
             case 2:// At the end of post
@@ -199,12 +257,12 @@ function series_auto_loop_display($content){
         wp_enqueue_script( SERIES, SERIES_URL . '/series.js', array('jquery'), VERSION );
         //add_action( 'wp_enqueue_scripts', 'series_script' );
         
-        $options = get_option( SERIES.'_options' );
+        $options = get_option( SERIES.'_options', series_get_default_options());
         $series_arg = array(
             "limit" => -1,
             'show_all'=>true
         );
-        $series_arg = $options + $series_arg;
+        $series_arg = series_attrs($series_arg, $options);
         $series_display = series_display($series_arg);
         $content .= $series_display;
         $pos1 = strpos($content, '<span id=”more-');
@@ -245,7 +303,7 @@ class Post_Series_Widget extends WP_Widget {
 			return;
 		}
         
-        $options = get_option( SERIES.'_options' );
+        $options = get_option( SERIES.'_options', series_get_default_options());
         $series_arg = array(
         
             "id" => intval($instance["id"]),
@@ -256,7 +314,7 @@ class Post_Series_Widget extends WP_Widget {
             "title_format" => ''
             
         );
-        $series_arg = $series_arg + $options;
+        $series_arg =series_attrs($series_arg, $options);
         
         ob_start();	
         extract( $args, EXTR_SKIP );
@@ -297,7 +355,8 @@ class Post_Series_Widget extends WP_Widget {
 
     /** @use WP_Widget::form */
     function form($instance) {
-        $options = get_option( SERIES.'_options' );
+        $options = get_option( SERIES.'_options', series_get_default_options());
+        
         if(isset($instance['limit']) || $instance['limit'] == -1)
             $limit = '';
         else

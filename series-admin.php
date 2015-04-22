@@ -1,5 +1,4 @@
 <?php 
-// TODO: plugin settings link
 require_once(SERIES_ROOT. '/series-edition.php');
 
 /**
@@ -65,7 +64,7 @@ function series_addbuttons() {
 
     // Only load the necessary scripts if the user is on the post/page editing admin pages
     if ( in_array( basename( $_SERVER['PHP_SELF'] ), array( 'post-new.php', 'page-new.php', 'post.php', 'page.php' ) ) ) {
-        wp_enqueue_style('jquery-ui-dialog', 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/themes/smoothness/jquery-ui.css');
+        wp_enqueue_style('jquery-ui-dialog', SERIES_URL . '/inc/jquery-ui.css');
         wp_enqueue_script( 'jquery-ui-dialog' );
         
         wp_enqueue_style( 'series-dialog-styles' );
@@ -125,6 +124,29 @@ function series_custom_convert_restrict($query) {
 }
 add_filter('parse_query','series_custom_convert_restrict');
 
+function series_custom_column_filter($defaults) {
+	$post_types = series_posttype_support();
+	if ( isset($_REQUEST['post_type']) && !in_array($_REQUEST['post_type'], $post_types) )
+		return $defaults; //get out we only want this showing up on post post types for now.*/
+	$defaults[SERIES] = __('Series', SERIES_BASE);
+	return $defaults;
+}
+
+function series_custom_column_action( $column_name,$post_id ) {
+    global $post;
+    if ($column_name == SERIES) {
+        $series = get_the_terms($post_id, SERIES);
+        if (is_array($series)) {
+            foreach($series as $key => $series_term) {
+                $edit_link = esc_url( add_query_arg( array( 'post_type' => $post->post_type, SERIES => $series_term->term_id ), 'edit.php' ) );
+                $series[$key] = '<a href="'.$edit_link.'">' . $series_term->name . '('. $series_term->count .')'.'</a>';
+            }
+            //echo implode("<br/>",$businesses);
+            echo join(__( ', ' ), $series);
+        }
+    }
+}
+
 function series_load_custom_columns(){
     global $post;
     $post_types = series_posttype_support();
@@ -146,37 +168,26 @@ function series_load_custom_columns(){
 }
 add_action('admin_init', 'series_load_custom_columns', 10);
 
-function series_custom_column_action( $column_name,$post_id ) {
-    global $post;
-    if ($column_name == SERIES) {
-        $series = get_the_terms($post_id, SERIES);
-        if (is_array($series)) {
-            foreach($series as $key => $series_term) {
-                $edit_link = esc_url( add_query_arg( array( 'post_type' => $post->post_type, SERIES => $series_term->term_id ), 'edit.php' ) );
-                $series[$key] = '<a href="'.$edit_link.'">' . $series_term->name . '('. $series_term->count .')'.'</a>';
-            }
-            //echo implode("<br/>",$businesses);
-            echo join(__( ', ' ), $series);
-        }
+//2.1 update: settings added action links
+function series_plugin_action_links($links, $file) {
+    //series_log($file);
+    if ( $file == SERIES_FILE ) {
+        $settings_link = '<a href="options-general.php?page='.SERIES.'_settings">' . __('Settings', SERIES_BASE) . '</a>';
+    	$links = array_merge( array( $settings_link ), $links );
     }
+	
+	return $links;
 }
-
-function series_custom_column_filter($defaults) {
-	$post_types = series_posttype_support();
-	if ( isset($_REQUEST['post_type']) && !in_array($_REQUEST['post_type'], $post_types) )
-		return $defaults; //get out we only want this showing up on post post types for now.*/
-	$defaults[SERIES] = __('Series', SERIES_BASE);
-	return $defaults;
-}
+add_filter( 'plugin_action_links', 'series_plugin_action_links', 10, 2 );
 
 // Adds default values for options on settings page
 register_activation_hook( __FILE__, 'series_default_options' );
 	
 function series_default_options() {
 
-	$series_temp = get_option( SERIES.'_options' );
+	$series_temp = get_option( SERIES.'_options');
 	
-	if ( ( $series_temp['series_wrap'] == '' )||( !is_array( $series_temp ) ) ) {
+	if ( !is_array( $series_temp ) || ( $series_temp['series_wrap'] == '' ) ) {
 
 		$series_defaults_args = series_get_default_options();
 		update_option( SERIES.'_options', $series_defaults_args );
@@ -184,24 +195,11 @@ function series_default_options() {
 	}
 }
 
-function series_get_default_options() {
-    
-	$series_defaults_args = array(
-    
-		'title_format'   => __('This entry is part %current of %count in the series: %link', SERIES_BASE),
-        'class_prefix'   => 'post-series',
-        'series_wrap'    => 'section',
-		'title_wrap'     => 'h3',
-		'show_future'    => true,
-        'auto_display'   => 0,
-        'custom_styles'  => false,
-        'show_thumbnail' => false,
-        'show_excerpt'   => false,
-        'show_nav'       => false,
-        'loop_display'   => false
-            
-	);
-	return apply_filters( SERIES . '_default_options', $series_defaults_args );
+register_deactivation_hook(__FILE__, 'series_delete_options' );
+
+function series_delete_options() {
+    series_log("delete options");
+    delete_option( SERIES . '_options' );
 }
 
 //admin settings
@@ -241,7 +239,7 @@ function series_register_settings() {
         array(
             'name' => 'title_format',
             'title'=> __( 'Title Format', SERIES_BASE),
-            'desc' => __( 'title format', SERIES_BASE ),
+            'desc' => __( '"Title Format" means you can customly define the format and content to display as series title.%current will be replaced by the current posts number in the serie, %count will be replaced by series total post number, %link will be replaced by displaying a url link. These three words started with "%" are special template tokens and rest words are free to use.', SERIES_BASE ),
             'type' => 'text',
             'size' => 40
         ),
@@ -323,7 +321,12 @@ add_action('admin_init', 'series_register_settings');
  * @return
  */
 function series_settings_validate($series_input) {
-    $series_options = get_option( SERIES . '_options' );
+    if( isset($_POST['Reset']) ) {
+        series_delete_options();
+        return series_get_default_options();
+    }
+    
+    $series_options = array();
 
 	$series_options['title_format'] = trim( $series_input['title_format'] );
 	
@@ -390,10 +393,13 @@ function series_settings_page(){
 		settings_fields( SERIES. '_options' );
         //display all settings sections	in a page			
 		do_settings_sections(  SERIES.'_settings' );
+        //submit_button( 'Reset', 'secondary' ); 
+        //submit_button( 'Delete', 'delete' );       
 		?>
 		
 		<p class="submit">
 			<input name="Submit" type="submit" class="button-primary" value="<?php _e( 'Save Changes') ?>" />
+            <input name="Reset" type="submit" class="button-secondary" value="<?php _e( 'Reset Default', SERIES_BASE) ?>" />
 		</p>
 				
 	</form>
@@ -420,7 +426,7 @@ function series_display_field($args){
             echo "<label for='{$prefix}' class='{$prefix}-label'>".__('on',SERIES_BASE)."</label>";
         break;
         case 'text':
-            echo "<input id='{$prefix}' name='".SERIES."_options[{$prefix}]' size='{$args['size']}' type='text' value='{$series_options[$prefix]}' /> {$args['desc']}";
+            echo "<input id='{$prefix}' name='".SERIES."_options[{$prefix}]' size='{$args['size']}' type='text' value='{$series_options[$prefix]}' /> <div>{$args['desc']}</div>";
         break;
         case 'radio':
             echo "<fieldset id='{$prefix}'>";
