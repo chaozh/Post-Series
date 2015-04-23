@@ -22,7 +22,7 @@
 			ed.addButton('series', {
 				title : ed.title,
 				cmd : 'mceSeries',
-				image : url + '/img/icon.png'
+				image : url + '/images/icon.png'
 			});
 
 			// Add a node change handler, selects the button in the UI when a image is selected
