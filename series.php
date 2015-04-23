@@ -35,7 +35,8 @@ define('VERSION', 2.0);
 define('SERIES_URL', plugins_url( '', __FILE__ )); 
 define('SERIES_ROOT', dirname(__FILE__) );
 define('SERIES_REL', dirname( plugin_basename( __FILE__ ) ));
-define('SERIES_FILE', plugin_basename( __FILE__ ));
+define('SERIES_BASENAME', plugin_basename( __FILE__ ));
+define('SERIES_FILE', __FILE__);
 // aboud debug
 define('SERIES_DEBUG',true);
 

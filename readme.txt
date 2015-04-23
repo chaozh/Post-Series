@@ -1,6 +1,6 @@
 ﻿=== Plugin Name ===
 Contributors: chaozh
-Donate link: http://www.chaozh.com/wordpress-plugin-post-series-publish/
+Donate link: http://www.chaozh.com/simple-post-series-plugin-officially-publish/
 Tags: post, category, series, taxonomy
 Tested up to: 4.1.2
 Stable tag: 2.1

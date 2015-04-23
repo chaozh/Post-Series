@@ -171,7 +171,7 @@ add_action('admin_init', 'series_load_custom_columns', 10);
 //2.1 update: settings added action links
 function series_plugin_action_links($links, $file) {
     //series_log($file);
-    if ( $file == SERIES_FILE ) {
+    if ( $file == SERIES_BASENAME ) {
         $settings_link = '<a href="options-general.php?page='.SERIES.'_settings">' . __('Settings', SERIES_BASE) . '</a>';
     	$links = array_merge( array( $settings_link ), $links );
     }
@@ -181,7 +181,7 @@ function series_plugin_action_links($links, $file) {
 add_filter( 'plugin_action_links', 'series_plugin_action_links', 10, 2 );
 
 // Adds default values for options on settings page
-register_activation_hook( __FILE__, 'series_default_options' );
+register_activation_hook( SERIES_FILE, 'series_default_options' );
 	
 function series_default_options() {
 
@@ -193,13 +193,6 @@ function series_default_options() {
 		update_option( SERIES.'_options', $series_defaults_args );
         
 	}
-}
-
-register_deactivation_hook(__FILE__, 'series_delete_options' );
-
-function series_delete_options() {
-    series_log("delete options");
-    delete_option( SERIES . '_options' );
 }
 
 //admin settings
