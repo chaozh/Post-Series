@@ -246,21 +246,21 @@ function series_register_settings() {
         array(
             'name' => 'class_prefix',
             'title'=> __( 'CSS Class Prefix', SERIES_BASE),
-            'desc' => __( 'class prefix', SERIES_BASE ),
+            'desc' => __( 'set css class prefix for series element', SERIES_BASE ),
             'type' => 'text',
             'size' => 20
         ),
         array(
             'name' => 'series_wrap',
             'title'=>  __( 'Series Wrap Element', SERIES_BASE),
-            'desc' => __( 'series wrap', SERIES_BASE ),
+            'desc' => __( 'set series element wrapper eg. div, section...', SERIES_BASE ),
             'type' => 'text',
             'size' => 20
         ),
         array(
             'name' => 'title_wrap',
             'title'=> __( 'Title Wrap Element', SERIES_BASE),
-            'desc' => __( 'title wrap', SERIES_BASE ),
+            'desc' => __( 'set title element wrapper eg. h1, h2...', SERIES_BASE ),
             'type' => 'text',
             'size' => 20
         ),
@@ -426,7 +426,7 @@ function series_display_field($args){
             echo "<label for='{$prefix}' class='{$prefix}-label'>".__('on',SERIES_BASE)."</label>";
         break;
         case 'text':
-            echo "<input id='{$prefix}' name='".SERIES."_options[{$prefix}]' size='{$args['size']}' type='text' value='{$series_options[$prefix]}' /> <div>{$args['desc']}</div>";
+            echo "<input id='{$prefix}' name='".SERIES."_options[{$prefix}]' size='{$args['size']}' type='text' value='{$series_options[$prefix]}' /> <p class='description'>{$args['desc']}</p>";
         break;
         case 'radio':
             echo "<fieldset id='{$prefix}'>";

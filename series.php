@@ -36,6 +36,8 @@ define('SERIES_URL', plugins_url( '', __FILE__ ));
 define('SERIES_ROOT', dirname(__FILE__) );
 define('SERIES_REL', dirname( plugin_basename( __FILE__ ) ));
 define('SERIES_FILE', plugin_basename( __FILE__ ));
+// aboud debug
+define('SERIES_DEBUG',true);
 
 // Adds translation support for language files
 function series_localization() {
@@ -43,8 +45,6 @@ function series_localization() {
 }
 add_action( 'plugins_loaded', 'series_localization' );
 
-// aboud debug
-define('SERIES_DEBUG',true);
 if ( ! function_exists('series_log')) {
 function series_log ( $log )  {
     if(WP_DEBUG === true && SERIES_DEBUG == true){
@@ -56,7 +56,6 @@ function series_log ( $log )  {
     }
 }
 }
-
 
 function series_posttype_support(){
     return apply_filters('series_posttype_support', array('post', 'page') );

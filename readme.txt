@@ -2,8 +2,8 @@
 Contributors: chaozh
 Donate link: http://www.chaozh.com/wordpress-plugin-post-series-publish/
 Tags: post, category, series, taxonomy
-Tested up to: 3.5
-Stable tag: 2.0
+Tested up to: 4.1.2
+Stable tag: 2.1
 Requires at least: 3.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -82,6 +82,8 @@ A sample archive page template is located in '[simple-post-series]/template/taxo
 6. Options page 插件设置页面,
 
 == Changelog ==
+= 2.1 =
+* New: Fix bugs and improve code robustion
 
 = 2.0 =
 * New: Add admin series bulk edition page for drag and drop posts to serie

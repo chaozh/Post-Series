@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: chaozh\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-04-22 22:08+0800\n"
-"PO-Revision-Date: 2015-04-22 22:09+0800\n"
+"POT-Creation-Date: 2015-04-23 10:25+0800\n"
+"PO-Revision-Date: 2015-04-23 10:39+0800\n"
 "Last-Translator: zc <chao@whu.edu.cn>\n"
 "Language-Team: chaozh <chao@whu.edu.cn>\n"
 "Language: zh\n"
@@ -29,7 +29,7 @@ msgstr "名称："
 msgid "Count:"
 msgstr "文章数目："
 
-#: inc/tinymce-plugin-dialog.php:42 series.php:369
+#: inc/tinymce-plugin-dialog.php:42 series.php:368
 msgid "Title:"
 msgstr "标题："
 
@@ -43,7 +43,7 @@ msgstr "展示未发布文章："
 
 #: inc/tinymce-plugin-dialog.php:60 series-admin.php:426
 msgid "on"
-msgstr "显示"
+msgstr "启用"
 
 #: inc/tinymce-plugin-dialog.php:69
 msgid "Insert"
@@ -61,7 +61,7 @@ msgstr "插入专题"
 msgid "View all series"
 msgstr "查看所有专题目录"
 
-#: series-admin.php:131 series.php:98
+#: series-admin.php:131 series.php:97
 msgid "Series"
 msgstr "专题"
 
@@ -79,7 +79,7 @@ msgstr "设置"
 msgid "Post Series Settings"
 msgstr "Post Series插件设置"
 
-#: series-admin.php:224 series.php:284
+#: series-admin.php:224 series.php:283
 msgid "Post Series"
 msgstr "Post Series专题"
 
@@ -88,32 +88,40 @@ msgid "Title Format"
 msgstr "标题格式"
 
 #: series-admin.php:242
-msgid "title format"
-msgstr "title format"
+msgid ""
+"\"Title Format\" means you can customly define the format and content to "
+"display as series title.%current will be replaced by the current posts "
+"number in the serie, %count will be replaced by series total post number, "
+"%link will be replaced by displaying a url link. These three words started "
+"with \"%\" are special template tokens and rest words are free to use."
+msgstr ""
+"\"标题格式\" 用于设置你自定义的专题标题格式，支持以%开头的三种特殊标示："
+"%current将显示当前文章在专题系列中的序号, %count将显示专题系列的总文章数目, "
+"%link将显示专题系列总览的链接。"
 
 #: series-admin.php:248
 msgid "CSS Class Prefix"
 msgstr "CSS类前缀"
 
 #: series-admin.php:249
-msgid "class prefix"
-msgstr "class prefix"
+msgid "set css class prefix for series element"
+msgstr "为专题设置CSS类前缀"
 
 #: series-admin.php:255
 msgid "Series Wrap Element"
 msgstr "专题容器元素"
 
 #: series-admin.php:256
-msgid "series wrap"
-msgstr "series wrap"
+msgid "set series element wrapper eg. div, section..."
+msgstr "设置专题容器标签，比如div或section"
 
 #: series-admin.php:262
 msgid "Title Wrap Element"
 msgstr "标题容器元素"
 
 #: series-admin.php:263
-msgid "title wrap"
-msgstr "title wrap"
+msgid "set title element wrapper eg. h1, h2..."
+msgstr "设置标题容器标签，比如h1或h2"
 
 #: series-admin.php:269
 msgid "Show Unpublished"
@@ -226,7 +234,7 @@ msgstr "专题文章编辑"
 msgid "Available posts"
 msgstr "可用文章"
 
-#: series-edition.php:72 series.php:96
+#: series-edition.php:72 series.php:95
 msgid "Add New Series"
 msgstr "添加新的专题"
 
@@ -320,53 +328,53 @@ msgstr "专题删除成功"
 msgid "Error, delete serie fail"
 msgstr "错误，专题删除失败"
 
-#: series.php:68
+#: series.php:67
 msgid "This entry is part %current of %count in the series: %link"
 msgstr "本文是全系列中第%current / %count篇：%link"
 
-#: series.php:91
+#: series.php:90
 msgctxt "taxonomy general name"
 msgid "Series"
 msgstr "专题"
 
-#: series.php:92
+#: series.php:91
 msgctxt "taxonomy singular name"
 msgid "Series"
 msgstr "专题"
 
-#: series.php:93
+#: series.php:92
 msgid "All Series"
 msgstr "所有专题"
 
-#: series.php:94
+#: series.php:93
 msgid "Edit Series"
 msgstr "编辑专题"
 
-#: series.php:95
+#: series.php:94
 msgid "Update Series"
 msgstr "更新专题"
 
-#: series.php:97
+#: series.php:96
 msgid "New Series Name"
 msgstr "新专题名称"
 
-#: series.php:282
+#: series.php:281
 msgid "A simple widget to display post series."
 msgstr "展示的系列文章小工具"
 
-#: series.php:377
+#: series.php:376
 msgid "Choose post series to display:"
 msgstr "选择显示的系列："
 
-#: series.php:386
+#: series.php:385
 msgid "Number of posts to show:"
 msgstr "展示文章数目："
 
-#: series.php:390
+#: series.php:389
 msgid "Special class prefix:"
 msgstr "特殊Class前缀："
 
-#: series.php:395
+#: series.php:394
 msgid "Show future"
 msgstr "展示未发布"
 
@@ -456,6 +464,18 @@ msgid ""
 "Apologies, but no results were found for the requested archive. Perhaps "
 "searching will help find a related post."
 msgstr "哎呀，没找到该分类，请搜索相关主题"
+
+#~ msgid "title format"
+#~ msgstr "title format"
+
+#~ msgid "class prefix"
+#~ msgstr "class prefix"
+
+#~ msgid "series wrap"
+#~ msgstr "series wrap"
+
+#~ msgid "title wrap"
+#~ msgstr "title wrap"
 
 #~ msgid "Reset"
 #~ msgstr "重置"
