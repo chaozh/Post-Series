@@ -188,10 +188,8 @@ function series_default_options() {
 	$series_temp = get_option( SERIES.'_options');
 	
 	if ( !is_array( $series_temp ) || ( $series_temp['series_wrap'] == '' ) ) {
-
-		$series_defaults_args = series_get_default_options();
-		update_option( SERIES.'_options', $series_defaults_args );
-        
+	   
+		update_option( SERIES.'_options', series_get_default_options() ); 
 	}
 }
 
@@ -315,7 +313,7 @@ add_action('admin_init', 'series_register_settings');
  */
 function series_settings_validate($series_input) {
     if( isset($_POST['Reset']) ) {
-        series_delete_options();
+        delete_option(SERIES.'_options');
         return series_get_default_options();
     }
     
@@ -347,19 +345,19 @@ function series_settings_validate($series_input) {
 
 	}
     
-    $series_options['show_future'] = $series_input['show_future'] ? true: false;
+    $series_options['show_future'] = isset($series_input['show_future']) ? true: false;
 
     $series_options['auto_display'] = $series_input['auto_display'];
 
-    $series_options['custom_styles'] = $series_input['custom_styles'] ? true: false;
+    $series_options['custom_styles'] = isset($series_input['custom_styles']) ? true: false;
     
-    $series_options['show_thumbnail'] = $series_input['show_thumbnail'] ? true: false;
+    $series_options['show_thumbnail'] = isset($series_input['show_thumbnail']) ? true: false;
     
-    $series_options['show_excerpt'] = $series_input['show_excerpt'] ? true: false;
+    $series_options['show_excerpt'] = isset($series_input['show_excerpt']) ? true: false;
     
-    $series_options['show_nav'] = $series_input['show_nav'] ? true: false;
+    $series_options['show_nav'] = isset($series_input['show_nav']) ? true: false;
     
-    $series_options['loop_display'] = $series_input['loop_display'] ? true: false;
+    $series_options['loop_display'] = isset($series_input['loop_display']) ? true: false;
     
     //$series_options['custom_archives'] = $series_input['custom_archives'] == "on" ? true: false;
 
