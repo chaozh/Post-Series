@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Simple Post Series
-Plugin URI: http://www.chaozh.com/wordpress-plugin-post-series-publish/
+Plugin URI: http://www.chaozh.com/simple-post-series-plugin-officially-publish/
 Description: Better organize your posts by grouping them into series and display them within the series dynamically in your blog.  This version of Post Series Plugin requires at least WordPress 3.1 and PHP 5.0+ to work.
 Version: 2.1
 Author: chaozh
@@ -11,7 +11,7 @@ Origin: http://wp.tutsplus.com/tutorials/plugins/adding-post-series-functionalit
 
 ### INSTALLATION/USAGE INSTRUCTIONS ###
 //	Installation and/or usage instructions for the Post Series Plugin
-//	can be found at http://www.chaozh.com/wordpress-plugin-post-series-publish/
+//	can be found at http://www.chaozh.com/simple-post-series-plugin-officially-publish/
 
 define('SERIES','series');
 define('SERIES_BASE', 'simple-post-series');
@@ -311,7 +311,8 @@ class Post_Series_Widget extends WP_Widget {
             "show_future" => isset($instance["show_future"])?$instance["show_future"]:false,
             "class_prefix" => $instance["class_prefix"], 
             "show_nav" => false,
-            "title_format" => ''
+            "title_format" => '',
+            "title_wrap" => ''
             
         );
         $series_arg =series_attrs($series_arg, $options);

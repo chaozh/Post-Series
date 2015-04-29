@@ -160,19 +160,23 @@ function series_display($series_arg){
         }
         //close section tag...
         $output .= '</'.$series_wrap.'>';
-        // Create the title if the "title" attribute exists
+        //Create the title if the "title" attribute exists
         $link = sprintf('<a href="%1$s">%2$s</a>', $tax_link, isset($title)?$title:$term->name);
-        if($current){	  
-            $title_format = str_replace( '%current', $current, $title_format );
-            $title_format = str_replace( '%count', $count, $title_format );
-            $title_format = str_replace( '%link', $link, $title_format );
-            if( isset($show_all) && $show_all ){
-                $title_format .= '<a href="JavaScript:void(0);" class="show-all">'.__('Show All', SERIES_BASE).'</a>';
+        //for widget display
+        if(!($title_wrap == '')){ 
+            if($current){	  
+                $title_format = str_replace( '%current', $current, $title_format );
+                $title_format = str_replace( '%count', $count, $title_format );
+                $title_format = str_replace( '%link', $link, $title_format );
+                if( isset($show_all) && $show_all ){
+                    $title_format .= '<a href="JavaScript:void(0);" class="show-all">'.__('Show All', SERIES_BASE).'</a>';
+                }
+                $title_output = '<'.$title_wrap.' class="'.$class_prefix.'-title">'.$title_format.'</'.$title_wrap.'>';
+            }else{
+                $title_output = '<'.$title_wrap.' class="'.$class_prefix.'-title">'.$link.'</'.$title_wrap.'>';
             }
-            $title_output = '<'.$title_wrap.' class="'.$class_prefix.'-title">'.$title_format.'</'.$title_wrap.'>';
-        }else{
-            $title_output = '<'.$title_wrap.' class="'.$class_prefix.'-title">'.$link.'</'.$title_wrap.'>';
         }
+        
 		// display the title first
 		$output = $section_output.$title_output.$output;
 		// ...and return the whole output!
