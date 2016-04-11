@@ -38,7 +38,7 @@ define('SERIES_REL', dirname( plugin_basename( __FILE__ ) ));
 define('SERIES_BASENAME', plugin_basename( __FILE__ ));
 define('SERIES_FILE', __FILE__);
 // aboud debug
-define('SERIES_DEBUG',true);
+define('SERIES_DEBUG',false);
 
 // Adds translation support for language files
 function series_localization() {
@@ -58,8 +58,13 @@ function series_log ( $log )  {
 }
 }
 
-function series_posttype_support(){
-    return apply_filters('series_posttype_support', array('post', 'page') );
+function series_posttype_support() {
+    $args = array(
+        'public'   => true,
+        '_builtin' => false
+    );
+    return apply_filters('series_posttype_support', array_merge(array('post', 'page'), get_post_types( $args )));
+    //return apply_filters('series_posttype_support', array('post', 'page') );
 }
 
 function series_get_default_options() {  
