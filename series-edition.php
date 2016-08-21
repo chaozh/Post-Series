@@ -296,7 +296,8 @@ function series_edition_get_posts($series_id){
 		'orderby'	=> 'menu_order',
 		'order'		=> 'ASC',
 		'post_type'	=> $post_types,
-		'posts_per_page' => -1
+		'posts_per_page' => -1,
+        'post_status' => 'any'
     );
     return get_posts($args);
 }

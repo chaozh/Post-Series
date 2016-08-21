@@ -90,10 +90,11 @@ A sample archive page template is located in '[simple-post-series]/template/taxo
 
 == Changelog ==
 = 2.3 =
-* New: Fix series order bugs and improve excerpt & thumbnail display
- 
-= 2.2 = 
-* New: Add user custom post type support
+* New: Fix series order bugs 
+* New: Improve excerpt & thumbnail display
+
+= 2.2.1 =
+* New: Add supporting QQ group url
 
 = 2.1 =
 * New: Fix bugs and improve code robustion

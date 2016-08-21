@@ -43,7 +43,7 @@ function series_get_the_excerpt( $the_post ) {
 		'title_wrap'     => 'h3',
 		'show_future'    => true,
         'auto_display'   => 0,
-        'custom_styles'  => false,
+        'custom_styles'  => false, //not used here
         'show_thumbnail' => false,
         'show_excerpt'   => false,
         'show_nav'       => false,
@@ -55,10 +55,10 @@ function series_get_the_excerpt( $the_post ) {
         "title" => '', //should have!
         "limit" => -1,
         'show_all'=> true,//only used by loop display
-        "show_future" => true,
-        "class_prefix" => $class_prefix, //must have!
-        "show_nav" => false,
-        "title_format" => ''
+        "show_future" => true, // ovrrides
+        "class_prefix" => $class_prefix, //must have! ovrrides
+        "show_nav" => false, // ovrrides
+        "title_format" => '' // ovrrides
         );
 */
 function series_display($series_arg){
@@ -92,7 +92,7 @@ function series_display($series_arg){
 	}
 	if($show_future) {
 		// Include the future posts if the "future" attribute is set to "on"
-		$post_status = array('publish','future');
+		$post_status = 'any'; //array('publish','future','draft');
 	} else {
 		// Exclude the future posts if the "future" attribute is set to "off"
 		$post_status = 'publish';
@@ -101,7 +101,7 @@ function series_display($series_arg){
 	$args = array(
 		'tax_query' => $tax_query,
 		'posts_per_page' => $limit,
-		'orderby' => 'date',
+		'orderby' => 'menu_order', //date
 		'order' => 'ASC',
         'post_type'=> series_posttype_support(),
  		'post_status' => $post_status
@@ -163,8 +163,8 @@ function series_display($series_arg){
         //Create the title if the "title" attribute exists
         $link = sprintf('<a href="%1$s">%2$s</a>', $tax_link, isset($title)?$title:$term->name);
         //for widget display
-        if(!($title_wrap == '')){ 
-            if($current){	  
+        if($title_wrap != ''){ 
+            if($current && isset($title_format)){	  
                 $title_format = str_replace( '%current', $current, $title_format );
                 $title_format = str_replace( '%count', $count, $title_format );
                 $title_format = str_replace( '%link', $link, $title_format );
