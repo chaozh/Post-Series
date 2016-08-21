@@ -24,6 +24,18 @@ function series_register_button( $buttons ) {
     return $buttons;
 }
 
+function series_admin_pages() {
+    $types = series_posttype_support();
+    $type_pages = array();
+    $type_new_pages = array();
+    foreach ( $types as $type ) {
+        $type_pages[] += $type + '.php';
+        $type_new_pages[] += $type + '-new.php';
+    }
+    
+    return array_merge($type_pages, $type_new_pages);
+}
+
 /**
  * Create the modal window dialog box for the TinyMCE plugin
  * 
@@ -32,7 +44,7 @@ function series_register_button( $buttons ) {
  */
 function  series_tinymce_plugin_dialog() {
     // Only load the necessary scripts and render the modal window dialog box if the user is on the post/page editing admin pages
-    if ( in_array( basename( $_SERVER['PHP_SELF'] ), array( 'post-new.php', 'page-new.php', 'post.php', 'page.php' ) ) ) {
+    if ( in_array( basename( $_SERVER['PHP_SELF'] ), series_admin_pages() ) ) {
         $series =  get_terms( SERIES );
         include( SERIES_ROOT. '/inc/tinymce-plugin-dialog.php'  );
     }
@@ -63,7 +75,7 @@ function series_addbuttons() {
     }
 
     // Only load the necessary scripts if the user is on the post/page editing admin pages
-    if ( in_array( basename( $_SERVER['PHP_SELF'] ), array( 'post-new.php', 'page-new.php', 'post.php', 'page.php' ) ) ) {
+    if ( in_array( basename( $_SERVER['PHP_SELF'] ), series_admin_pages() ) ) {
         wp_enqueue_style('jquery-ui-dialog', SERIES_URL . '/inc/jquery-ui.css');
         wp_enqueue_script( 'jquery-ui-dialog' );
         
@@ -377,7 +389,10 @@ function series_settings_page(){
 	
 	<?php screen_icon(); ?>
 	<h2><?php _e( 'Post Series Settings', SERIES_BASE ); ?></h2>
-
+    
+    <p><?php _e('If finding any problem with this plugin please check my <a target="_blank" href="http://www.chaozh.com/simple-post-series-plugin-officially-publish/">Online QA</a> or <a href="mailto:chao@whu.edu.cn">Contact Me</a>', SERIES_BASE );?></p>
+    <p><?php _e( 'You can add QQ group to ask any questions freely online', SERIES_BASE ); ?><a target="_blank" href="http://shang.qq.com/wpa/qunwpa?idkey=d6788f785e51e969bb59da8388e074d624c1d9ff4c4d6db3de31bf49e1401b74"><img border="0" src="http://pub.idqqimg.com/wpa/images/group.png" alt="<?php _e( 'You can add QQ group to ask any questions freely online', SERIES_BASE ); ?>"></a></p>
+    <hr />
 	<form action="options.php" method="post">
 		<?php 
         //adds options_group on settings page				
@@ -397,7 +412,6 @@ function series_settings_page(){
 	
 	<h3><?php _e( 'Add Series to your Post or Page', SERIES_BASE ); ?></h3>	
 	<p><?php printf( __ ( 'Use %1$s to add it to your Post or Page content, or use the Post Series Widget.', SERIES_BASE), "<code>[series]</code>" )?></p>
-	
 </div><!-- .wrap -->
 <?php
 

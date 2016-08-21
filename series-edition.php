@@ -79,6 +79,13 @@ function series_edition_page(){
             <?php _e('Processing, please wait ...', SERIES_BASE); ?></p>
         </div>
 		<div id="ajax-response"> </div>
+        
+        <div>
+            <p><?php _e('If finding any problem with this plugin please check my <a target="_blank" href="http://www.chaozh.com/simple-post-series-plugin-officially-publish/">Online QA</a> or <a href="mailto:chao@whu.edu.cn">Contact Me</a>', SERIES_BASE );?></p>
+            <p><?php _e( 'You can add QQ group to ask any questions freely online', SERIES_BASE ); ?>
+            <a target="_blank" href="http://shang.qq.com/wpa/qunwpa?idkey=d6788f785e51e969bb59da8388e074d624c1d9ff4c4d6db3de31bf49e1401b74"><img border="0" src="http://pub.idqqimg.com/wpa/images/group.png" alt="<?php _e( 'You can add QQ group to ask any questions freely online', SERIES_BASE ); ?>"></a></p>
+        </div>
+        
 		<div id="poststuff" class="metabox-holder has-right-sidebar">
 			<div id="side-info-column" class="inner-sidebar">
 				<?php if (sizeof($series_list)>0)  do_meta_boxes($page_hook, 'side', FALSE); ?>

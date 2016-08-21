@@ -3,12 +3,12 @@ Contributors: chaozh
 Donate link: http://www.chaozh.com/simple-post-series-plugin-officially-publish/
 Tags: category, post, series, taxonomy
 Tested up to: 4.4.2
-Stable tag: 2.2
+Stable tag: 2.3
 Requires at least: 3.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Simple Post Series实现按照自定义系列专题的形式管理文章并展示的功能，实现所有类似插件的功能！
+Simple Post Series实现按照自定义系列专题的形式管理文章并展示的功能，实现可视化拖拽、添加、小工具等功能！
 
 == Description ==
 
@@ -20,6 +20,7 @@ Simple Post Series实现按照自定义系列专题的形式管理文章并展�
 * 从2.0版开始支持文章可视化拖拽添加到专题的功能，甚至可以改变专题下文章的显示排序哦。
 
 可以在这个github项目中找到最新更新的beta版代码！欢迎fork/star该项目，也欢迎提出各种改进意见或使用中发现的问题。
+欢迎加入官方QQ群：297937473 来反馈问题和交流讨论
 
 **simple-post-series** allows you to insert series short code for displaying a bunch of posts in the same serie.
 This plugin allows to include posts into series, to create, delete or rename series. It also includes *widgets* and *shortcodes* to display list of series, or the list of posts belonging to the series of the current post.
@@ -42,6 +43,7 @@ This plugin is enlighted by Tuts+ and their Sessions. You can find a very helpfu
 2. 上传`simple-post-series` 文件夹到你的`/wp-content/plugins`文件夹下面；
 3. 在你的wordpress的插件管理面板中启用 *Post Series* 插件；
 4. 访问“设置 - Post series专题”可以自己设置各种展示方法。
+
 
 1. Uzip the `simple-post-series.zip` folder.
 2. Upload the `simple-post-series` folder to your `/wp-content/plugins` directory.
@@ -87,6 +89,9 @@ A sample archive page template is located in '[simple-post-series]/template/taxo
 	* **class_prefix**: of the list section. Default 'post-series'.
 
 == Changelog ==
+= 2.3 =
+* New: Fix series order bugs and improve excerpt & thumbnail display
+ 
 = 2.2 = 
 * New: Add user custom post type support
 
