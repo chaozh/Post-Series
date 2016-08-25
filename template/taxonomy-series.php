@@ -16,11 +16,11 @@ get_header(); ?>
 
 				<header class="page-header">
 					<h1 class="page-title"><?php
-						printf( __( 'Post Series Archives: %s'), '<span>' . single_cat_title( '', false ) . '</span>' );
+						printf( __( 'Post Series Archives: %s', 'simple-post-series'), '<span>' . single_cat_title( '', false ) . '</span>' );
 					?></h1>
 
 					<?php
-						$category_description = category_description();
+						$category_description = term_description(0, 'series');
 						if ( ! empty( $category_description ) )
 							echo apply_filters( 'category_archive_meta', '<div class="category-archive-meta">' . $category_description . '</div>' );
 					?>
@@ -34,78 +34,79 @@ get_header(); ?>
 						 * If you want to overload this in a child theme then include a file
 						 * called content-___.php (where ___ is the Post Format name) and that will be used instead.
 						 */
-						//get_template_part( 'content', get_post_format() );
+                        if ( 'post' == get_post_type() ) :
                     ?>
                         <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-                    		<header class="entry-header">
-                    			<h1 class="entry-title"><a href="<?php the_permalink(); ?>" title="<?php printf( esc_attr__( 'Permalink to %s'), the_title_attribute( 'echo=0' ) ); ?>" rel="bookmark"><?php the_title(); ?></a></h1>
-                    
-                    			<?php if ( 'post' == get_post_type() ) : ?>
-                    			<div class="entry-meta">
-                    				<?php printf( __( '<span class="sep">Posted on </span><a href="%1$s" title="%2$s" rel="bookmark"><time class="entry-date" datetime="%3$s" pubdate>%4$s</time></a><span class="by-author"> <span class="sep"> by </span> <span class="author vcard"><a class="url fn n" href="%5$s" title="%6$s" rel="author">%7$s</a></span></span>' ),
-                                        		esc_url( get_permalink() ),
-                                        		esc_attr( get_the_time() ),
-                                        		esc_attr( get_the_date( 'c' ) ),
-                                        		esc_html( get_the_date() ),
-                                        		esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ),
-                                        		esc_attr( sprintf( __( 'View all posts by %s' ), get_the_author() ) ),
-                                        		get_the_author()
-                                        	); 
-                                    ?>
-                    			</div><!-- .entry-meta -->
-                    			<?php endif; ?>
-                    
-                    			<?php if ( comments_open() && ! post_password_required() ) : ?>
-                    			<div class="comments-link">
-                    				<?php comments_popup_link( '<span class="leave-reply">' . __( 'Reply') . '</span>', _x( '1', 'comments number'), _x( '%', 'comments number') ); ?>
-                    			</div>
-                    			<?php endif; ?>
-                    		</header><!-- .entry-header -->
-                    
-                    		<div class="entry-content">
-                    			<?php the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>') ); ?>
-                    			<?php wp_link_pages( array( 'before' => '<div class="page-link"><span>' . __( 'Pages:') . '</span>', 'after' => '</div>' ) ); ?>
-                    		</div><!-- .entry-content -->
-                    
-                    		<footer class="entry-meta">
-                    			<?php $show_sep = false; ?>
-                    			<?php if ( 'post' == get_post_type() ) : // Hide category and tag text for pages on Search ?>
-                    			<?php
-                    				/* translators: used between list items, there is a space after the comma */
-                    				$categories_list = get_the_category_list( __( ', ') );
-                    				if ( $categories_list ):
-                    			?>
-                    			<span class="cat-links">
-                    				<?php printf( __( '<span class="%1$s">Posted in</span> %2$s'), 'entry-utility-prep entry-utility-prep-cat-links', $categories_list );
-                    				$show_sep = true; ?>
-                    			</span>
-                    			<?php endif; // End if categories ?>
-                    			<?php
-                    				/* translators: used between list items, there is a space after the comma */
-                    				$tags_list = get_the_tag_list( '', __( ', ') );
-                    				if ( $tags_list ):
-                    				if ( $show_sep ) : ?>
-                    			<span class="sep"> | </span>
-                    				<?php endif; // End if $show_sep ?>
-                    			<span class="tag-links">
-                    				<?php printf( __( '<span class="%1$s">Tagged</span> %2$s'), 'entry-utility-prep entry-utility-prep-tag-links', $tags_list );
-                    				$show_sep = true; ?>
-                    			</span>
-                    			<?php endif; // End if $tags_list ?>
-                    			<?php endif; // End if 'post' == get_post_type() ?>
-                    
-                    			<?php if ( comments_open() ) : ?>
-                    			<?php if ( $show_sep ) : ?>
-                    			<span class="sep"> | </span>
-                    			<?php endif; // End if $show_sep ?>
-                    			<span class="comments-link"><?php comments_popup_link( '<span class="leave-reply">' . __( 'Leave a reply') . '</span>', __( '<b>1</b> Reply'), __( '<b>%</b> Replies') ); ?></span>
-                    			<?php endif; // End if comments_open() ?>
-                    
-                    			<?php edit_post_link( __( 'Edit'), '<span class="edit-link">', '</span>' ); ?>
-                    		</footer><!-- #entry-meta -->
-                    	</article><!-- #post-<?php the_ID(); ?> -->
-
-				<?php endwhile; ?>
+                        	<div class="blog-item-wrap">
+                				<a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>" > </a>
+                                <?php if ( has_post_thumbnail() ) : ?>
+                                    <div class="single-featured" style="float: left;">
+                                        <?php the_post_thumbnail( 'thumbnail'); ?>
+    			                     </div>
+                                <?php endif; ?>
+                                
+                                <div class="post-inner-content" style="float:left; margin-left:14px; margin-left: 1rem;">
+                               
+                                    <header class="entry-header page-header">
+                        				<h1 class="entry-title"><a href="<?php the_permalink(); ?>" rel="bookmark"><?php the_title(); ?></a></h1>
+                        				<div class="entry-meta">
+                        					<?php $time_string = '<time class="entry-date published" datetime="%1$s">%2$s</time>';
+                                                	if ( get_the_time( 'U' ) !== get_the_modified_time( 'U' ) ) {
+                                                		$time_string .= '<time class="updated" datetime="%3$s">%4$s</time>';
+                                                	}
+                                                
+                                                	$time_string = sprintf( $time_string,
+                                                		esc_attr( get_the_date( 'c' ) ),
+                                                		esc_html( get_the_date() ),
+                                                		esc_attr( get_the_modified_date( 'c' ) ),
+                                                		esc_html( get_the_modified_date() )
+                                                	);
+                                                
+                                                	printf( '<span class="posted-on"><i class="fa fa-calendar"></i> %1$s</span><span class="byline"> <i class="fa fa-user"></i> %2$s</span>',
+                                                		sprintf( '<a href="%1$s" rel="bookmark">%2$s</a>',
+                                                			esc_url( get_permalink() ),
+                                                			$time_string
+                                                		),
+                                                		sprintf( '<span class="author vcard"><a class="url fn n" href="%1$s">%2$s</a></span>',
+                                                			esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ),
+                                                			esc_html( get_the_author() )
+                                                		)
+                                                	); ?>
+                                        <?php if ( ! post_password_required() && ( comments_open() || '0' != get_comments_number() ) ) : ?>
+                        				    <span class="comments-link"><i class="fa fa-comment-o"></i><?php comments_popup_link( __( 'Leave a comment'), __( '1 Comment'), __( '% Comments') ); ?></span>
+                        				    <?php edit_post_link( __( 'Edit'), '<i class="fa fa-pencil-square-o"></i><span class="edit-link">', '</span>' ); ?>
+                        				<?php endif; ?>
+                                        </div><!-- .entry-meta -->
+                        			</header><!-- .entry-header -->
+                                 
+                        			<div class="entry-summary">
+                        
+                   					    <?php the_excerpt(); ?>
+                        
+                        				<p><a class="btn btn-default read-more" href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>"><?php _e( 'Read More'); ?></a></p>
+                        
+                        				<?php
+                        					wp_link_pages( array(
+                        						'before'            => '<div class="page-links">'.__( 'Pages:'),
+                        						'after'             => '</div>',
+                        						'link_before'       => '<span>',
+                        						'link_after'        => '</span>',
+                        						'pagelink'          => '%',
+                        						'echo'              => 1
+                        		       		) );
+                        		    	?>
+                        			</div><!-- .entry-summary -->
+           		                </div>
+                                <div style="clear: both;"></div>
+                        	</div>
+                        </article><!-- #post-## -->
+                <?php 
+                    else:
+                        get_template_part( 'content', get_post_format() );
+                    endif; 
+				 endwhile; 
+                 
+                 ?>
                 
                 <?php if ( $wp_query->max_num_pages > 1 ) : ?>
         			<nav id="nav-below">
