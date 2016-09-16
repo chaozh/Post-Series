@@ -263,7 +263,7 @@ function series_register_settings() {
         array(
             'name' => 'title_wrap',
             'title'=> __( 'Title Wrap Element', SERIES_BASE),
-            'desc' => __( 'set title element wrapper eg. h1, h2...', SERIES_BASE ),
+            'desc' => __( 'set title element wrapper, allowed tags: h1-h6, p, span, div, strong', SERIES_BASE ),
             'type' => 'text',
             'size' => 20
         ),
@@ -343,7 +343,7 @@ function series_settings_validate($series_input) {
 	
 	$series_options['title_wrap'] = trim( $series_input['title_wrap'] );
 
-	if ( !preg_match( '/^[a-z]{4,20}$/i', $series_options['title_wrap'] ) ) {
+	if ( !preg_match( '/^h[1-6]|p|span|div|strong$/i', $series_options['title_wrap'] ) ) {
 
 		$series_options['title_wrap'] = 'h3';
 
