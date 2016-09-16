@@ -256,7 +256,7 @@ function series_register_settings() {
         array(
             'name' => 'series_wrap',
             'title'=>  __( 'Series Wrap Element', SERIES_BASE),
-            'desc' => __( 'set series element wrapper eg. div, section...', SERIES_BASE ),
+            'desc' => __( 'set series element wrapper, allowed tags: div, nav, section', SERIES_BASE ),
             'type' => 'text',
             'size' => 20
         ),
@@ -335,7 +335,7 @@ function series_settings_validate($series_input) {
 	
 	$series_options['series_wrap'] = trim( $series_input['series_wrap'] );
 
-	if ( !preg_match( '/^[a-z]{4,20}$/i', $series_options['series_wrap'] ) ) {
+	if ( !preg_match( '/^div|nav|section$/i', $series_options['series_wrap'] ) ) {
 
 		$series_options['series_wrap'] = 'section';
 
