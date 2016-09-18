@@ -306,7 +306,12 @@ function series_register_settings() {
             'name' => 'loop_display',
             'title'=> __('Auto Show Series In Loop', SERIES_BASE),
             'type' => 'checkbox'
-        )
+		),
+        array(
+            'name' => 'autohide',
+            'title'=> __('Hide all items of the series in post view', SERIES_BASE),
+            'type' => 'checkbox'
+		),
     );
     
     register_setting( SERIES.'_options', SERIES.'_options', 'series_settings_validate' );
@@ -370,6 +375,8 @@ function series_settings_validate($series_input) {
     $series_options['show_nav'] = isset($series_input['show_nav']) ? true: false;
     
     $series_options['loop_display'] = isset($series_input['loop_display']) ? true: false;
+	
+	$series_options['autohide'] = isset($series_input['autohide']) ? true: false;
     
     //$series_options['custom_archives'] = $series_input['custom_archives'] == "on" ? true: false;
 
