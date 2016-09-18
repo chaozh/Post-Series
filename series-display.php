@@ -165,6 +165,7 @@ function series_display($series_arg){
         //for widget display
         if($title_wrap != ''){ 
             if($current && isset($title_format)){	  
+                $title_format = __( $title_format, SERIES_BASE );
                 $title_format = str_replace( '%current', $current, $title_format );
                 $title_format = str_replace( '%count', $count, $title_format );
                 $title_format = str_replace( '%link', $link, $title_format );
