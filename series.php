@@ -17,7 +17,7 @@ GitHub Branch:     master
 
 define('SERIES','series');
 define('SERIES_BASE', 'simple-post-series');
-define('VERSION', 2.3);
+define('VERSION', 2.4);
 /*  Copyright 2009-2012 CHAO ZHENG  (email: chao@whu.edu.cn)
 
     This program is free software; you can redistribute it and/or modify
