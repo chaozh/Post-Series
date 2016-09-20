@@ -256,14 +256,14 @@ function series_register_settings() {
         array(
             'name' => 'series_wrap',
             'title'=>  __( 'Series Wrap Element', SERIES_BASE),
-            'desc' => __( 'set series element wrapper eg. div, section...', SERIES_BASE ),
+            'desc' => __( 'set series element wrapper, allowed tags: div, nav, section', SERIES_BASE ),
             'type' => 'text',
             'size' => 20
         ),
         array(
             'name' => 'title_wrap',
             'title'=> __( 'Title Wrap Element', SERIES_BASE),
-            'desc' => __( 'set title element wrapper eg. h1, h2...', SERIES_BASE ),
+            'desc' => __( 'set title element wrapper, allowed tags: h1-h6, p, span, div, strong', SERIES_BASE ),
             'type' => 'text',
             'size' => 20
         ),
@@ -306,7 +306,12 @@ function series_register_settings() {
             'name' => 'loop_display',
             'title'=> __('Auto Show Series In Loop', SERIES_BASE),
             'type' => 'checkbox'
-        )
+		),
+        array(
+            'name' => 'autohide',
+            'title'=> __('Hide all items of the series in post view', SERIES_BASE),
+            'type' => 'checkbox'
+		),
     );
     
     register_setting( SERIES.'_options', SERIES.'_options', 'series_settings_validate' );
@@ -335,7 +340,7 @@ function series_settings_validate($series_input) {
 	
 	$series_options['series_wrap'] = trim( $series_input['series_wrap'] );
 
-	if ( !preg_match( '/^[a-z]{4,20}$/i', $series_options['series_wrap'] ) ) {
+	if ( !preg_match( '/^div|nav|section$/i', $series_options['series_wrap'] ) ) {
 
 		$series_options['series_wrap'] = 'section';
 
@@ -343,7 +348,7 @@ function series_settings_validate($series_input) {
 	
 	$series_options['title_wrap'] = trim( $series_input['title_wrap'] );
 
-	if ( !preg_match( '/^[a-z]{4,20}$/i', $series_options['title_wrap'] ) ) {
+	if ( !preg_match( '/^h[1-6]|p|span|div|strong$/i', $series_options['title_wrap'] ) ) {
 
 		$series_options['title_wrap'] = 'h3';
 
@@ -370,6 +375,8 @@ function series_settings_validate($series_input) {
     $series_options['show_nav'] = isset($series_input['show_nav']) ? true: false;
     
     $series_options['loop_display'] = isset($series_input['loop_display']) ? true: false;
+	
+	$series_options['autohide'] = isset($series_input['autohide']) ? true: false;
     
     //$series_options['custom_archives'] = $series_input['custom_archives'] == "on" ? true: false;
 
