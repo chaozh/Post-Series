@@ -130,6 +130,11 @@ function series_register_taxonomy() {
     if( !$options['custom_styles'] ){
         add_action( 'wp_print_styles', 'series_css' );
     }
+    
+    // deal with auto hide style and script
+    wp_enqueue_script( SERIES, SERIES_URL . '/autohide.js', array('jquery'), VERSION );
+    wp_enqueue_style( 'series_font', SERIES_URL . '/inc/icomoon/style.css', null, VERSION );
+    
     /*
      * we will not include sereis archives template by default 
      * and this setting section is removed from plugin settings
@@ -260,14 +265,10 @@ function series_auto_content_display($content) {
 
 function series_auto_loop_display($content){
     if( is_home() || is_front_page() || is_archive() ){
-        
-        wp_enqueue_script( SERIES, SERIES_URL . '/series.js', array('jquery'), VERSION );
-        //add_action( 'wp_enqueue_scripts', 'series_script' );
-        
         $options = get_option( SERIES.'_options', series_get_default_options());
         $series_arg = array(
             "limit" => -1,
-            'show_all'=>true
+            'auto_hide'=>true
         );
         $series_arg = series_attrs($series_arg, $options);
         $series_display = series_display($series_arg);

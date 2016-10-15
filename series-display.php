@@ -54,7 +54,7 @@ function series_get_the_excerpt( $the_post ) {
         "id" => '',
         "title" => '', //should have!
         "limit" => -1,
-        'show_all'=> true,//only used by loop display
+        'auto_hide'=> true,//original "show_all" used by loop display, now also in content
         "show_future" => true, // ovrrides
         "class_prefix" => $class_prefix, //must have! ovrrides
         "show_nav" => false, // ovrrides
@@ -169,19 +169,10 @@ function series_display($series_arg){
                 $title_format = str_replace( '%current', $current, $title_format );
                 $title_format = str_replace( '%count', $count, $title_format );
                 $title_format = str_replace( '%link', $link, $title_format );
-                if( isset($show_all) && $show_all ){
-                    $title_format .= '<a href="JavaScript:void(0);" class="show-all">'.__('Show All', SERIES_BASE).'</a>';
+                if( isset($auto_hide) && $auto_hide ){
+                    //$title_format .= '<a href="JavaScript:void(0);" class="show-all">'.__('Show All', SERIES_BASE).'</a>';
+                    $title_format = '<a href="JavaScript:void(0);" style="text-decoration:none;" class="autohide"><span class="icon-plus-square-o"></span></a> ' . $title_format;
                 }
-
-		wp_enqueue_style( 'series_font', SERIES_URL . '/inc/icomoon/style.css', null, VERSION );
-		wp_enqueue_script( 'series_autohide', SERIES_URL . '/autohide.js', array('jquery'), VERSION );
-
-		$title_format = '<a href="JavaScript:void(0);" style="text-decoration:none;" class="autohide"><span class="icon-%s-square-o"></span></a> ' . $title_format;
-		if( isset($autohide) && $autohide ) {
-                    $title_format = sprintf( $title_format, 'plus' );
-		} else {
-                    $title_format = sprintf( $title_format, 'minus' );
-		}
 
                 $title_output = '<'.$title_wrap.' class="'.$class_prefix.'-title">'.$title_format.'</'.$title_wrap.'>';
             }else{
