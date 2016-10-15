@@ -112,7 +112,7 @@ function series_display($series_arg){
 	    //display section
         $section_output = '<'.$series_wrap.' class="'.$class_prefix.'">';
 		// create the list tag - notice the "post-series-list" class
-		$output = '<ul class="'.$class_prefix.'-list">';
+		$output = '<ul class="'.$class_prefix.'-list"' . (isset($autohide) && $autohide ? ' style="display:none;">' : '>' );
 		// the loop to list the posts
         $iterator=1;
         $prev_post = $next_post = null;
@@ -165,12 +165,24 @@ function series_display($series_arg){
         //for widget display
         if($title_wrap != ''){ 
             if($current && isset($title_format)){	  
+                $title_format = __( $title_format, SERIES_BASE );
                 $title_format = str_replace( '%current', $current, $title_format );
                 $title_format = str_replace( '%count', $count, $title_format );
                 $title_format = str_replace( '%link', $link, $title_format );
                 if( isset($show_all) && $show_all ){
                     $title_format .= '<a href="JavaScript:void(0);" class="show-all">'.__('Show All', SERIES_BASE).'</a>';
                 }
+
+		wp_enqueue_style( 'series_font', SERIES_URL . '/inc/icomoon/style.css', null, VERSION );
+		wp_enqueue_script( 'series_autohide', SERIES_URL . '/autohide.js', array('jquery'), VERSION );
+
+		$title_format = '<a href="JavaScript:void(0);" style="text-decoration:none;" class="autohide"><span class="icon-%s-square-o"></span></a> ' . $title_format;
+		if( isset($autohide) && $autohide ) {
+                    $title_format = sprintf( $title_format, 'plus' );
+		} else {
+                    $title_format = sprintf( $title_format, 'minus' );
+		}
+
                 $title_output = '<'.$title_wrap.' class="'.$class_prefix.'-title">'.$title_format.'</'.$title_wrap.'>';
             }else{
                 $title_output = '<'.$title_wrap.' class="'.$class_prefix.'-title">'.$link.'</'.$title_wrap.'>';
