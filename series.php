@@ -7,7 +7,7 @@ Version: 2.3
 Author: chaozh
 Author URI: http://chaozh.com/
 Origin: http://wp.tutsplus.com/tutorials/plugins/adding-post-series-functionality-to-wordpress-with-taxonomies/
-GitHub Plugin URI: https://github.com/yoander/githubget
+GitHub Plugin URI: https://github.com/chaozh/Post-Series
 GitHub Branch:     master
 */
 
