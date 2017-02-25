@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: chaozh\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-08-21 18:29+0800\n"
-"PO-Revision-Date: 2016-08-21 18:29+0800\n"
+"POT-Creation-Date: 2017-02-25 10:47+0800\n"
+"PO-Revision-Date: 2017-02-25 11:11+0800\n"
 "Last-Translator: chaozh <chao@hust.edu.cn>\n"
 "Language-Team: chaozh <chao@whu.edu.cn>\n"
 "Language: zh\n"
@@ -13,7 +13,7 @@ msgstr ""
 "X-Poedit-KeywordsList: __;_e;_x:1,2c\n"
 "X-Poedit-Basepath: E:/AppServ/www/wordpress/wp-content/plugins/Post-Series\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
-"X-Generator: Poedit 1.8.8\n"
+"X-Generator: Poedit 1.8.12\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: .\n"
 
@@ -29,7 +29,7 @@ msgstr "名称："
 msgid "Count:"
 msgstr "文章数目："
 
-#: inc/tinymce-plugin-dialog.php:42 series.php:375
+#: inc/tinymce-plugin-dialog.php:42 series.php:378
 msgid "Title:"
 msgstr "标题："
 
@@ -41,7 +41,7 @@ msgstr "展示文章数目："
 msgid "Future show:"
 msgstr "展示未发布文章："
 
-#: inc/tinymce-plugin-dialog.php:60 series-admin.php:431
+#: inc/tinymce-plugin-dialog.php:60 series-admin.php:438
 msgid "on"
 msgstr "启用"
 
@@ -61,13 +61,11 @@ msgstr "插入专题"
 msgid "View all series"
 msgstr "查看所有专题目录"
 
-#: series-admin.php:143 series.php:103
+#: series-admin.php:143 series.php:105
 msgid "Series"
 msgstr "专题"
 
-#. translators: used between list items, there is a space after the comma
-#: series-admin.php:157 template/taxonomy-series.php:75
-#: template/taxonomy-series.php:85
+#: series-admin.php:157
 msgid ", "
 msgstr ", "
 
@@ -75,11 +73,11 @@ msgstr ", "
 msgid "Settings"
 msgstr "设置"
 
-#: series-admin.php:227 series-admin.php:391
+#: series-admin.php:227 series-admin.php:398
 msgid "Post Series Settings"
 msgstr "Post Series插件设置"
 
-#: series-admin.php:227 series.php:289
+#: series-admin.php:227 series.php:292
 msgid "Post Series"
 msgstr "Post Series专题"
 
@@ -112,16 +110,16 @@ msgid "Series Wrap Element"
 msgstr "专题容器元素"
 
 #: series-admin.php:259
-msgid "set series element wrapper eg. div, section..."
-msgstr "设置专题容器标签，比如div或section"
+msgid "set series element wrapper, allowed tags: div, nav, section"
+msgstr "设置专题模块标签，比如div或section"
 
 #: series-admin.php:265
 msgid "Title Wrap Element"
 msgstr "标题容器元素"
 
 #: series-admin.php:266
-msgid "set title element wrapper eg. h1, h2..."
-msgstr "设置标题容器标签，比如h1或h2"
+msgid "set title element wrapper, allowed tags: h1-h6, p, span, div, strong"
+msgstr "设置专题模块标题标签，比如h1~h6，strong等"
 
 #: series-admin.php:272
 msgid "Show Unpublished"
@@ -179,11 +177,15 @@ msgstr "展示导航"
 msgid "Auto Show Series In Loop"
 msgstr "自动在主页循环中显示系列"
 
-#: series-admin.php:313
+#: series-admin.php:312
+msgid "Hide all items of the series in post view"
+msgstr "折叠专题系列文章"
+
+#: series-admin.php:318
 msgid "Configure Post Series"
 msgstr "设置专题选项"
 
-#: series-admin.php:393 series-edition.php:84
+#: series-admin.php:400 series-edition.php:84
 msgid ""
 "If finding any problem with this plugin please check my <a target=\"_blank\" "
 "href=\"http://www.chaozh.com/simple-post-series-plugin-officially-publish/"
@@ -193,30 +195,30 @@ msgstr ""
 "\"http://www.chaozh.com/simple-post-series-plugin-officially-publish/\">常见"
 "问题</a>或直接<a href=\"mailto:chao@whu.edu.cn\">联系我</a>"
 
-#: series-admin.php:394 series-edition.php:85 series-edition.php:86
+#: series-admin.php:401 series-edition.php:85 series-edition.php:86
 msgid "You can add QQ group to ask any questions freely online"
 msgstr "也可以加入官方QQ群获得在线支持"
 
-#: series-admin.php:407
+#: series-admin.php:414
 msgid "Save Changes"
 msgstr "保存更改"
 
-#: series-admin.php:408
+#: series-admin.php:415
 msgid "Reset Default"
 msgstr "恢复默认设置"
 
-#: series-admin.php:413
+#: series-admin.php:420
 msgid "Add Series to your Post or Page"
 msgstr "为你的文章或页面添加专题显示"
 
-#: series-admin.php:414
+#: series-admin.php:421
 #, php-format
 msgid ""
 "Use %1$s to add it to your Post or Page content, or use the Post Series "
 "Widget."
 msgstr "使用%1$s添加内容到你的文章或页面，或使用小工具"
 
-#: series-admin.php:421
+#: series-admin.php:428
 msgid "Set up your series using the options below."
 msgstr "在下面设置专题选项"
 
@@ -232,10 +234,6 @@ msgstr ""
 msgid "Future post"
 msgstr "计划"
 
-#: series-display.php:172
-msgid "Show All"
-msgstr "显示全部"
-
 #: series-edition.php:25
 msgid "Show all dates"
 msgstr ""
@@ -248,7 +246,7 @@ msgstr "专题文章编辑"
 msgid "Available posts"
 msgstr "可用文章"
 
-#: series-edition.php:72 series.php:101
+#: series-edition.php:72 series.php:103
 msgid "Add New Series"
 msgstr "添加新的专题"
 
@@ -306,89 +304,89 @@ msgid ""
 "it."
 msgstr ""
 
-#: series-edition.php:315
+#: series-edition.php:316
 msgid "Delete"
 msgstr ""
 
-#: series-edition.php:347
+#: series-edition.php:348
 msgid "Serie successfully updated"
 msgstr "专题更新成功"
 
-#: series-edition.php:350 series-edition.php:415 series-edition.php:439
+#: series-edition.php:351 series-edition.php:416 series-edition.php:440
 msgid "Error, security check failed"
 msgstr "错误，非法操作"
 
-#: series-edition.php:355 series-edition.php:419 series-edition.php:443
+#: series-edition.php:356 series-edition.php:420 series-edition.php:444
 msgid "Error, access denied"
 msgstr "错误，拒绝访问"
 
-#: series-edition.php:367
+#: series-edition.php:368
 msgid "Error, Serie not identified"
 msgstr "错误，专题未创建"
 
-#: series-edition.php:423
+#: series-edition.php:424
 msgid "New serie successfully added"
 msgstr "新专题添加成功"
 
-#: series-edition.php:426
+#: series-edition.php:427
 msgid "Error, add serie fail"
 msgstr "错误，添加专题失败"
 
-#: series-edition.php:448
+#: series-edition.php:449
 msgid "Serie successfully deleted"
 msgstr "专题删除成功"
 
-#: series-edition.php:451
+#: series-edition.php:452
 msgid "Error, delete serie fail"
 msgstr "错误，专题删除失败"
 
-#: series.php:73
+#: series.php:75
 msgid "This entry is part %current of %count in the series: %link"
 msgstr "本文是全系列中第%current / %count篇：%link"
 
-#: series.php:96
+#: series.php:98
 msgctxt "taxonomy general name"
 msgid "Series"
 msgstr "专题"
 
-#: series.php:97
+#: series.php:99
 msgctxt "taxonomy singular name"
 msgid "Series"
 msgstr "专题"
 
-#: series.php:98
+#: series.php:100
 msgid "All Series"
 msgstr "所有专题"
 
-#: series.php:99
+#: series.php:101
 msgid "Edit Series"
 msgstr "编辑专题"
 
-#: series.php:100
+#: series.php:102
 msgid "Update Series"
 msgstr "更新专题"
 
-#: series.php:102
+#: series.php:104
 msgid "New Series Name"
 msgstr "新专题名称"
 
-#: series.php:287
+#: series.php:290
 msgid "A simple widget to display post series."
 msgstr "展示的系列文章小工具"
 
-#: series.php:383
+#: series.php:386
 msgid "Choose post series to display:"
 msgstr "选择显示的系列："
 
-#: series.php:392
+#: series.php:395
 msgid "Number of posts to show:"
 msgstr "展示文章数目："
 
-#: series.php:396
+#: series.php:399
 msgid "Special class prefix:"
 msgstr "特殊Class前缀："
 
-#: series.php:401
+#: series.php:404
 msgid "Show future"
 msgstr "展示未发布"
 
@@ -397,86 +395,59 @@ msgstr "展示未发布"
 msgid "Post Series Archives: %s"
 msgstr "专题分类：%s"
 
-#: template/taxonomy-series.php:45
-#, php-format
-msgid ""
-"<span class=\"sep\">Posted on </span><a href=\"%1$s\" title=\"%2$s\" rel="
-"\"bookmark\"><time class=\"entry-date\" datetime=\"%3$s\" pubdate>%4$s</"
-"time></a><span class=\"by-author\"> <span class=\"sep\"> by </span> <span "
-"class=\"author vcard\"><a class=\"url fn n\" href=\"%5$s\" title=\"%6$s\" "
-"rel=\"author\">%7$s</a></span></span>"
+#: template/taxonomy-series.php:76
+msgid "Leave a comment"
 msgstr ""
 
-#: template/taxonomy-series.php:51
-#, php-format
-msgid "View all posts by %s"
-msgstr "查看%s专题下所有文章"
-
-#: template/taxonomy-series.php:60
-msgid "Reply"
+#: template/taxonomy-series.php:76
+msgid "1 Comment"
 msgstr ""
 
-#: template/taxonomy-series.php:60
-msgctxt "comments number"
-msgid "1"
+#: template/taxonomy-series.php:76
+msgid "% Comments"
 msgstr ""
 
-#: template/taxonomy-series.php:60
-msgctxt "comments number"
-msgid "%"
-msgstr ""
-
-#: template/taxonomy-series.php:66
-msgid "Continue reading <span class=\"meta-nav\">&rarr;</span>"
-msgstr ""
-
-#: template/taxonomy-series.php:67
-msgid "Pages:"
-msgstr "页面："
-
-#: template/taxonomy-series.php:79
-#, php-format
-msgid "<span class=\"%1$s\">Posted in</span> %2$s"
-msgstr ""
-
-#: template/taxonomy-series.php:91
-#, php-format
-msgid "<span class=\"%1$s\">Tagged</span> %2$s"
-msgstr ""
-
-#: template/taxonomy-series.php:101
-msgid "Leave a reply"
-msgstr ""
-
-#: template/taxonomy-series.php:101
-msgid "<b>1</b> Reply"
-msgstr ""
-
-#: template/taxonomy-series.php:101
-msgid "<b>%</b> Replies"
-msgstr ""
-
-#: template/taxonomy-series.php:104
+#: template/taxonomy-series.php:77
 msgid "Edit"
 msgstr "编辑"
 
-#: template/taxonomy-series.php:112
+#: template/taxonomy-series.php:86
+msgid "Read More"
+msgstr ""
+
+#: template/taxonomy-series.php:90
+msgid "Pages:"
+msgstr "页面："
+
+#: template/taxonomy-series.php:113
 msgid "<span class=\"meta-nav\">&larr;</span> Older posts"
 msgstr "<span class=\"meta-nav\">&larr;</span> 前文"
 
-#: template/taxonomy-series.php:113
+#: template/taxonomy-series.php:114
 msgid "Newer posts <span class=\"meta-nav\">&rarr;</span>"
 msgstr "最新 <span class=\"meta-nav\">&rarr;</span>"
 
-#: template/taxonomy-series.php:121
+#: template/taxonomy-series.php:122
 msgid "Nothing Found"
 msgstr "没有内容"
 
-#: template/taxonomy-series.php:125
+#: template/taxonomy-series.php:126
 msgid ""
 "Apologies, but no results were found for the requested archive. Perhaps "
 "searching will help find a related post."
 msgstr "哎呀，没找到该分类，请搜索相关主题"
+
+#~ msgid "set series element wrapper eg. div, section..."
+#~ msgstr "设置专题容器标签，比如div或section"
+
+#~ msgid "set title element wrapper eg. h1, h2..."
+#~ msgstr "设置标题容器标签，比如h1或h2"
+
+#~ msgid "Show All"
+#~ msgstr "显示全部"
+
+#~ msgid "View all posts by %s"
+#~ msgstr "查看%s专题下所有文章"
 
 #~ msgid ""
 #~ "If finding any problem with this plugin please check my <a target=\"_blank"

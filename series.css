@@ -7,6 +7,11 @@
 	padding: 1.625em;
 }
 
+.post-series-nav-next {
+    display: inline-block;
+    margin-left: 150px;
+}
+
 .post-series-item-thumbnail {
 	
 }
