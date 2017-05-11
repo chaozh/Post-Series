@@ -3,7 +3,7 @@
 Plugin Name: Simple Post Series
 Plugin URI: http://www.chaozh.com/simple-post-series-plugin-officially-publish/
 Description: Better organize your posts by grouping them into series and display them within the series dynamically in your blog.  This version of Post Series Plugin requires at least WordPress 3.1 and PHP 5.0+ to work.
-Version: 2.3
+Version: 2.4
 Author: chaozh
 Author URI: http://chaozh.com/
 Origin: http://wp.tutsplus.com/tutorials/plugins/adding-post-series-functionality-to-wordpress-with-taxonomies/
@@ -12,12 +12,12 @@ GitHub Branch:     master
 */
 
 ### INSTALLATION/USAGE INSTRUCTIONS ###
-//	Installation and/or usage instructions for the Post Series Plugin
-//	can be found at http://www.chaozh.com/simple-post-series-plugin-officially-publish/
+//  Installation and/or usage instructions for the Post Series Plugin
+//  can be found at http://www.chaozh.com/simple-post-series-plugin-officially-publish/
 
 define('SERIES','series');
 define('SERIES_BASE', 'simple-post-series');
-define('VERSION', 2.3);
+define('VERSION', 2.4);
 /*  Copyright 2009-2012 CHAO ZHENG  (email: chao@whu.edu.cn)
 
     This program is free software; you can redistribute it and/or modify
@@ -44,7 +44,7 @@ define('SERIES_DEBUG',false);
 
 // Adds translation support for language files
 function series_localization() {
-	load_plugin_textdomain( SERIES_BASE, false, SERIES_REL. '/languages' );
+    load_plugin_textdomain( SERIES_BASE, false, SERIES_REL. '/languages' );
 }
 add_action( 'plugins_loaded', 'series_localization' );
 
@@ -70,13 +70,13 @@ function series_posttype_support() {
 }
 
 function series_get_default_options() {  
-	$series_defaults_args = array(
+    $series_defaults_args = array(
     
-		'title_format'   => __('This entry is part %current of %count in the series: %link', SERIES_BASE),
+        'title_format'   => __('This entry is part %current of %count in the series: %link', SERIES_BASE),
         'class_prefix'   => 'post-series',
         'series_wrap'    => 'section',
-		'title_wrap'     => 'h3',
-		'show_future'    => true,
+        'title_wrap'     => 'h3',
+        'show_future'    => true,
         'auto_display'   => 0,
         'custom_styles'  => false,
         'show_thumbnail' => false,
@@ -86,37 +86,37 @@ function series_get_default_options() {
             
     );
     
-	return apply_filters( SERIES . '_default_options', $series_defaults_args );
+    return apply_filters( SERIES . '_default_options', $series_defaults_args );
 }
 
 function series_register_taxonomy() {
     
     $posttypes = series_posttype_support();
     
-	$labels = array(
+    $labels = array(
     
-		'name' => _x('Series', 'taxonomy general name',SERIES_BASE),
-		'singular_name' => _x('Series', 'taxonomy singular name',SERIES_BASE),
-		'all_items' => __('All Series',SERIES_BASE),
-		'edit_item' => __('Edit Series',SERIES_BASE), 
-		'update_item' => __('Update Series',SERIES_BASE),
-		'add_new_item' => __('Add New Series',SERIES_BASE),
-		'new_item_name' => __('New Series Name',SERIES_BASE),
-		'menu_name' => __('Series',SERIES_BASE)
+        'name' => _x('Series', 'taxonomy general name',SERIES_BASE),
+        'singular_name' => _x('Series', 'taxonomy singular name',SERIES_BASE),
+        'all_items' => __('All Series',SERIES_BASE),
+        'edit_item' => __('Edit Series',SERIES_BASE), 
+        'update_item' => __('Update Series',SERIES_BASE),
+        'add_new_item' => __('Add New Series',SERIES_BASE),
+        'new_item_name' => __('New Series Name',SERIES_BASE),
+        'menu_name' => __('Series',SERIES_BASE)
         
-	);
+    );
     
     $series_tax_args = array(
     
         'labels' => $labels,
-		'hierarchical' => true,
+        'hierarchical' => true,
         'show_ui' => true,
         'query_var' => true,
-		'rewrite' => array('slug' => SERIES)
+        'rewrite' => array('slug' => SERIES)
         
    );
 
-	register_taxonomy( SERIES, $posttypes, $series_tax_args );
+    register_taxonomy( SERIES, $posttypes, $series_tax_args );
     
     $options = get_option( SERIES.'_options', series_get_default_options());
     if( $options['auto_display'] ){
@@ -147,15 +147,15 @@ add_action('init', 'series_register_taxonomy', 0);
 
 // Adds CSS for the series
 function series_css() {
-	if ( file_exists( get_stylesheet_directory()."/series.css" ) ) {				
-		wp_enqueue_style( SERIES, get_stylesheet_directory_uri() . '/series.css', array(), VERSION );			
-	}
-	elseif ( file_exists( get_template_directory()."/series.css" ) ) {							
-		wp_enqueue_style( SERIES, get_template_directory_uri() . '/series.css', array(), VERSION );
-	}
-	else {
-		wp_enqueue_style( SERIES, SERIES_URL . '/series.css', array(), VERSION );
-	}
+    if ( file_exists( get_stylesheet_directory()."/series.css" ) ) {                
+        wp_enqueue_style( SERIES, get_stylesheet_directory_uri() . '/series.css', array(), VERSION );           
+    }
+    elseif ( file_exists( get_template_directory()."/series.css" ) ) {                          
+        wp_enqueue_style( SERIES, get_template_directory_uri() . '/series.css', array(), VERSION );
+    }
+    else {
+        wp_enqueue_style( SERIES, SERIES_URL . '/series.css', array(), VERSION );
+    }
 }
 
 function series_is_template( $template_path ){
@@ -184,9 +184,9 @@ function series_attrs($attrs, $options){
 
 function series_set_template( $template )
 {
-	if( is_tax(SERIES) && !series_is_template($template) ){
+    if( is_tax(SERIES) && !series_is_template($template) ){
         $template = SERIES_ROOT."/template/taxonomy-".SERIES.".php";
-	}
+    }
 
     return $template;
 }
@@ -206,7 +206,7 @@ function series_sc($atts) {
     if( isset($options) && is_array($options))
         $class_prefix = $options["class_prefix"];
     //merge options
-	$series_arg = shortcode_atts( array (
+    $series_arg = shortcode_atts( array (
     
             "slug" => '',
             "id" => '',
@@ -214,7 +214,7 @@ function series_sc($atts) {
             "limit" => -1, 
             "show_future" => true,
             "class_prefix" => $class_prefix
-            			
+                        
     ), $atts );
     
     if( isset($atts['show_future']) && $atts['show_future'] == 'off'){
@@ -251,11 +251,11 @@ function series_auto_content_display($content) {
             break;
             
             case 4:
-				// Case of teaser
-				if(strpos($content, 'span id="more-')) {
-					$parts = preg_split('/(<span id="more-[0-9]*"><\/span>)/', $content, -1,  PREG_SPLIT_DELIM_CAPTURE);
-					$content = $parts[0].$parts[1].$series_display.$parts[2];
-				} // End of detect tag "more"
+                // Case of teaser
+                if(strpos($content, 'span id="more-')) {
+                    $parts = preg_split('/(<span id="more-[0-9]*"><\/span>)/', $content, -1,  PREG_SPLIT_DELIM_CAPTURE);
+                    $content = $parts[0].$parts[1].$series_display.$parts[2];
+                } // End of detect tag "more"
             break;
         }    
     }
@@ -285,15 +285,15 @@ function series_auto_loop_display($content){
 class Post_Series_Widget extends WP_Widget {
     /** constructor */
     function __construct() {
-    	$widget_ops = array(
+        $widget_ops = array(
             'classname' => 'widget_' . SERIES,
-            'description' => __( "A simple widget to display post series.", SERIES_BASE) 
+            'description' => __( "A simple widget to display post series.", SERIES_BASE )
         );
-        $this->WP_Widget( 'widget_' . SERIES, __('Post Series', SERIES_BASE), $widget_ops);	
+        $this->WP_Widget( 'widget_' . SERIES, __('Post Series', SERIES_BASE), $widget_ops );
         
         add_action( 'save_post', array(&$this, 'flush_widget_cache') );
-		add_action( 'deleted_post', array(&$this, 'flush_widget_cache') );
-		add_action( 'switch_theme', array(&$this, 'flush_widget_cache') );
+        add_action( 'deleted_post', array(&$this, 'flush_widget_cache') );
+        add_action( 'switch_theme', array(&$this, 'flush_widget_cache') );
     }
 
     /** @use WP_Widget::widget */
@@ -301,15 +301,15 @@ class Post_Series_Widget extends WP_Widget {
         $cache = wp_cache_get('widget_'.SERIES, 'widget');
         
         if ( !is_array($cache) )
-			$cache = array();
+            $cache = array();
 
-		if ( ! isset( $args['widget_id'] ) )
-			$args['widget_id'] = null;
+        if ( ! isset( $args['widget_id'] ) )
+            $args['widget_id'] = null;
 
-		if ( isset($cache[$args['widget_id']]) ) {
-			echo $cache[$args['widget_id']];
-			return;
-		}
+        if ( isset($cache[$args['widget_id']]) ) {
+            echo $cache[$args['widget_id']];
+            return;
+        }
         
         $options = get_option( SERIES.'_options', series_get_default_options());
         $series_arg = array(
@@ -323,43 +323,43 @@ class Post_Series_Widget extends WP_Widget {
             "title_wrap" => ''
             
         );
-        $series_arg =series_attrs($series_arg, $options);
+        $series_arg = series_attrs($series_arg, $options);
         
-        ob_start();	
+        ob_start(); 
         extract( $args, EXTR_SKIP );
-        	
-		echo $before_widget;
+            
+        echo $before_widget;
         //if ( $instance['widget_title'] )
         echo $before_title . apply_filters( 'widget_title', $instance['widget_title'] ) . $after_title;
-    	echo series_display($series_arg);
+        echo series_display($series_arg);
         echo $after_widget;
         
         $cache[$args['widget_id']] = ob_get_flush();
-		wp_cache_set('widget_'.SERIES, $cache, 'widget');
+        wp_cache_set('widget_'.SERIES, $cache, 'widget');
     }
     
     function flush_widget_cache() {
-		wp_cache_delete( 'widget_'.SERIES, 'widget' );
-	}
+        wp_cache_delete( 'widget_'.SERIES, 'widget' );
+    }
 
     /** @use WP_Widget::update */
-    function update($new_instance, $old_instance) {				
+    function update($new_instance, $old_instance) {             
         $instance = $old_instance;
         $instance['widget_title'] = strip_tags($new_instance['widget_title']);
         $instance['id'] = absint($new_instance['id']);
         if( empty($new_instance['limit']) )
             $instance['limit'] = -1;
-		
+        
         $instance['class_prefix'] = strip_tags($new_instance['class_prefix']);
         $instance['show_future'] = $new_instance['show_future'] == "on" ? true : false;
         
         $this->flush_widget_cache();
         
         $alloptions = wp_cache_get( 'alloptions', 'options' );
-		if ( isset($alloptions['widget_'.SERIES]) )
-			delete_option('widget_'.SERIES);
+        if ( isset($alloptions['widget_'.SERIES]) )
+            delete_option('widget_'.SERIES);
         
-    	return $instance;
+        return $instance;
     }
 
     /** @use WP_Widget::form */
@@ -375,37 +375,85 @@ class Post_Series_Widget extends WP_Widget {
         $show_future = isset($instance['show_future']) ? $instance['show_future'] : $options['show_future'];
         ?>
             <p>
-            	<label for="<?php echo $this->get_field_id('widget_title'); ?>"><?php _e('Title:'); ?> </label>
+                <label for="<?php echo $this->get_field_id('widget_title'); ?>"><?php _e('Title:'); ?> </label>
                 <input id="<?php echo $this->get_field_id('widget_title'); ?>" name="<?php echo $this->get_field_name('widget_title'); ?>" class="widefat" type="text" value="<?php echo esc_attr($instance['widget_title']); ?>" />
-			</p>
+            </p>
             <?php 
             $series = get_terms( SERIES );
             
             if( count($series) > 0 ): ?>
-			<p>
-            	<label for="<?php echo $this->get_field_id('id'); ?>"><?php _e('Choose post series to display:', SERIES_BASE); ?> </label>
-            	<select id="<?php echo $this->get_field_id('id'); ?>" name="<?php echo $this->get_field_name('id'); ?>" class="widefat">
-            		<?php foreach( $series as $term ): ?>
-            		<option value="<?php echo $term->term_id; ?>" <?php echo ($instance['id'] == $term->term_id) ? 'selected="selected"':""; ?>><?php echo $term->name . "(" . $term->count . ")"; ?></option>
-            		<?php endforeach; ?>
-            	</select>
-			</p>
-			<?php endif; ?>
             <p>
-            	<label for="<?php echo $this->get_field_id('limit'); ?>"><?php _e('Number of posts to show:', SERIES_BASE); ?> </label>
+                <label for="<?php echo $this->get_field_id('id'); ?>"><?php _e('Choose post series to display:', SERIES_BASE); ?> </label>
+                <select id="<?php echo $this->get_field_id('id'); ?>" name="<?php echo $this->get_field_name('id'); ?>" class="widefat">
+                    <?php foreach( $series as $term ): ?>
+                    <option value="<?php echo $term->term_id; ?>" <?php echo ($instance['id'] == $term->term_id) ? 'selected="selected"':""; ?>><?php echo $term->name . "(" . $term->count . ")"; ?></option>
+                    <?php endforeach; ?>
+                </select>
+            </p>
+            <?php endif; ?>
+            <p>
+                <label for="<?php echo $this->get_field_id('limit'); ?>"><?php _e('Number of posts to show:', SERIES_BASE); ?> </label>
                 <input id="<?php echo $this->get_field_id('limit'); ?>" name="<?php echo $this->get_field_name('limit'); ?>" class="widefat" type="text" value="<?php echo $limit; ?>" size="3" />
-			</p>
+            </p>
             <p>
-            	<label for="<?php echo $this->get_field_id('class_prefix'); ?>"><?php _e('Special class prefix:', SERIES_BASE); ?> </label>
+                <label for="<?php echo $this->get_field_id('class_prefix'); ?>"><?php _e('Special class prefix:', SERIES_BASE); ?> </label>
                 <input id="<?php echo $this->get_field_id('class_prefix'); ?>" name="<?php echo $this->get_field_name('class_prefix'); ?>" class="widefat" type="text" value="<?php echo $class_prefix; ?>" />
-			</p>
+            </p>
             <p>
                 <input id="show_future" type="checkbox" name="<?php echo $this->get_field_name('show_future'); ?>" value="on" <?php checked( $show_future ); ?> />
                 <label for="show_future" class="future-on-label"><?php _e('Show future',SERIES_BASE);?></label>
-			</p>
+            </p>
         <?php 
     }
 
 }
-add_action( 'widgets_init', create_function( '', 'register_widget( "Post_Series_Widget" );' ) );
+
+// for displaying list
+class Series_List_Widget extends WP_Widget {
+    /** constructor */
+    function __construct() {
+        $widget_ops = array(
+            'classname' => 'widget_list_' . SERIES,
+            'description' => __( "A simple widget to display all post series in list.", SERIES_BASE )
+        );
+        $this->WP_Widget( 'widget_list_' . SERIES, __('Post Series List', SERIES_BASE), $widget_ops );
+    }
+
+    function widget( $args, $instance ) {
+        // Widget output
+        extract( $args, EXTR_SKIP );
+        echo $before_widget;
+        echo $before_title . apply_filters( 'widget_title', $instance['widget_title'] ) . $after_title;
+        echo series_list_display($list_args);
+        echo $after_widget;
+    }
+
+    function update( $new_instance, $old_instance ) {
+        // Save widget options
+        $instance = $old_instance;
+        $instance['widget_title'] = ( ! empty( $new_instance['widget_title'] ) ) ? strip_tags( $new_instance['widget_title'] ) : '';
+        //$instance['id'] = absint($new_instance['id']);
+        //$this->flush_widget_cache();
+        
+        return $instance;
+    }
+
+    function form( $instance ) {
+        // Output admin widget options form
+        // title | number | category | hirechy
+        ?>     
+        <p>
+            <label for="<?php echo $this->get_field_id('widget_title'); ?>"><?php _e('Title:'); ?> </label>
+            <input id="<?php echo $this->get_field_id('widget_title'); ?>" name="<?php echo $this->get_field_name('widget_title'); ?>" class="widefat" type="text" value="<?php echo esc_attr($instance['widget_title']); ?>" />
+        </p>
+        <?php
+    }
+}
+
+function series_register_widgets() {
+    register_widget( 'Post_Series_Widget' );
+    register_widget( 'Series_List_Widget' );
+}
+
+add_action( 'widgets_init', 'series_register_widgets' );
 ?>

@@ -105,10 +105,10 @@ add_action( 'admin_init', 'series_addbuttons' );
 function series_custom_manage_posts_filter() {
     global $typenow;
     $post_types = series_posttype_support();
-	if ( in_array($typenow, $post_types) ) {
+    if ( in_array($typenow, $post_types) ) {
         $series_name = '';
-    	if (isset($_GET[SERIES])) $series_name = $_GET[SERIES];
-    	
+        if (isset($_GET[SERIES])) $series_name = $_GET[SERIES];
+        
         wp_dropdown_categories(array(
             'show_option_all' => __('View all series', SERIES_BASE),
             'taxonomy' => SERIES,
@@ -137,11 +137,11 @@ function series_custom_convert_restrict($query) {
 add_filter('parse_query','series_custom_convert_restrict');
 
 function series_custom_column_filter($defaults) {
-	$post_types = series_posttype_support();
-	if ( isset($_REQUEST['post_type']) && !in_array($_REQUEST['post_type'], $post_types) )
-		return $defaults; //get out we only want this showing up on post post types for now.*/
-	$defaults[SERIES] = __('Series', SERIES_BASE);
-	return $defaults;
+    $post_types = series_posttype_support();
+    if ( isset($_REQUEST['post_type']) && !in_array($_REQUEST['post_type'], $post_types) )
+        return $defaults; //get out we only want this showing up on post post types for now.*/
+    $defaults[SERIES] = __('Series', SERIES_BASE);
+    return $defaults;
 }
 
 function series_custom_column_action( $column_name,$post_id ) {
@@ -163,20 +163,20 @@ function series_load_custom_columns(){
     global $post;
     $post_types = series_posttype_support();
     $post_type = isset($_REQUEST['post_type']) ? $_REQUEST['post_type'] : 'post';
-	switch($post_type){
-		case 'post':
-		case 'page':
-			add_filter('manage_posts_columns', 'series_custom_column_filter' );
-			add_action('manage_posts_custom_column', 'series_custom_column_action', 12, 2 );
-		break;
+    switch($post_type){
+        case 'post':
+        case 'page':
+            add_filter('manage_posts_columns', 'series_custom_column_filter' );
+            add_action('manage_posts_custom_column', 'series_custom_column_action', 12, 2 );
+        break;
 
-		default:
-			if (in_array($post_type, $post_types)) {
-				add_filter("manage_{$post_type}_posts_columns", 'series_custom_column_filter' );
-				add_action("manage_{$post->post_type}_posts_custom_column", 'series_custom_column_action', 12, 2 );
-			}
-		break;
-	} // End of switch $post_type
+        default:
+            if (in_array($post_type, $post_types)) {
+                add_filter("manage_{$post_type}_posts_columns", 'series_custom_column_filter' );
+                add_action("manage_{$post->post_type}_posts_custom_column", 'series_custom_column_action', 12, 2 );
+            }
+        break;
+    } // End of switch $post_type
 }
 add_action('admin_init', 'series_load_custom_columns', 10);
 
@@ -185,28 +185,28 @@ function series_plugin_action_links($links, $file) {
     //series_log($file);
     if ( $file == SERIES_BASENAME ) {
         $settings_link = '<a href="options-general.php?page='.SERIES.'_settings">' . __('Settings', SERIES_BASE) . '</a>';
-    	$links = array_merge( array( $settings_link ), $links );
+        $links = array_merge( array( $settings_link ), $links );
     }
-	
-	return $links;
+    
+    return $links;
 }
 add_filter( 'plugin_action_links', 'series_plugin_action_links', 10, 2 );
 
 // Adds default values for options on settings page
 register_activation_hook( SERIES_FILE, 'series_default_options' );
-	
+    
 function series_default_options() {
 
-	$series_temp = get_option( SERIES.'_options');
-	
-	if ( !is_array( $series_temp ) || ( $series_temp['series_wrap'] == '' ) ) {
-	   
-		update_option( SERIES.'_options', series_get_default_options() ); 
-	}
+    $series_temp = get_option( SERIES.'_options');
+    
+    if ( !is_array( $series_temp ) || ( $series_temp['series_wrap'] == '' ) ) {
+       
+        update_option( SERIES.'_options', series_get_default_options() ); 
+    }
 }
 
 //admin settings
-	
+    
 /**
  * series_set_options_cap()
  * 
@@ -224,7 +224,7 @@ function series_set_options_cap() {
  * @use add_options_page
  */
 function series_menu() {
-	add_options_page( __( 'Post Series Settings', SERIES_BASE ), __( 'Post Series', SERIES_BASE ), series_set_options_cap(),  SERIES.'_settings', 'series_settings_page' );	
+    add_options_page( __( 'Post Series Settings', SERIES_BASE ), __( 'Post Series', SERIES_BASE ), series_set_options_cap(),  SERIES.'_settings', 'series_settings_page' ); 
 }
 add_action( 'admin_menu', 'series_menu' );
 
@@ -306,12 +306,12 @@ function series_register_settings() {
             'name' => 'loop_display',
             'title'=> __('Auto Show Series In Loop', SERIES_BASE),
             'type' => 'checkbox'
-		),
+        ),
         array(
             'name' => 'auto_hide',
             'title'=> __('Hide all items of the series in post view', SERIES_BASE),
             'type' => 'checkbox'
-		),
+        ),
     );
     
     register_setting( SERIES.'_options', SERIES.'_options', 'series_settings_validate' );
@@ -336,31 +336,31 @@ function series_settings_validate($series_input) {
     
     $series_options = array();
 
-	$series_options['title_format'] = trim( $series_input['title_format'] );
-	
-	$series_options['series_wrap'] = trim( $series_input['series_wrap'] );
+    $series_options['title_format'] = trim( $series_input['title_format'] );
+    
+    $series_options['series_wrap'] = trim( $series_input['series_wrap'] );
 
-	if ( !preg_match( '/^div|nav|section$/i', $series_options['series_wrap'] ) ) {
+    if ( !preg_match( '/^div|nav|section$/i', $series_options['series_wrap'] ) ) {
 
-		$series_options['series_wrap'] = 'section';
+        $series_options['series_wrap'] = 'section';
 
-	}
-	
-	$series_options['title_wrap'] = trim( $series_input['title_wrap'] );
+    }
+    
+    $series_options['title_wrap'] = trim( $series_input['title_wrap'] );
 
-	if ( !preg_match( '/^h[1-6]|p|span|div|strong$/i', $series_options['title_wrap'] ) ) {
+    if ( !preg_match( '/^h[1-6]|p|span|div|strong$/i', $series_options['title_wrap'] ) ) {
 
-		$series_options['title_wrap'] = 'h3';
+        $series_options['title_wrap'] = 'h3';
 
-	}
-	
-	$series_options['class_prefix'] = trim( $series_input['class_prefix'] );
+    }
+    
+    $series_options['class_prefix'] = trim( $series_input['class_prefix'] );
 
-	if ( !preg_match( '/^[_a-zA-Z0-9-]{2,20}$/i', $series_options['class_prefix'] ) ) {
+    if ( !preg_match( '/^[_a-zA-Z0-9-]{2,20}$/i', $series_options['class_prefix'] ) ) {
 
-		$series_options['class_prefix'] = 'post-series';
+        $series_options['class_prefix'] = 'post-series';
 
-	}
+    }
     
     $series_options['show_future'] = isset($series_input['show_future']) ? true: false;
 
@@ -375,12 +375,12 @@ function series_settings_validate($series_input) {
     $series_options['show_nav'] = isset($series_input['show_nav']) ? true: false;
     
     $series_options['loop_display'] = isset($series_input['loop_display']) ? true: false;
-	
-	$series_options['auto_hide'] = isset($series_input['auto_hide']) ? true: false;
+    
+    $series_options['auto_hide'] = isset($series_input['auto_hide']) ? true: false;
     
     //$series_options['custom_archives'] = $series_input['custom_archives'] == "on" ? true: false;
 
-	return $series_options;
+    return $series_options;
 }
 
 /**
@@ -393,39 +393,39 @@ function series_settings_validate($series_input) {
 function series_settings_page(){
 ?>        
 <div class="wrap">
-	
-	<?php screen_icon(); ?>
-	<h2><?php _e( 'Post Series Settings', SERIES_BASE ); ?></h2>
+    
+    <?php screen_icon(); ?>
+    <h2><?php _e( 'Post Series Settings', SERIES_BASE ); ?></h2>
     
     <p><?php _e('If finding any problem with this plugin please check my <a target="_blank" href="http://www.chaozh.com/simple-post-series-plugin-officially-publish/">Online QA</a> or <a href="mailto:chao@whu.edu.cn">Contact Me</a>', SERIES_BASE );?></p>
     <p><?php _e( 'You can add QQ group to ask any questions freely online', SERIES_BASE ); ?><a target="_blank" href="http://shang.qq.com/wpa/qunwpa?idkey=d6788f785e51e969bb59da8388e074d624c1d9ff4c4d6db3de31bf49e1401b74"><img border="0" src="http://pub.idqqimg.com/wpa/images/group.png" alt="<?php _e( 'You can add QQ group to ask any questions freely online', SERIES_BASE ); ?>"></a></p>
     <hr />
-	<form action="options.php" method="post">
-		<?php 
-        //adds options_group on settings page				
-		settings_fields( SERIES. '_options' );
-        //display all settings sections	in a page			
-		do_settings_sections(  SERIES.'_settings' );
+    <form action="options.php" method="post">
+        <?php 
+        //adds options_group on settings page               
+        settings_fields( SERIES. '_options' );
+        //display all settings sections in a page           
+        do_settings_sections(  SERIES.'_settings' );
         //submit_button( 'Reset', 'secondary' ); 
         //submit_button( 'Delete', 'delete' );       
-		?>
-		
-		<p class="submit">
-			<input name="Submit" type="submit" class="button-primary" value="<?php _e( 'Save Changes') ?>" />
+        ?>
+        
+        <p class="submit">
+            <input name="Submit" type="submit" class="button-primary" value="<?php _e( 'Save Changes') ?>" />
             <input name="Reset" type="submit" class="button-secondary" value="<?php _e( 'Reset Default', SERIES_BASE) ?>" />
-		</p>
-				
-	</form>
-	
-	<h3><?php _e( 'Add Series to your Post or Page', SERIES_BASE ); ?></h3>	
-	<p><?php printf( __ ( 'Use %1$s to add it to your Post or Page content, or use the Post Series Widget.', SERIES_BASE), "<code>[series]</code>" )?></p>
+        </p>
+                
+    </form>
+    
+    <h3><?php _e( 'Add Series to your Post or Page', SERIES_BASE ); ?></h3> 
+    <p><?php printf( __ ( 'Use %1$s to add it to your Post or Page content, or use the Post Series Widget.', SERIES_BASE), "<code>[series]</code>" )?></p>
 </div><!-- .wrap -->
 <?php
 
 }
 
 function series_section_text() {
-	echo "<p>". __( 'Set up your series using the options below.', SERIES_BASE ) ."</p>";
+    echo "<p>". __( 'Set up your series using the options below.', SERIES_BASE ) ."</p>";
 
 }
 //render field

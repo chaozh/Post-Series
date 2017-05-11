@@ -1,10 +1,10 @@
 .entry-content .post-series {
     background: #f6f6f6;
-	border: 1px solid #ddd;
-	-moz-border-radius: 3px;
-	border-radius: 3px;
-	margin: 0 0 1.625em;
-	padding: 1.625em;
+    border: 1px solid #ddd;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    margin: 0 0 1.625em;
+    padding: 1.625em;
 }
 
 .post-series-nav-next {
@@ -13,7 +13,7 @@
 }
 
 .post-series-item-thumbnail {
-	
+    
 }
 
 .post-series-item-excerpt{
