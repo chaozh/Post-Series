@@ -107,8 +107,8 @@ function series_display($series_arg){
         'post_status' => $post_status
     );
     $the_posts = get_posts($args);
-    /* if there's more than one post with the specified "series" taxonomy, display the list. if there's just one post with the specified taxonomy, there's no need to list the only post! */
-    if(($count = count($the_posts)) > 1) {
+    /* if there's more than one post with the specified "series" taxonomy, display the list */
+    if(($count = count($the_posts)) >= 1) {
         //display section
         $section_output = '<'.$series_wrap.' class="'.$class_prefix.'">';
         // create the list tag - notice the "post-series-list" class
@@ -163,6 +163,7 @@ function series_display($series_arg){
         //Create the title if the "title" attribute exists
         $link = sprintf('<a href="%1$s">%2$s</a>', $tax_link, isset($title)?$title:$term->name);
         //for widget display
+        $title_output = '';
         if($title_wrap != ''){ 
             if($current && isset($title_format)){     
                 $title_format = __( $title_format, SERIES_BASE );

@@ -67,7 +67,9 @@ function series_edition_page(){
         foreach ($series_list as $serie) {
             add_meta_box(SERIES.'_box_'.$serie->term_id, $serie->name, 'series_edition_display_series', $page_hook, 'side', 'core', $serie->term_id);
         }
-    } // Series found
+    } else {
+        // try create term first
+    }
     
     add_meta_box( SERIES.'_add_serie', __('Add New Series',SERIES_BASE), 'series_edition_add_serie', $page_hook, 'normal', 'core' ,$post_type);
 ?>
@@ -152,7 +154,7 @@ function series_edition_display_posts($args, $box){
         'post_type'         => $post_type
     );
 
-    $slugs = array();
+    $terms = array();
     $params['post__not_in'] = array();
     $series_list = $box["args"]["series_list"];
     foreach ($series_list as $serie) {
@@ -166,7 +168,7 @@ function series_edition_display_posts($args, $box){
                 $params['post__not_in'][] = $post->ID;
             }
         }
-    } // End of slug not empty
+    } // End of terms Not Empty
     
     $num_posts   = wp_count_posts($post_type, 'readable');
     $total_posts = array_sum( (array) $num_posts );

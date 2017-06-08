@@ -6,7 +6,6 @@ Description: Better organize your posts by grouping them into series and display
 Version: 2.4
 Author: chaozh
 Author URI: http://chaozh.com/
-Origin: http://wp.tutsplus.com/tutorials/plugins/adding-post-series-functionality-to-wordpress-with-taxonomies/
 GitHub Plugin URI: https://github.com/chaozh/Post-Series
 GitHub Branch:     master
 */
@@ -289,7 +288,7 @@ class Post_Series_Widget extends WP_Widget {
             'classname' => 'widget_' . SERIES,
             'description' => __( "A simple widget to display post series.", SERIES_BASE )
         );
-        $this->WP_Widget( 'widget_' . SERIES, __('Post Series', SERIES_BASE), $widget_ops );
+        parent::__construct( 'widget_' . SERIES, __('Post Series', SERIES_BASE), $widget_ops );
         
         add_action( 'save_post', array(&$this, 'flush_widget_cache') );
         add_action( 'deleted_post', array(&$this, 'flush_widget_cache') );
@@ -366,17 +365,19 @@ class Post_Series_Widget extends WP_Widget {
     function form($instance) {
         $options = get_option( SERIES.'_options', series_get_default_options());
         
-        if(isset($instance['limit']) || $instance['limit'] == -1)
+        if(!isset($instance['limit']) || $instance['limit'] == -1)
             $limit = '';
         else
             $limit = $instance['limit'];
         
         $class_prefix = isset($instance['class_prefix']) ? esc_attr($instance['class_prefix']) : $options['class_prefix'];
         $show_future = isset($instance['show_future']) ? $instance['show_future'] : $options['show_future'];
+        $widget_title = isset($instance['widget_title']) ? $instance['widget_title'] : '';
+        $id = isset($instance['id']) ? $instance['id'] : -1;
         ?>
             <p>
                 <label for="<?php echo $this->get_field_id('widget_title'); ?>"><?php _e('Title:'); ?> </label>
-                <input id="<?php echo $this->get_field_id('widget_title'); ?>" name="<?php echo $this->get_field_name('widget_title'); ?>" class="widefat" type="text" value="<?php echo esc_attr($instance['widget_title']); ?>" />
+                <input id="<?php echo $this->get_field_id('widget_title'); ?>" name="<?php echo $this->get_field_name('widget_title'); ?>" class="widefat" type="text" value="<?php echo esc_attr($widget_title); ?>" />
             </p>
             <?php 
             $series = get_terms( SERIES );
@@ -386,7 +387,7 @@ class Post_Series_Widget extends WP_Widget {
                 <label for="<?php echo $this->get_field_id('id'); ?>"><?php _e('Choose post series to display:', SERIES_BASE); ?> </label>
                 <select id="<?php echo $this->get_field_id('id'); ?>" name="<?php echo $this->get_field_name('id'); ?>" class="widefat">
                     <?php foreach( $series as $term ): ?>
-                    <option value="<?php echo $term->term_id; ?>" <?php echo ($instance['id'] == $term->term_id) ? 'selected="selected"':""; ?>><?php echo $term->name . "(" . $term->count . ")"; ?></option>
+                    <option value="<?php echo $term->term_id; ?>" <?php echo ($id == $term->term_id) ? 'selected="selected"':""; ?>><?php echo $term->name . "(" . $term->count . ")"; ?></option>
                     <?php endforeach; ?>
                 </select>
             </p>
@@ -416,11 +417,12 @@ class Series_List_Widget extends WP_Widget {
             'classname' => 'widget_list_' . SERIES,
             'description' => __( "A simple widget to display all post series in list.", SERIES_BASE )
         );
-        $this->WP_Widget( 'widget_list_' . SERIES, __('Post Series List', SERIES_BASE), $widget_ops );
+        parent::__construct( 'widget_list_' . SERIES, __('Post Series List', SERIES_BASE), $widget_ops );
     }
 
     function widget( $args, $instance ) {
         // Widget output
+        $list_args = array();
         extract( $args, EXTR_SKIP );
         echo $before_widget;
         echo $before_title . apply_filters( 'widget_title', $instance['widget_title'] ) . $after_title;
@@ -441,10 +443,11 @@ class Series_List_Widget extends WP_Widget {
     function form( $instance ) {
         // Output admin widget options form
         // title | number | category | hirechy
+        $widget_title = isset($instance['widget_title']) ? $instance['widget_title'] : '';
         ?>     
         <p>
             <label for="<?php echo $this->get_field_id('widget_title'); ?>"><?php _e('Title:'); ?> </label>
-            <input id="<?php echo $this->get_field_id('widget_title'); ?>" name="<?php echo $this->get_field_name('widget_title'); ?>" class="widefat" type="text" value="<?php echo esc_attr($instance['widget_title']); ?>" />
+            <input id="<?php echo $this->get_field_id('widget_title'); ?>" name="<?php echo $this->get_field_name('widget_title'); ?>" class="widefat" type="text" value="<?php echo esc_attr($widget_title); ?>" />
         </p>
         <?php
     }
