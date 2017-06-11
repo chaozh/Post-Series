@@ -7,7 +7,6 @@ Version: 2.4
 Author: chaozh
 Author URI: http://chaozh.com/
 GitHub Plugin URI: https://github.com/chaozh/Post-Series
-GitHub Branch:     master
 */
 
 ### INSTALLATION/USAGE INSTRUCTIONS ###
@@ -323,15 +322,15 @@ class Post_Series_Widget extends WP_Widget {
             
         );
         $series_arg = series_attrs($series_arg, $options);
+        $title = apply_filters( 'widget_title', empty( $instance['widget_title'] ) ? __( 'Post Series List', SERIES_BASE) : $instance['widget_title'], $instance, $this->id_base );
         
         ob_start(); 
-        extract( $args, EXTR_SKIP );
-            
-        echo $before_widget;
-        //if ( $instance['widget_title'] )
-        echo $before_title . apply_filters( 'widget_title', $instance['widget_title'] ) . $after_title;
+        echo $args['before_widget'];
+        if ( $title ) {
+            echo $args['before_title'] . $title . $args['after_title'];
+        }
         echo series_display($series_arg);
-        echo $after_widget;
+        echo $args['after_widget'];
         
         $cache[$args['widget_id']] = ob_get_flush();
         wp_cache_set('widget_'.SERIES, $cache, 'widget');
@@ -344,12 +343,12 @@ class Post_Series_Widget extends WP_Widget {
     /** @use WP_Widget::update */
     function update($new_instance, $old_instance) {             
         $instance = $old_instance;
-        $instance['widget_title'] = strip_tags($new_instance['widget_title']);
+        $instance['widget_title'] = sanitize_text_field($new_instance['widget_title']);
         $instance['id'] = absint($new_instance['id']);
         if( empty($new_instance['limit']) )
             $instance['limit'] = -1;
         
-        $instance['class_prefix'] = strip_tags($new_instance['class_prefix']);
+        $instance['class_prefix'] = sanitize_text_field($new_instance['class_prefix']);
         $instance['show_future'] = $new_instance['show_future'] == "on" ? true : false;
         
         $this->flush_widget_cache();
@@ -364,16 +363,22 @@ class Post_Series_Widget extends WP_Widget {
     /** @use WP_Widget::form */
     function form($instance) {
         $options = get_option( SERIES.'_options', series_get_default_options());
+
+        $instance = wp_parse_args( (array) $instance, array(
+            'id' => -1,
+            'widget_title' => '',
+            'class_prefix' => $options['class_prefix'],
+            'show_future' => $options['show_future']
+        ) );
         
-        if(!isset($instance['limit']) || $instance['limit'] == -1)
+        if( empty($instance['limit']) || $instance['limit'] == -1)
             $limit = '';
         else
             $limit = $instance['limit'];
-        
-        $class_prefix = isset($instance['class_prefix']) ? esc_attr($instance['class_prefix']) : $options['class_prefix'];
-        $show_future = isset($instance['show_future']) ? $instance['show_future'] : $options['show_future'];
-        $widget_title = isset($instance['widget_title']) ? $instance['widget_title'] : '';
-        $id = isset($instance['id']) ? $instance['id'] : -1;
+        $id = $instance['id'];
+        $class_prefix = sanitize_text_field($instance['class_prefix']);
+        $show_future = $instance['show_future'];
+        $widget_title = sanitize_text_field($instance['widget_title']);
         ?>
             <p>
                 <label for="<?php echo $this->get_field_id('widget_title'); ?>"><?php _e('Title:'); ?> </label>
@@ -422,20 +427,26 @@ class Series_List_Widget extends WP_Widget {
 
     function widget( $args, $instance ) {
         // Widget output
-        $list_args = array();
-        extract( $args, EXTR_SKIP );
-        echo $before_widget;
-        echo $before_title . apply_filters( 'widget_title', $instance['widget_title'] ) . $after_title;
-        echo series_list_display($list_args);
-        echo $after_widget;
+        $title = apply_filters( 'widget_title', empty( $instance['widget_title'] ) ? __( 'Post Series List', SERIES_BASE) : $instance['widget_title'], $instance, $this->id_base );
+        $list_args = array(
+            "count" => ! empty( $instance['count'] ) ? '1' : '0',
+            "hierarchical" => !empty( $instance['hierarchical'] ) ? '1' : '0'
+        );
+
+        echo $args['before_widget'];
+        if ( $title ) {
+            echo $args['before_title'] . $title . $args['after_title'];
+        }
+        echo series_list_display(apply_filters( 'widget_series_list_args', $list_args ));
+        echo $args['after_widget'];
     }
 
     function update( $new_instance, $old_instance ) {
         // Save widget options
         $instance = $old_instance;
-        $instance['widget_title'] = ( ! empty( $new_instance['widget_title'] ) ) ? strip_tags( $new_instance['widget_title'] ) : '';
-        //$instance['id'] = absint($new_instance['id']);
-        //$this->flush_widget_cache();
+        $instance['widget_title'] = sanitize_text_field( $new_instance['widget_title'] );
+        $instance['count'] = !empty($new_instance['count']) ? 1 : 0;
+        $instance['hierarchical'] = !empty($new_instance['hierarchical']) ? 1 : 0;
         
         return $instance;
     }
@@ -443,12 +454,19 @@ class Series_List_Widget extends WP_Widget {
     function form( $instance ) {
         // Output admin widget options form
         // title | number | category | hirechy
-        $widget_title = isset($instance['widget_title']) ? $instance['widget_title'] : '';
-        ?>     
-        <p>
-            <label for="<?php echo $this->get_field_id('widget_title'); ?>"><?php _e('Title:'); ?> </label>
-            <input id="<?php echo $this->get_field_id('widget_title'); ?>" name="<?php echo $this->get_field_name('widget_title'); ?>" class="widefat" type="text" value="<?php echo esc_attr($widget_title); ?>" />
-        </p>
+        $instance = wp_parse_args( (array) $instance, array( 'widget_title' => '') );
+        $widget_title = sanitize_text_field( $instance['widget_title'] );
+        $count = isset($instance['count']) ? (bool) $instance['count'] :false;
+        $hierarchical = isset( $instance['hierarchical'] ) ? (bool) $instance['hierarchical'] : false;
+        ?>
+        <p><label for="<?php echo $this->get_field_id('widget_title'); ?>"><?php _e( 'Title:' ); ?></label>
+        <input class="widefat" id="<?php echo $this->get_field_id('widget_title'); ?>" name="<?php echo $this->get_field_name('widget_title'); ?>" type="text" value="<?php echo esc_attr( $widget_title ); ?>" /></p>
+
+        <p><input type="checkbox" class="checkbox" id="<?php echo $this->get_field_id('count'); ?>" name="<?php echo $this->get_field_name('count'); ?>"<?php checked( $count ); ?> />
+        <label for="<?php echo $this->get_field_id('count'); ?>"><?php _e( 'Show post counts' ); ?></label><br />
+
+        <input type="checkbox" class="checkbox" id="<?php echo $this->get_field_id('hierarchical'); ?>" name="<?php echo $this->get_field_name('hierarchical'); ?>"<?php checked( $hierarchical ); ?> />
+        <label for="<?php echo $this->get_field_id('hierarchical'); ?>"><?php _e( 'Show hierarchy' ); ?></label></p>
         <?php
     }
 }

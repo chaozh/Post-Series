@@ -190,14 +190,16 @@ function series_display($series_arg){
 
 //https://developer.wordpress.org/reference/functions/wp_list_categories/
 function series_list_display($list_arg){
-    $output = "<ul>";
-    $output .= wp_list_categories( array(
+    $cat_args = array(
+        'orderby'      => 'name',
+        'show_count'   => $list_arg['count'],
+        'hierarchical' => $list_arg['hierarchical'],
         'title_li' => '',
         'echo' => false,
-        'show_count' => true,
         'taxonomy' => SERIES
-    ) );
-    $output .= '</ul>';
+    );
+
+    $output = wp_list_categories($cat_args);
     return $output;
 }
 

@@ -2,7 +2,7 @@
 Contributors: chaozh
 Donate link: http://www.chaozh.com/simple-post-series-plugin-officially-publish/
 Tags: category, post, series, taxonomy
-Tested up to: 4.7.3
+Tested up to: 4.8
 Stable tag: 2.4
 Requires at least: 3.1
 License: GPLv2 or later
