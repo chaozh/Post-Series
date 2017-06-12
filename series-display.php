@@ -200,7 +200,7 @@ function series_list_display($list_arg){
     );
 
     $output = wp_list_categories($cat_args);
-    return $output;
+    return "<ul>" .$output ."</ul>";
 }
 
 ?>

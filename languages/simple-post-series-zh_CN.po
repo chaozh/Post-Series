@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: chaozh\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-25 10:47+0800\n"
-"PO-Revision-Date: 2017-02-25 11:11+0800\n"
+"POT-Creation-Date: 2017-06-12 20:24+0800\n"
+"PO-Revision-Date: 2017-06-12 20:24+0800\n"
 "Last-Translator: chaozh <chao@hust.edu.cn>\n"
 "Language-Team: chaozh <chao@whu.edu.cn>\n"
 "Language: zh\n"
@@ -13,7 +13,7 @@ msgstr ""
 "X-Poedit-KeywordsList: __;_e;_x:1,2c\n"
 "X-Poedit-Basepath: E:/AppServ/www/wordpress/wp-content/plugins/Post-Series\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
-"X-Generator: Poedit 1.8.12\n"
+"X-Generator: Poedit 2.0.1\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: .\n"
 
@@ -29,7 +29,7 @@ msgstr "名称："
 msgid "Count:"
 msgstr "文章数目："
 
-#: inc/tinymce-plugin-dialog.php:42 series.php:378
+#: inc/tinymce-plugin-dialog.php:42 series.php:384 series.php:462
 msgid "Title:"
 msgstr "标题："
 
@@ -61,7 +61,7 @@ msgstr "插入专题"
 msgid "View all series"
 msgstr "查看所有专题目录"
 
-#: series-admin.php:143 series.php:105
+#: series-admin.php:143 series.php:103
 msgid "Series"
 msgstr "专题"
 
@@ -77,7 +77,7 @@ msgstr "设置"
 msgid "Post Series Settings"
 msgstr "Post Series插件设置"
 
-#: series-admin.php:227 series.php:292
+#: series-admin.php:227 series.php:290
 msgid "Post Series"
 msgstr "Post Series专题"
 
@@ -185,7 +185,7 @@ msgstr "折叠专题系列文章"
 msgid "Configure Post Series"
 msgstr "设置专题选项"
 
-#: series-admin.php:400 series-edition.php:84
+#: series-admin.php:400 series-edition.php:86
 msgid ""
 "If finding any problem with this plugin please check my <a target=\"_blank\" "
 "href=\"http://www.chaozh.com/simple-post-series-plugin-officially-publish/"
@@ -195,7 +195,7 @@ msgstr ""
 "\"http://www.chaozh.com/simple-post-series-plugin-officially-publish/\">常见"
 "问题</a>或直接<a href=\"mailto:chao@whu.edu.cn\">联系我</a>"
 
-#: series-admin.php:401 series-edition.php:85 series-edition.php:86
+#: series-admin.php:401 series-edition.php:87 series-edition.php:88
 msgid "You can add QQ group to ask any questions freely online"
 msgstr "也可以加入官方QQ群获得在线支持"
 
@@ -238,7 +238,7 @@ msgstr "计划"
 msgid "Show all dates"
 msgstr ""
 
-#: series-edition.php:43 series-edition.php:76
+#: series-edition.php:43 series-edition.php:78
 msgid "Series Bulk Edit"
 msgstr "专题文章编辑"
 
@@ -246,149 +246,165 @@ msgstr "专题文章编辑"
 msgid "Available posts"
 msgstr "可用文章"
 
-#: series-edition.php:72 series.php:103
+#: series-edition.php:74 series.php:101
 msgid "Add New Series"
 msgstr "添加新的专题"
 
-#: series-edition.php:79
+#: series-edition.php:81
 msgid "Processing, please wait ..."
 msgstr "处理中，请等待"
 
-#: series-edition.php:135
+#: series-edition.php:137
 msgid "All Posts"
 msgstr ""
 
-#: series-edition.php:136
+#: series-edition.php:138
 msgid "Scheduled"
 msgstr ""
 
-#: series-edition.php:137
+#: series-edition.php:139
 msgid "Published"
 msgstr ""
 
-#: series-edition.php:138
+#: series-edition.php:140
 msgid "Draft"
 msgstr ""
 
-#: series-edition.php:139
+#: series-edition.php:141
 msgid "Pending"
 msgstr ""
 
-#: series-edition.php:201
+#: series-edition.php:203
 msgid "View all categories"
 msgstr ""
 
-#: series-edition.php:222
+#: series-edition.php:224
 msgid ""
 "Drag posts from here to a serie on the right to include them in a serie. "
 "Drag posts back here remove them from series."
 msgstr "从下面拖拽文章到右方专题以添加到专题。拖拽文章回来以从专题中删除。"
 
-#: series-edition.php:266
+#: series-edition.php:268
 msgid "The name is how it appears on your site."
 msgstr ""
 
-#: series-edition.php:271
+#: series-edition.php:273
 msgid ""
 "The &#8220;slug&#8221; is the URL-friendly version of the name. It is "
 "usually all lowercase and contains only letters, numbers, and hyphens."
 msgstr ""
 
-#: series-edition.php:275
+#: series-edition.php:277
 msgid "None"
 msgstr ""
 
-#: series-edition.php:280
+#: series-edition.php:282
 msgid ""
 "The description is not prominent by default; however, some themes may show "
 "it."
 msgstr ""
 
-#: series-edition.php:316
+#: series-edition.php:318
 msgid "Delete"
 msgstr ""
 
-#: series-edition.php:348
+#: series-edition.php:350
 msgid "Serie successfully updated"
 msgstr "专题更新成功"
 
-#: series-edition.php:351 series-edition.php:416 series-edition.php:440
+#: series-edition.php:353 series-edition.php:418 series-edition.php:442
 msgid "Error, security check failed"
 msgstr "错误，非法操作"
 
-#: series-edition.php:356 series-edition.php:420 series-edition.php:444
+#: series-edition.php:358 series-edition.php:422 series-edition.php:446
 msgid "Error, access denied"
 msgstr "错误，拒绝访问"
 
-#: series-edition.php:368
+#: series-edition.php:370
 msgid "Error, Serie not identified"
 msgstr "错误，专题未创建"
 
-#: series-edition.php:424
+#: series-edition.php:426
 msgid "New serie successfully added"
 msgstr "新专题添加成功"
 
-#: series-edition.php:427
+#: series-edition.php:429
 msgid "Error, add serie fail"
 msgstr "错误，添加专题失败"
 
-#: series-edition.php:449
+#: series-edition.php:451
 msgid "Serie successfully deleted"
 msgstr "专题删除成功"
 
-#: series-edition.php:452
+#: series-edition.php:454
 msgid "Error, delete serie fail"
 msgstr "错误，专题删除失败"
 
-#: series.php:75
+#: series.php:73
 msgid "This entry is part %current of %count in the series: %link"
 msgstr "本文是全系列中第%current / %count篇：%link"
 
-#: series.php:98
+#: series.php:96
 msgctxt "taxonomy general name"
 msgid "Series"
 msgstr "专题"
 
-#: series.php:99
+#: series.php:97
 msgctxt "taxonomy singular name"
 msgid "Series"
 msgstr "专题"
 
-#: series.php:100
+#: series.php:98
 msgid "All Series"
 msgstr "所有专题"
 
-#: series.php:101
+#: series.php:99
 msgid "Edit Series"
 msgstr "编辑专题"
 
-#: series.php:102
+#: series.php:100
 msgid "Update Series"
 msgstr "更新专题"
 
-#: series.php:104
+#: series.php:102
 msgid "New Series Name"
 msgstr "新专题名称"
 
-#: series.php:290
+#: series.php:288
 msgid "A simple widget to display post series."
-msgstr "展示的系列文章小工具"
+msgstr "展示系列中文章的列表"
 
-#: series.php:386
+#: series.php:325 series.php:425 series.php:430
+msgid "Post Series List"
+msgstr "Post Series列表"
+
+#: series.php:392
 msgid "Choose post series to display:"
 msgstr "选择显示的系列："
 
-#: series.php:395
+#: series.php:401
 msgid "Number of posts to show:"
 msgstr "展示文章数目："
 
-#: series.php:399
+#: series.php:405
 msgid "Special class prefix:"
 msgstr "特殊Class前缀："
 
-#: series.php:404
+#: series.php:410
 msgid "Show future"
 msgstr "展示未发布"
+
+#: series.php:423
+msgid "A simple widget to display all post series in list."
+msgstr "专题系列名称的列表"
+
+#: series.php:466
+msgid "Show post counts"
+msgstr ""
+
+#: series.php:469
+msgid "Show hierarchy"
+msgstr ""
 
 #: template/taxonomy-series.php:19
 #, php-format
