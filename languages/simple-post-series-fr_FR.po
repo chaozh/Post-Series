@@ -1,0 +1,503 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: chaozh\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-08-21 18:29+0800\n"
+"PO-Revision-Date: 2017-09-09 17:31+0200\n"
+"Last-Translator: sedlav <yoander.valdes@gmail.com>\n"
+"Language-Team: Spanish (Spain)\n"
+"Language: es_ES\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: __;_e;_x:1,2c\n"
+"X-Poedit-Basepath: E:/AppServ/www/wordpress/wp-content/plugins/Post-Series\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Poedit 1.8.11\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: series-edition.php:266
+msgid "The name is how it appears on your site."
+msgstr "Ce nom est utilisé un peu partout sur votre site."
+
+#: series-edition.php:271
+msgid ""
+"The &#8220;slug&#8221; is the URL-friendly version of the name. It is "
+"usually all lowercase and contains only letters, numbers, and hyphens."
+msgstr ""
+"L’identifiant est la version normalisée du nom. Il ne contient généralement "
+"que des lettres minuscules non accentuées, des chiffres et des traits "
+"d’union."
+
+#: series-edition.php:280
+msgid ""
+"The description is not prominent by default; however, some themes may show "
+"it."
+msgstr ""
+"La description n’est pas très utilisée par défaut, cependant de plus en plus "
+"de thèmes l’affichent."
+
+#: template/taxonomy-series.php:45
+msgid ""
+"<span class=\"sep\">Posted on </span><a href=\"%1$s\" title=\"%2$s\" rel="
+"\"bookmark\"><time class=\"entry-date\" datetime=\"%3$s\" pubdate>%4$s</"
+"time></a><span class=\"by-author\"> <span class=\"sep\"> by </span> <span "
+"class=\"author vcard\"><a class=\"url fn n\" href=\"%5$s\" title=\"%6$s\" "
+"rel=\"author\">%7$s</a></span></span>"
+msgstr ""
+"<span class=\"sep\">Posté le </span><a href=\"%1$s\" title=\"%2$s\" rel="
+"\"bookmark\"><time class=\"entry-date\" datetime=\"%3$s\" pubdate>%4$s</"
+"time></a><span class=\"by-author\"> <span class=\"sep\"> par </span> <span "
+"class=\"author vcard\"><a class=\"url fn n\" href=\"%5$s\" title=\"%6$s\" "
+"rel=\"author\">%7$s</a></span></span>"
+
+#: template/taxonomy-series.php:60
+msgctxt "comments number"
+msgid "%"
+msgstr ""
+
+#: template/taxonomy-series.php:79
+msgid "<span class=\"%1$s\">Posted in</span> %2$s"
+msgstr "<span class=\"%1$s\">Posté dans</span> %2$s"
+
+#: template/taxonomy-series.php:91
+msgid "<span class=\"%1$s\">Tagged</span> %2$s"
+msgstr "<span class=\"%1$s\">Marqué</span> %2$s"
+
+#: inc/tinymce-plugin-dialog.php:49
+msgid "Limit show:"
+msgstr "Afficher la limite:"
+
+#: inc/tinymce-plugin-dialog.php:56
+msgid "Future show:"
+msgstr "Afficher les 'à venir'"
+
+#: series-admin.php:245
+msgid ""
+"\"Title Format\" means you can customly define the format and content to "
+"display as series title.%current will be replaced by the current posts "
+"number in the serie, %count will be replaced by series total post number, "
+"%link will be replaced by displaying a url link. These three words started "
+"with \"%\" are special template tokens and rest words are free to use."
+msgstr ""
+"\"Format du titre\" signifie que vous pouvez personnaliser le format et le "
+"contenu à afficher en tant que titre de série.\n"
+"%current sera remplacé par le numéro actuel de l'article dans la série, \n"
+"%count sera remplacé par le nombre d'articles de la série, \n"
+"%link sera remplacé par l'affichage d'un lien url. \n"
+"Ces trois mots qui débutent par \"%\" sont des références de modèles "
+"spéciaux et ne peuvent être modifiés, tous les autres mots sont libres de "
+"toutes réserves."
+
+#: series-admin.php:259
+msgid "set series element wrapper eg. div, section..."
+msgstr "définir le conteneur de l'élément série au choix, div, section..."
+
+#: series-admin.php:266
+msgid "set title element wrapper, allowed tags: h1-h6, p, span, div, strong"
+msgstr ""
+"définir le conteneur de l'élément de titre, balises autorisées: h1-h6, p, "
+"span, div, strong"
+
+#: series-admin.php:277
+msgid "Auto Show Series On Post"
+msgstr "Automatiquement afficher la série dans les articles"
+
+#: series-admin.php:307
+msgid "Auto Show Series In Loop"
+msgstr "Automatiquement afficher les séries en boucle"
+
+#: series-admin.php:313
+msgid "Configure Post Series"
+msgstr "Configurer Post Series"
+
+#: series-admin.php:393 series-edition.php:84
+msgid ""
+"If finding any problem with this plugin please check my <a target=\"_blank\" "
+"href=\"http://www.chaozh.com/simple-post-series-plugin-officially-publish/"
+"\">Online QA</a> or <a href=\"mailto:chao@whu.edu.cn\">Contact Me</a>"
+msgstr ""
+"Si vous rencontrez un problème avec ce plugin, vérifiez mon <a target="
+"\"_blank\" href=\"http://www.chaozh.com/simple-post-series-plugin-officially-"
+"publish/\">Aide en ligne</a> ou <a href=\"mailto:chao@whu.edu.cn\">Contactez-"
+"moi</a>"
+
+#: series-admin.php:394 series-edition.php:85 series-edition.php:86
+msgid "You can add QQ group to ask any questions freely online"
+msgstr "Vous pouvez également posez toutes vos questions en ligne&nbsp;"
+
+#: series-admin.php:414
+msgid ""
+"Use %1$s to add it to your Post or Page content, or use the Post Series "
+"Widget."
+msgstr ""
+"Utiliser %1$s pour l'ajouter à votre contenu Article ou Page, ou utiliser le "
+"widget Post Series."
+
+#: series-display.php:138
+msgid "Future post"
+msgstr "Prochainement"
+
+#: series-edition.php:222
+msgid ""
+"Drag posts from here to a serie on the right to include them in a serie. "
+"Drag posts back here remove them from series."
+msgstr ""
+"Faites glisser les messages listés ci-dessous vers une série placées à "
+"droite afin de les inclure à cette série. Faites glisser les messages de la "
+"série vers ici afin de les retirer de la série."
+
+#: series.php:287
+msgid "A simple widget to display post series."
+msgstr "Un widget pour afficher les séries."
+
+#: series.php:383
+msgid "Choose post series to display:"
+msgstr "Choisissez la série à afficher:"
+
+#: series.php:396
+msgid "Special class prefix:"
+msgstr "Préfixe de classe:"
+
+#: series.php:401
+msgid "Show future"
+msgstr "Afficher les articles à venir"
+
+#: template/taxonomy-series.php:19
+msgid "Post Series Archives: %s"
+msgstr "Archives Post Series: %s"
+
+#: template/taxonomy-series.php:125
+msgid ""
+"Apologies, but no results were found for the requested archive. Perhaps "
+"searching will help find a related post."
+msgstr ""
+"Désolé, mais aucun résultat n'a été trouvé pour l'archive demandée. Une "
+"recherche pourrait aider à trouver une publication en rapport."
+
+#: template/taxonomy-series.php:60
+msgctxt "comments number"
+msgid "1"
+msgstr "1"
+
+#: template/taxonomy-series.php:66
+msgid "Continue reading <span class=\"meta-nav\">&rarr;</span>"
+msgstr "Continuer la lecture <span class=\"meta-nav\">&rarr;</span>"
+
+#: template/taxonomy-series.php:101
+msgid "Leave a reply"
+msgstr "Poster un commentaire"
+
+#: template/taxonomy-series.php:101
+msgid "<b>1</b> Reply"
+msgstr "<b>1</b> Répondre"
+
+#: template/taxonomy-series.php:101
+msgid "<b>%</b> Replies"
+msgstr "<b>%</b> Réponses"
+
+#: series-display.php:20
+msgid "Previous Post"
+msgstr "Article précédent"
+
+#: series-display.php:20
+msgid "Next Post"
+msgstr "Article suivant"
+
+#: series-edition.php:25
+msgid "Show all dates"
+msgstr "Afficher toutes les dates"
+
+#: series-edition.php:135
+msgid "All Posts"
+msgstr "Tous les articles"
+
+#: series-edition.php:136
+msgid "Scheduled"
+msgstr "Planifié"
+
+#: series-edition.php:137
+msgid "Published"
+msgstr "Publié"
+
+#: series-edition.php:138
+msgid "Draft"
+msgstr "Brouillon"
+
+#: series-edition.php:139
+msgid "Pending"
+msgstr "En cours..."
+
+#: series-edition.php:201
+msgid "View all categories"
+msgstr "Afficher toutes les catégories"
+
+#: series-edition.php:275
+msgid "None"
+msgstr "Aucun"
+
+#: series-edition.php:315
+msgid "Delete"
+msgstr "Supprimer"
+
+#: template/taxonomy-series.php:60
+msgid "Reply"
+msgstr "Répondre"
+
+#: inc/tinymce-plugin-dialog.php:15
+msgid "Choose a Series from the list below to embed in your post:"
+msgstr ""
+"Choisissez une série dans la liste ci-dessous afin de l'intégrer dans votre "
+"publication:"
+
+#: inc/tinymce-plugin-dialog.php:20
+msgid "Name:"
+msgstr "Nom："
+
+#: inc/tinymce-plugin-dialog.php:21
+msgid "Count:"
+msgstr "Compte："
+
+#: inc/tinymce-plugin-dialog.php:42 series.php:375
+msgid "Title:"
+msgstr "Titre："
+
+#: inc/tinymce-plugin-dialog.php:60 series-admin.php:431
+msgid "on"
+msgstr "Activer"
+
+#: inc/tinymce-plugin-dialog.php:69
+msgid "Insert"
+msgstr "Insérer"
+
+#: inc/tinymce-plugin-dialog.php:72
+msgid "Cancel"
+msgstr "Annuler"
+
+#: series-admin.php:85
+msgid "Insert Series"
+msgstr "Insérer la série"
+
+#: series-admin.php:113
+msgid "View all series"
+msgstr "Afficher toutes les séries"
+
+#: series-admin.php:143 series.php:103
+msgid "Series"
+msgstr "Séries"
+
+#. translators: used between list items, there is a space after the comma
+#: series-admin.php:157 template/taxonomy-series.php:75
+#: template/taxonomy-series.php:85
+msgid ", "
+msgstr ", "
+
+#: series-admin.php:187
+msgid "Settings"
+msgstr "Paramètres"
+
+#: series-admin.php:227 series-admin.php:391
+msgid "Post Series Settings"
+msgstr "Paramètres Post Series"
+
+#: series-admin.php:227 series.php:289
+msgid "Post Series"
+msgstr "Post Series"
+
+#: series-admin.php:244
+msgid "Title Format"
+msgstr "Format du titre"
+
+#: series-admin.php:251
+msgid "CSS Class Prefix"
+msgstr "Préfixe de la classe CSS"
+
+#: series-admin.php:252
+msgid "set css class prefix for series element"
+msgstr "Définir le préfixe de classe css pour les séries"
+
+#: series-admin.php:258
+msgid "Series Wrap Element"
+msgstr "Conteneur HTML des séries"
+
+#: series-admin.php:265
+msgid "Title Wrap Element"
+msgstr "Conteneur HTML du titre"
+
+#: series-admin.php:272
+msgid "Show Unpublished"
+msgstr "Afficher les articles non publiés"
+
+#: series-admin.php:278
+msgid ""
+"The option \"Between excerpt and content\" doesn't work if you use automatic "
+"excerpts. It works on with manual excerpt or with &lt!--more--&gt; tag. See "
+"the <a href=\"http://codex.wordpress.org/Excerpt\" title=\"Excerpt in "
+"WordPress Codex\">WordPress documentation</a> to get more details on excerpt."
+msgstr ""
+"L'option réupérant l'extrait depuis le contenu ne fonctionne pas si vous "
+"utilisez des extraits automatiques. Cela fonctionne uniquement avec un "
+"extrait manuel ou avec le marquage &lt;!-- more --&gt;. Consultez la <a href="
+"\"http://codex.wordpress.org/Excerpt\" title=\"Extrait dans WordPress Codex"
+"\"> documentation WordPress </a> pour obtenir plus de détails sur "
+"l'utilisation d'extrait."
+
+#: series-admin.php:281
+msgid "Not activated"
+msgstr "Désactivé"
+
+#: series-admin.php:281
+msgid "At the end"
+msgstr "À la fin"
+
+#: series-admin.php:282
+msgid "At the begining"
+msgstr "Au début"
+
+#: series-admin.php:282
+msgid "Between excerpt and content"
+msgstr "Entre l'extrait et le contenu"
+
+#: series-admin.php:287
+msgid "Use Custom CSS Style Sheet"
+msgstr "Utiliser une feuille de style personnalisée"
+
+#: series-admin.php:292
+msgid "Show Thumbnail"
+msgstr "Afficher les vignettes"
+
+#: series-admin.php:297
+msgid "Show Excerpt"
+msgstr "Afficher l'extrait"
+
+#: series-admin.php:302
+msgid "Show Navigation"
+msgstr "Afficher la navigation"
+
+#: series-admin.php:407
+msgid "Save Changes"
+msgstr "Sauvegarder les changements"
+
+#: series-admin.php:408
+msgid "Reset Default"
+msgstr "Réinitialiser"
+
+#: series-admin.php:413
+msgid "Add Series to your Post or Page"
+msgstr "Ajouter la série à vos articles ou pages"
+
+#: series-admin.php:421
+msgid "Set up your series using the options below."
+msgstr ""
+"Configuration par défaut de vos séries, en utilisant les options ci-dessous."
+
+#: series-display.php:172
+msgid "Show All"
+msgstr "Tout afficher"
+
+#: series-edition.php:43 series-edition.php:76
+msgid "Series Bulk Edit"
+msgstr "Assembler les séries"
+
+#: series-edition.php:63
+msgid "Available posts"
+msgstr "Articles disponibles"
+
+#: series-edition.php:72 series.php:101
+msgid "Add New Series"
+msgstr "Ajouter une nouvelle série"
+
+#: series-edition.php:79
+msgid "Processing, please wait ..."
+msgstr "Traitement en cours, veuillez patienter ..."
+
+#: series-edition.php:347
+msgid "Serie successfully updated"
+msgstr "Série mise à jour avec succès"
+
+#: series-edition.php:350 series-edition.php:415 series-edition.php:439
+msgid "Error, security check failed"
+msgstr "Erreur, échec de vérification de sécurité"
+
+#: series-edition.php:355 series-edition.php:419 series-edition.php:443
+msgid "Error, access denied"
+msgstr "Erreur: accès refusé"
+
+#: series-edition.php:367
+msgid "Error, Serie not identified"
+msgstr "Erreur, série non identifiée"
+
+#: series-edition.php:423
+msgid "New serie successfully added"
+msgstr "Nouvelle série ajoutée avec succès"
+
+#: series-edition.php:426
+msgid "Error, add serie fail"
+msgstr "Erreur, erreur lors de l'ajout de série"
+
+#: series-edition.php:448
+msgid "Serie successfully deleted"
+msgstr "Serie supprimé avec succès"
+
+#: series-edition.php:451
+msgid "Error, delete serie fail"
+msgstr "Erreur, erreur lors de la suppression de la série"
+
+#: series.php:73
+msgid "This entry is part %current of %count in the series: %link"
+msgstr "Article %current sur %count de la série: %link"
+
+#: series.php:96
+msgctxt "taxonomy general name"
+msgid "Series"
+msgstr "Série"
+
+#: series.php:97
+msgctxt "taxonomy singular name"
+msgid "Series"
+msgstr "Série"
+
+#: series.php:98
+msgid "All Series"
+msgstr "Toutes les séries"
+
+#: series.php:99
+msgid "Edit Series"
+msgstr "Éditer la série"
+
+#: series.php:100
+msgid "Update Series"
+msgstr "Mettre à jour la série"
+
+#: series.php:102
+msgid "New Series Name"
+msgstr "Nom de la nouvelle série"
+
+#: series.php:392
+msgid "Number of posts to show:"
+msgstr "Nombre d'articles à afficher:"
+
+#: template/taxonomy-series.php:51
+msgid "View all posts by %s"
+msgstr "Afficher tous les articles par% s"
+
+#: template/taxonomy-series.php:67
+msgid "Pages:"
+msgstr "Pages:"
+
+#: template/taxonomy-series.php:104
+msgid "Edit"
+msgstr "Éditer:"
+
+#: template/taxonomy-series.php:112
+msgid "<span class=\"meta-nav\">&larr;</span> Older posts"
+msgstr "<span class=\"meta-nav\">&larr;</span> Articles plus anciens"
+
+#: template/taxonomy-series.php:113
+msgid "Newer posts <span class=\"meta-nav\">&rarr;</span>"
+msgstr "Articles récents <span class=\"meta-nav\">&rarr;</span>"
+
+#: template/taxonomy-series.php:121
+msgid "Nothing Found"
+msgstr "Aucun résultat"
