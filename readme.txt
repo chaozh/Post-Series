@@ -85,6 +85,9 @@ A sample archive page template is located in '[simple-post-series]/template/taxo
 	* **class_prefix**: of the list section. Default 'post-series'.
 
 == Changelog ==
+= 2.4.1 = 
+* New: Bug fixing
+
 = 2.4 =
 * New: Add support for listing series
 * New: Fix two bugs

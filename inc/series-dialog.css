@@ -2,6 +2,7 @@
     position: relative;
     padding: .2em;
     width: 300px;
+    z-index: 9999;
 }
 
 .ui-series.ui-dialog .ui-dialog-titlebar {
@@ -40,6 +41,11 @@
 .ui-series.ui-dialog .ui-dialog-titlebar-close:hover, 
 .ui-series.ui-dialog .ui-dialog-titlebar-close:focus {
     padding: 0;
+}
+
+.ui-series.ui-dialog .ui-dialog-titlebar-close .ui-icon-closethick {
+    top: -20%;
+    left: -20%;
 }
 
 .ui-series.ui-dialog .fixed {margin-bottom: 10px;}

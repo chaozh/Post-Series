@@ -332,7 +332,7 @@ function series_edition_display_series($serie_id, $box){
 function series_edition_update_post_order($id, $order) {
     global $wpdb;
 
-    $sql = $wpdb->prepare('UPDATE '.$wpdb->posts.' SET menu_order=%u WHERE ID=%u', $order, $id );
+    $sql = $wpdb->prepare('UPDATE '.$wpdb->posts.' SET menu_order=%d WHERE ID=%d', $order, $id );
     $wpdb->query($sql);
 } // End of update_post_order
 
