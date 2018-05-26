@@ -3,7 +3,7 @@ Contributors: chaozh
 Donate link: http://www.chaozh.com/simple-post-series-plugin-officially-publish/
 Tags: category, post, series, taxonomy
 Tested up to: 4.8
-Stable tag: 2.4
+Stable tag: 2.5
 Requires at least: 3.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -85,6 +85,10 @@ A sample archive page template is located in '[simple-post-series]/template/taxo
 	* **class_prefix**: of the list section. Default 'post-series'.
 
 == Changelog ==
+= 2.5 = 
+* New: Bug fixing
+* New: Improve excerpt & thumbnail display
+
 = 2.4.1 = 
 * New: Bug fixing
 

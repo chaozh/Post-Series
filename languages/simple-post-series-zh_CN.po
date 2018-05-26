@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: chaozh\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-06-12 20:24+0800\n"
-"PO-Revision-Date: 2017-06-12 20:24+0800\n"
+"PO-Revision-Date: 2017-06-12 20:59+0800\n"
 "Last-Translator: chaozh <chao@hust.edu.cn>\n"
 "Language-Team: chaozh <chao@whu.edu.cn>\n"
 "Language: zh\n"
@@ -19,7 +19,7 @@ msgstr ""
 
 #: inc/tinymce-plugin-dialog.php:15
 msgid "Choose a Series from the list below to embed in your post:"
-msgstr "从下面列表中选择专题插入文中"
+msgstr "从下面列表中选择专题插入文中:"
 
 #: inc/tinymce-plugin-dialog.php:20
 msgid "Name:"

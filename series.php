@@ -3,7 +3,7 @@
 Plugin Name: Simple Post Series
 Plugin URI: http://www.chaozh.com/simple-post-series-plugin-officially-publish/
 Description: Better organize your posts by grouping them into series and display them within the series dynamically in your blog.  This version of Post Series Plugin requires at least WordPress 3.1 and PHP 5.0+ to work.
-Version: 2.4.1
+Version: 2.5
 Author: chaozh
 Author URI: http://chaozh.com/
 GitHub Plugin URI: https://github.com/chaozh/Post-Series
@@ -15,7 +15,7 @@ GitHub Plugin URI: https://github.com/chaozh/Post-Series
 
 define('SERIES','series');
 define('SERIES_BASE', 'simple-post-series');
-define('VERSION', 2.4);
+define('VERSION', 2.5);
 /*  Copyright 2009-2012 CHAO ZHENG  (email: chao@whu.edu.cn)
 
     This program is free software; you can redistribute it and/or modify

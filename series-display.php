@@ -139,8 +139,8 @@ function series_display($series_arg){
             }
             $iterator++;
             
-            $output .= ($show_thumbnail?'<span class="'.$class_prefix.'-item-thumbnail">'.series_get_thumbnail_img($the_post).'</span>':'');
-            $output .= ($show_excerpt?'<span class="'.$class_prefix.'-item-excerpt">'.series_get_the_excerpt($the_post).'</span>':'');
+            $output .= ($show_thumbnail?'<p class="'.$class_prefix.'-item-thumbnail">'.series_get_thumbnail_img($the_post).'</p>':'');
+            $output .= ($show_excerpt?'<p class="'.$class_prefix.'-item-excerpt">'.series_get_the_excerpt($the_post).'</p>':'');
             
             $output .= '</li>';
         }
