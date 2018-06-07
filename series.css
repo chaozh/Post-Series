@@ -12,10 +12,15 @@
     margin-left: 150px;
 }
 
-.post-series-item-thumbnail {
-    
+.post-series-item {
+    overflow: auto;
 }
 
-.post-series-item-excerpt{
+.post-series-item-thumbnail {
+    float: left;
+}
+
+.post-series-item-excerpt {
+    float: right;
     font-size:60%;
 }

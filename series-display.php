@@ -120,7 +120,7 @@ function series_display($series_arg){
             setup_postdata($the_post);
             if($the_post->post_status == 'publish') {
                 if($the_post->ID == $current_post_id){
-                    $output .= '<li class="'.$class_prefix.'-item-current">'
+                    $output .= '<li class="'.$class_prefix.'-item-current '.$class_prefix.'-item">'
                     .'<span class="'.$class_prefix.'-item-title">'.get_the_title($the_post->ID).'</span>';
                     $current = $iterator;
                     $prev_post = (isset($tmp_post)?$tmp_post:null);
@@ -134,7 +134,7 @@ function series_display($series_arg){
                 }
             } else {
                 /* we can't link the post if the post is not published yet! */
-                $output .= '<li class="'.$class_prefix.'-item-future"><span class="'.$class_prefix.'-item-title">'
+                $output .= '<li class="'.$class_prefix.'-item-future '.$class_prefix.'-item"><span class="'.$class_prefix.'-item-title">'
                 .__('Future post',SERIES_BASE).': '.get_the_title($the_post->ID).'</span>';
             }
             $iterator++;
