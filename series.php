@@ -99,7 +99,8 @@ function series_get_default_options() {
         'show_thumbnail' => false,
         'show_excerpt'   => false,
         'show_nav'       => false,
-        'loop_display'   => false
+        'loop_display'   => false,
+        'auto_hide'      => false
             
     );
     

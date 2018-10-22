@@ -26,11 +26,9 @@ function series_register_button( $buttons ) {
 
 function series_admin_pages() {
     $types = series_posttype_support();
-    $type_pages = array();
-    $type_new_pages = array();
     foreach ( $types as $type ) {
-        $type_pages[] += $type + '.php';
-        $type_new_pages[] += $type + '-new.php';
+        $type_pages[] = $type . '.php';
+        $type_new_pages[] = $type . '-new.php';
     }
     
     return array_merge($type_pages, $type_new_pages);
